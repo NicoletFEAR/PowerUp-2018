@@ -1,27 +1,34 @@
 package org.usfirst.frc.team4786.robot.commands;
 
-
 import org.usfirst.frc.team4786.robot.subsystems.*;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Compressor;
+
 
 /**
  *
  */
-public class PistonOut extends Command {
+public class QueryCompressorStatus extends Command {
 
-    public PistonOut() {
+    public QueryCompressorStatus() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	AirCompressor.c.start();
+    	
     }
+    
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ArmSolenoid.arm.set(DoubleSolenoid.Value.kReverse);
+		boolean enabled = AirCompressor.c.enabled();
+		boolean pressureSwitch = AirCompressor.c.getPressureSwitchValue();
+		double current= AirCompressor.c.getCompressorCurrent();
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

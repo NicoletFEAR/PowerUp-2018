@@ -7,6 +7,7 @@ public class RobotMap {
 	public final static int moduleNumber = 1;
 	public final static int forwardChannel = 1;
 	public final static int reverseChannel = 2;
+	public final static int module =0;
 	
 
 	{
