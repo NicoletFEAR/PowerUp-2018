@@ -43,8 +43,7 @@ public class OpenLoopDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.driveTrain.takeJoystickInputs(Robot.oi.getLeftJoystick() , Robot.oi.getRightJoystick());
-//    	Robot.driveTrain.takeJoystickInputs(Robot.oi.getXbox1().getY(kLeft), Robot.oi.getXbox1().getY(Hand kRight));
+    	Robot.driveTrain.takeJoystickInputs(Robot.oi.getcontrolStick().getX(), Robot.oi.getcontrolStick().getY(), Robot.oi.getcontrolStick().getTwist());
     }
 
     // Make this return true when this Command no longer needs to run execute()

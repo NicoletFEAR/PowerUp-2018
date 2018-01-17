@@ -11,14 +11,16 @@
 
 package org.usfirst.frc4786.RobotBuilderTest1;
 
+import org.usfirst.frc4786.RobotBuilderTest1.commands.AutonomousCommand;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
