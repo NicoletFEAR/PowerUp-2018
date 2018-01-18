@@ -9,7 +9,7 @@ import org.usfirst.frc.team4786.robot.RobotMap;
  *
  */
 public class AirCompressor {
-	public final static Compressor c = new Compressor(RobotMap.module);
+	public final static Compressor c = new Compressor(RobotMap.compressormodule);
 	public AirCompressor () {
 		
 		c.setClosedLoopControl(true);

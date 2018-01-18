@@ -9,7 +9,7 @@ import org.usfirst.frc.team4786.robot.RobotMap;
  *
  */
 public class ArmSolenoid {
-	public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.moduleNumber, RobotMap.forwardChannel,RobotMap.reverseChannel);
+	public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
 	public ArmSolenoid(int moduleNumber, int forwardChannel, int reverseChannel) {
 		
 		// TODO Auto-generated constructor stub. We tried taking this out and it yelled at us.
