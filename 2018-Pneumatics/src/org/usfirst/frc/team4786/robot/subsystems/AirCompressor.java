@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4786.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.tables.ITable;
+//import edu.wpi.first.wpilibj.tables.ITable;
 import org.usfirst.frc.team4786.robot.RobotMap;
 
 
@@ -27,7 +27,7 @@ public class AirCompressor {
     }
     
     
-    public void initTable(ITable subtable) {
+ /*   public void initTable(ITable subtable) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -45,7 +45,7 @@ public class AirCompressor {
 
 	public String getSmartDashboardType() {
 		// TODO Auto-generated method stub
-		return null;	}
+		return null;	}*/
 	
 	}
 

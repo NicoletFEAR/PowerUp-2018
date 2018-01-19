@@ -1,6 +1,12 @@
 package org.usfirst.frc.team4786.robot;
 
+import org.usfirst.frc.team4786.robot.commands.PistonIn;
+import org.usfirst.frc.team4786.robot.commands.PistonOut;
+import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
+import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,6 +22,10 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
+	Command teleopcommandc;
+	Command teleopcommandin;
+	Command teleopcommandout;
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -68,13 +78,28 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		teleopcommandc = new QueryCompressorStatus();
+		teleopcommandin = new PistonIn();
+		teleopcommandout= new PistonOut();
+		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
+			teleopcommandc.start();
+			teleopcommandin.start();
+			teleopcommandout.start();
+		}
+		
+		
 	}
+	
 
 	/**
 	 * This function is called periodically during test mode
 	 */
 	@Override
 	public void testPeriodic() {
+	
+	}
+	public void disabledPeriodic(){
+		AirCompressor.c.setClosedLoopControl(true);
 	}
 }
 
