@@ -53,7 +53,8 @@ public class OpenLoopDrive extends Command {
        
     	double rightStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kRight);   	
     	double leftStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kLeft);
-    	Robot.driveTrain.takeJoystickInputsValues(leftStickValue , rightStickValue);
+    	System.out.println(-leftStickValue);
+    	Robot.driveTrain.takeJoystickInputsValues( - leftStickValue , - rightStickValue);
     	
      }
 

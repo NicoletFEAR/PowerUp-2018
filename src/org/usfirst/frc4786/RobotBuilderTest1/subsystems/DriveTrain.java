@@ -74,7 +74,7 @@ public class DriveTrain extends Subsystem {
     	m_drive.tankDrive(left.getY(), right.getY());
     }
     public void takeJoystickInputsValues(double leftStickV, double rightStickV) {
-    	if (reversed = false) {
+    	if (!reversed) {
     		m_drive.tankDrive(leftStickV, rightStickV);
     	} else {
     		m_drive.tankDrive(rightStickV, leftStickV);
