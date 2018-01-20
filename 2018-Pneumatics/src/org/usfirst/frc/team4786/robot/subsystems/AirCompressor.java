@@ -12,8 +12,6 @@ public class AirCompressor {
 	public final static Compressor c = new Compressor(RobotMap.compressormodule);
 	public AirCompressor () {
 		
-		c.setClosedLoopControl(true);
-		c.setClosedLoopControl(false);
 	}
 		
 	

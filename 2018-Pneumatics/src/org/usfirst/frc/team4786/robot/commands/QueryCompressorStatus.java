@@ -17,14 +17,16 @@ public class QueryCompressorStatus extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
+    //	SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
 		AirCompressor.c.start();
+		AirCompressor.c.setClosedLoopControl(true);
+	//	SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
-		SmartDashboard.putNumber("The current pressure in amps:", AirCompressor.c.getCompressorCurrent());
+    /*	SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
+		SmartDashboard.putNumber("The current pressure in amps:", AirCompressor.c.getCompressorCurrent());*/
 		
     	
     }

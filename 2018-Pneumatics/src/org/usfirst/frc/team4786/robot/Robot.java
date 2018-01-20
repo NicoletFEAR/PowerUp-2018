@@ -3,10 +3,13 @@ package org.usfirst.frc.team4786.robot;
 import org.usfirst.frc.team4786.robot.commands.PistonIn;
 import org.usfirst.frc.team4786.robot.commands.PistonOut;
 import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
+//import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,6 +25,10 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
+	//public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
+	
+	public static OI oi;
+	
 	Command teleopcommandc;
 	Command teleopcommandin;
 	Command teleopcommandout;
@@ -35,7 +42,15 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
+		
+		oi = new OI();
+		
+		
 		SmartDashboard.putData("Auto choices", chooser);
+		SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
+		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
+		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
+		SmartDashboard.putNumber("The current pressure in amps:", AirCompressor.c.getCompressorCurrent());
 	}
 
 	/**
@@ -96,10 +111,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		LiveWindow.run();
 	
 	}
 	public void disabledPeriodic(){
-		AirCompressor.c.setClosedLoopControl(true);
+		//AirCompressor.c.setClosedLoopControl(true);
+		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
+			teleopcommandc.start();
+			teleopcommandin.start();
+			teleopcommandout.start();
+		}
 	}
 }
 
