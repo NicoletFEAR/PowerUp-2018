@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4786.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 //import edu.wpi.first.wpilibj.tables.ITable;
 import org.usfirst.frc.team4786.robot.RobotMap;
 
@@ -8,9 +10,9 @@ import org.usfirst.frc.team4786.robot.RobotMap;
 /**
  *
  */
-public class AirCompressor {
+public class AirCompressor extends Subsystem{
 	public final static Compressor c = new Compressor(RobotMap.compressormodule);
-	public AirCompressor () {
+	public AirCompressor (int CompressorModule) {
 		
 	}
 		

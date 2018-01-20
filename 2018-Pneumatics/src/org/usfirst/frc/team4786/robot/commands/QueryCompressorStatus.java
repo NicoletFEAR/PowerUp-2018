@@ -1,9 +1,11 @@
 package org.usfirst.frc.team4786.robot.commands;
 
+import org.usfirst.frc.team4786.robot.Robot;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 
+
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -12,7 +14,7 @@ public class QueryCompressorStatus extends Command {
 
     public QueryCompressorStatus() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+     //   requires(AirCompressor);
     }
 
     // Called just before this Command runs the first time

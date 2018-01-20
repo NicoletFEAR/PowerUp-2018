@@ -6,7 +6,7 @@ import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
 //import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	//public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
 	
 	public static OI oi;
+	public static AirCompressor c;
 	
 	Command teleopcommandc;
 	Command teleopcommandin;
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("My Auto", customAuto);
 		
 		oi = new OI();
+		c= new AirCompressor(RobotMap.compressormodule);
 		
 		
 		SmartDashboard.putData("Auto choices", chooser);

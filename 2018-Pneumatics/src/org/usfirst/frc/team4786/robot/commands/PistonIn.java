@@ -1,4 +1,5 @@
 package org.usfirst.frc.team4786.robot.commands;
+import org.usfirst.frc.team4786.robot.Robot;
 import org.usfirst.frc.team4786.robot.subsystems.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,6 +11,7 @@ public class PistonIn extends Command {
     public PistonIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	//requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -36,5 +38,6 @@ public class PistonIn extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
