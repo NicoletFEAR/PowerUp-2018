@@ -25,6 +25,7 @@ public class EyeSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	eye.set(DoubleSolenoid.Value.kReverse);
     }
 }
 

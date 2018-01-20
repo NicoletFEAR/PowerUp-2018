@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4786.robot.commands;
 
 
+import org.usfirst.frc.team4786.robot.Robot;
 import org.usfirst.frc.team4786.robot.subsystems.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,7 +13,10 @@ public class PistonOut extends Command {
 
     public PistonOut() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.armsolenoid);
+        requires(Robot.eyesolenoid);
+        requires(Robot.headsolenoid);
+        requires(Robot.legsolenoid);
     }
 
     // Called just before this Command runs the first time

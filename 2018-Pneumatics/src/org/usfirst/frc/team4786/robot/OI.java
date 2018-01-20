@@ -17,6 +17,7 @@ public class OI {
     public static Button yButton;
     public static Button rightBumper;
     public static Button leftBumper;
+    public static Button start;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 public OI(){
@@ -27,6 +28,7 @@ public OI(){
 	xButton = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.X);
 	rightBumper = new JoystickButton(gameMech ,  org.usfirst.frc.team4786.robot.xbox.Buttons.RightBump);
 	leftBumper = new JoystickButton(gameMech ,  org.usfirst.frc.team4786.robot.xbox.Buttons.LeftBump);
+	start = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.Start);
 	//aButton.whileHeld(new ());
 	//bButton.whileHeld(new PassCommand());
 	//yButton.whileHeld(new ShootCommand());
