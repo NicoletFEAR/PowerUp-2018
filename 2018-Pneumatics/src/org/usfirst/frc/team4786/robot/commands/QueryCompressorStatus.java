@@ -14,7 +14,7 @@ public class QueryCompressorStatus extends Command {
 
     public QueryCompressorStatus() {
         // Use requires() here to declare subsystem dependencies
-     //   requires(AirCompressor);
+        requires(Robot.aircompressor);
     }
 
     // Called just before this Command runs the first time

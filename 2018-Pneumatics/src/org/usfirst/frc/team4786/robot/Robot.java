@@ -5,8 +5,11 @@ import org.usfirst.frc.team4786.robot.commands.PistonOut;
 import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
 //import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
+import org.usfirst.frc.team4786.robot.subsystems.ArmSolenoid;
+import org.usfirst.frc.team4786.robot.subsystems.EyeSolenoid;
+import org.usfirst.frc.team4786.robot.subsystems.HeadSolenoid;
+import org.usfirst.frc.team4786.robot.subsystems.LegSolenoid;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,7 +31,12 @@ public class Robot extends IterativeRobot {
 	//public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
 	
 	public static OI oi;
-	public static AirCompressor c;
+	public static AirCompressor aircompressor;
+	public static ArmSolenoid armsolenoid;
+	public static EyeSolenoid eyesolenoid;
+	public static HeadSolenoid headsolenoid;
+	public static LegSolenoid legsolenoid;
+	
 	
 	Command teleopcommandc;
 	Command teleopcommandin;
@@ -45,7 +53,11 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("My Auto", customAuto);
 		
 		oi = new OI();
-		c= new AirCompressor(RobotMap.compressormodule);
+		aircompressor= new AirCompressor(RobotMap.compressormodule);
+		armsolenoid = new ArmSolenoid (RobotMap.armmoduleNumber,RobotMap.armforwardChannel,RobotMap.armreverseChannel);
+		eyesolenoid = new EyeSolenoid (RobotMap.eyemoduleNumber,RobotMap.eyeforwardChannel,RobotMap.eyereverseChannel);
+		headsolenoid = new HeadSolenoid (RobotMap.headmoduleNumber,RobotMap.headforwardChannel,RobotMap.headreverseChannel);
+		legsolenoid = new LegSolenoid (RobotMap.legmoduleNumber,RobotMap.legforwardChannel, RobotMap.legreverseChannel );
 		
 		
 		SmartDashboard.putData("Auto choices", chooser);

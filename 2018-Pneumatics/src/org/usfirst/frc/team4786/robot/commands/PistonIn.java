@@ -11,7 +11,10 @@ public class PistonIn extends Command {
     public PistonIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	//requires(Robot.arm);
+    	requires(Robot.armsolenoid);
+    	requires(Robot.eyesolenoid);
+    	requires(Robot.headsolenoid);
+    	requires(Robot.legsolenoid);
     }
 
     // Called just before this Command runs the first time
@@ -20,10 +23,10 @@ public class PistonIn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ArmSolenoid.arm.set(DoubleSolenoid.Value.kForward);
-    	EyeSolenoid.eye.set(DoubleSolenoid.Value.kForward);
-    	HeadSolenoid.head.set(DoubleSolenoid.Value.kForward);
-    	LegSolenoid.leg.set(DoubleSolenoid.Value.kForward);
+    	ArmSolenoid.arm.set(DoubleSolenoid.Value.kReverse);
+    	EyeSolenoid.eye.set(DoubleSolenoid.Value.kReverse);
+    	HeadSolenoid.head.set(DoubleSolenoid.Value.kReverse);
+    	LegSolenoid.leg.set(DoubleSolenoid.Value.kReverse);
     }
 
     // Make this return true when this Command no longer needs to run execute()

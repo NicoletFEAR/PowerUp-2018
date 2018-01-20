@@ -13,7 +13,7 @@ import org.usfirst.frc.team4786.robot.RobotMap;
 public class AirCompressor extends Subsystem{
 	public final static Compressor c = new Compressor(RobotMap.compressormodule);
 	public AirCompressor (int CompressorModule) {
-		
+	
 	}
 		
 	
