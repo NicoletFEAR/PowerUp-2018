@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class HeadSolenoid extends Subsystem {
-	public final static DoubleSolenoid head = new DoubleSolenoid(RobotMap.headmoduleNumber, RobotMap.headforwardChannel,RobotMap.headreverseChannel);
-	public HeadSolenoid(int moduleNumber, int forwardChannel, int reverseChannel) {
-		
-		
-		
-
-//instantiate the arm solenoid is in the commands.
+	private final  DoubleSolenoid head = new DoubleSolenoid(RobotMap.headmoduleNumber, RobotMap.headforwardChannel,RobotMap.headreverseChannel);
+	
+	public void  fireheaddoublesolenoid() {
+		head.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void retractheaddoublesolenoid (){
+		head.set(DoubleSolenoid.Value.kReverse);
 	}
 
     // Put methods for controlling this subsystem

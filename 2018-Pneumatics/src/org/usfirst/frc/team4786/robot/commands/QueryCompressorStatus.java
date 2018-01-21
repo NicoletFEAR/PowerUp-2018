@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4786.robot.commands;
 
 import org.usfirst.frc.team4786.robot.Robot;
+//import org.usfirst.frc.team4786.robot.Robot;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 
 
@@ -14,14 +15,15 @@ public class QueryCompressorStatus extends Command {
 
     public QueryCompressorStatus() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.aircompressor);
+       requires(Robot.aircompressor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     //	SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
-		AirCompressor.c.start();
-		AirCompressor.c.setClosedLoopControl(true);
+    	AirCompressor.c.start();
+		//AirCompressor.c.setClosedLoopControl(true);
+    	AirCompressor.c.setClosedLoopControl(true);
 	//	SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
     }
 

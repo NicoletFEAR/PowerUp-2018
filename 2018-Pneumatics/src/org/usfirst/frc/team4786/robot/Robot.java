@@ -11,8 +11,10 @@ import org.usfirst.frc.team4786.robot.subsystems.HeadSolenoid;
 import org.usfirst.frc.team4786.robot.subsystems.LegSolenoid;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.XboxController;
+//import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,13 +32,16 @@ public class Robot extends IterativeRobot {
 	SendableChooser<String> chooser = new SendableChooser<>();
 	//public final static DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
 	
-	public static OI oi;
+	
 	public static AirCompressor aircompressor;
 	public static ArmSolenoid armsolenoid;
 	public static EyeSolenoid eyesolenoid;
 	public static HeadSolenoid headsolenoid;
 	public static LegSolenoid legsolenoid;
+	public static OI oi;
 	
+	XboxController xbox2 = new XboxController(0);
+	boolean ATube = false;
 	
 	Command teleopcommandc;
 	Command teleopcommandin;
@@ -49,22 +54,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		RobotMap.init();
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		
-		oi = new OI();
-		aircompressor= new AirCompressor(RobotMap.compressormodule);
-		armsolenoid = new ArmSolenoid (RobotMap.armmoduleNumber,RobotMap.armforwardChannel,RobotMap.armreverseChannel);
-		eyesolenoid = new EyeSolenoid (RobotMap.eyemoduleNumber,RobotMap.eyeforwardChannel,RobotMap.eyereverseChannel);
-		headsolenoid = new HeadSolenoid (RobotMap.headmoduleNumber,RobotMap.headforwardChannel,RobotMap.headreverseChannel);
-		legsolenoid = new LegSolenoid (RobotMap.legmoduleNumber,RobotMap.legforwardChannel, RobotMap.legreverseChannel );
 		
+		aircompressor= new AirCompressor(RobotMap.compressormodule);
+		armsolenoid = new ArmSolenoid();
+		eyesolenoid = new EyeSolenoid();
+		headsolenoid = new HeadSolenoid();
+		legsolenoid = new LegSolenoid();
+		oi = new OI();
 		
 		SmartDashboard.putData("Auto choices", chooser);
-		SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
-		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
-		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
-		SmartDashboard.putNumber("The current pressure in amps:", AirCompressor.c.getCompressorCurrent());
+//		SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
+	//	SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
+		//SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
+	//	SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
 	}
 
 	/**
@@ -84,6 +90,25 @@ public class Robot extends IterativeRobot {
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
+		/*PistonOut firepiston = new PistonOut();
+		firepiston.start();*/
+		
+		PistonIn retractpiston = new PistonIn();
+		retractpiston.start();
+	/*	armsolenoid.retractarmdoublesolenoid();
+		eyesolenoid.retracteyedoublesolenoid();
+		headsolenoid.retractheaddoublesolenoid();
+		legsolenoid.retractlegdoublesolenoid(); 
+		
+		boolean fire = 
+		
+		if ()
+		armsolenoid.firearmdoublesolenoid();
+		eyesolenoid.fireeyedoublesolenoid();
+		headsolenoid.fireheaddoublesolenoid();
+		legsolenoid.firelegdoublesolenoid(); */
+		//eyesolenoid.fireeyedoublesolenoid();
+		
 	}
 
 	/**
@@ -107,13 +132,44 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		/*SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
+		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
+		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
+		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
 		teleopcommandc = new QueryCompressorStatus();
 		teleopcommandin = new PistonIn();
 		teleopcommandout= new PistonOut();
 		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
 			teleopcommandc.start();
 			teleopcommandin.start();
-			teleopcommandout.start();
+			teleopcommandout.start(); */
+		
+		
+		
+		if (xbox2.getAButtonPressed()){
+			ATube = !ATube;
+		}
+		
+		if (ATube) {
+			armsolenoid.firearmdoublesolenoid();
+		} else {
+			armsolenoid.retractarmdoublesolenoid();
+		}
+		
+		
+		if (xbox2.getYButtonPressed()) {
+		armsolenoid.firearmdoublesolenoid();
+		eyesolenoid.fireeyedoublesolenoid();
+		headsolenoid.fireheaddoublesolenoid();
+		legsolenoid.firelegdoublesolenoid(); 
+		//eyesolenoid.fireeyedoublesolenoid();
+		} else if (xbox2.getXButtonPressed()) {
+			armsolenoid.retractarmdoublesolenoid();
+			eyesolenoid.retracteyedoublesolenoid();
+			headsolenoid.retractheaddoublesolenoid();
+			legsolenoid.retractlegdoublesolenoid();
+		} else {
+			
 		}
 		
 		
@@ -125,7 +181,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		
 	
 	}
 	public void disabledPeriodic(){

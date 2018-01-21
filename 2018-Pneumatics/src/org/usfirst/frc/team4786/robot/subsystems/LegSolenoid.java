@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class LegSolenoid extends Subsystem {
-	public final static DoubleSolenoid leg = new DoubleSolenoid(RobotMap.legmoduleNumber, RobotMap.legforwardChannel,RobotMap.legreverseChannel);
-	public LegSolenoid(int moduleNumber, int forwardChannel, int reverseChannel) {
-		
-		
+	private final  DoubleSolenoid leg = new DoubleSolenoid(RobotMap.legmoduleNumber, RobotMap.legforwardChannel,RobotMap.legreverseChannel);
 	
-		
-
-//instantiate the arm solenoid is in the commands.
+	public void  firelegdoublesolenoid() {
+		leg.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void retractlegdoublesolenoid (){
+		leg.set(DoubleSolenoid.Value.kReverse);
 	}
 
     // Put methods for controlling this subsystem

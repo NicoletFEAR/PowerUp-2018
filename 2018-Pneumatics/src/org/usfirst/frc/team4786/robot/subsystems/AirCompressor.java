@@ -11,7 +11,7 @@ import org.usfirst.frc.team4786.robot.RobotMap;
  *
  */
 public class AirCompressor extends Subsystem{
-	public final static Compressor c = new Compressor(RobotMap.compressormodule);
+	public static final  Compressor c = new Compressor(RobotMap.compressormodule);
 	public AirCompressor (int CompressorModule) {
 	
 	}
@@ -38,12 +38,21 @@ public class AirCompressor extends Subsystem{
 	public ITable getTable() {
 		// TODO Auto-generated method stub
 		return null;
+	}*/
+	public void periodic(){
+		// Put code here to be run every loop
+	}
+
+
+
+	public Compressor getC() {
+		return c;
 	}
 
 
 
 
-	public String getSmartDashboardType() {
+	/*public String getSmartDashboardType() {
 		// TODO Auto-generated method stub
 		return null;	}*/
 	

@@ -9,14 +9,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class EyeSolenoid extends Subsystem {
-	public final static DoubleSolenoid eye = new DoubleSolenoid(RobotMap.eyemoduleNumber, RobotMap.eyeforwardChannel,RobotMap.eyereverseChannel);
-	public EyeSolenoid(int moduleNumber, int forwardChannel, int reverseChannel) {
-		
-		
+	private final  DoubleSolenoid eye = new DoubleSolenoid(RobotMap.eyemoduleNumber, RobotMap.eyeforwardChannel,RobotMap.eyereverseChannel);
 	
-		
-
-//instantiate the arm solenoid is in the commands.
+	
+	public void  fireeyedoublesolenoid() {
+		eye.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void retracteyedoublesolenoid (){
+		eye.set(DoubleSolenoid.Value.kReverse);
 	}
 
     // Put methods for controlling this subsystem
