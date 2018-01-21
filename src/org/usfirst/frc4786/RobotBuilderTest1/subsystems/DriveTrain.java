@@ -44,10 +44,10 @@ public class DriveTrain extends Subsystem {
 
 	private boolean reversed;
 	
-    SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13);
-    SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15);
- //   SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13, RobotMap.driveTrainTalonSRX14);
- //   SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15, RobotMap.driveTrainTalonSRX16);
+    //SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13);
+    //SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15);
+    SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13, RobotMap.driveTrainTalonSRX14);
+    SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15, RobotMap.driveTrainTalonSRX16);
     public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);    
     
     public double leftSideSwitchSide;
