@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class HeadSolenoid extends Subsystem {
 	private final  DoubleSolenoid head = new DoubleSolenoid(RobotMap.headmoduleNumber, RobotMap.headforwardChannel,RobotMap.headreverseChannel);
+	boolean tube3out=false;
 	
 	public void  fireheaddoublesolenoid() {
 		head.set(DoubleSolenoid.Value.kForward);
@@ -25,6 +26,12 @@ public class HeadSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+/*    	if (tube3out=true) {
+    		head.set(DoubleSolenoid.Value.kReverse);
+    	}
+    	else if (tube3out=false) {
+    		
+    	}*/
     }
 }
 

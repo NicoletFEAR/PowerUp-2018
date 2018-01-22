@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ArmSolenoid extends Subsystem {
 	private final  DoubleSolenoid arm = new DoubleSolenoid(RobotMap.armmoduleNumber, RobotMap.armforwardChannel,RobotMap.armreverseChannel);
+	boolean tube1out = false;
 	
 	public void  firearmdoublesolenoid() {
 		arm.set(DoubleSolenoid.Value.kForward);
@@ -27,6 +28,12 @@ public class ArmSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+ /*   	if (tube1out=true) {
+    		arm.set(DoubleSolenoid.Value.kReverse);
+    	}
+    	else if (tube1out=false) {
+    		
+    	}*/
     }
 }
 

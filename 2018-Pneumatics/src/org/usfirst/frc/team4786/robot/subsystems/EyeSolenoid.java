@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class EyeSolenoid extends Subsystem {
 	private final  DoubleSolenoid eye = new DoubleSolenoid(RobotMap.eyemoduleNumber, RobotMap.eyeforwardChannel,RobotMap.eyereverseChannel);
+	boolean tube2out=false;
 	
 	
 	public void  fireeyedoublesolenoid() {
@@ -26,7 +27,13 @@ public class EyeSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	eye.set(DoubleSolenoid.Value.kReverse);
+   /* 	if (tube2out=true) {
+    		eye.set(DoubleSolenoid.Value.kReverse);
+    	}
+    	else if (tube2out=false) {
+    		
+    	}*/
+    	
     }
 }
 

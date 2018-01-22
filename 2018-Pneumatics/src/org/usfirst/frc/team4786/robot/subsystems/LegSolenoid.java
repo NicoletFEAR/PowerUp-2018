@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LegSolenoid extends Subsystem {
 	private final  DoubleSolenoid leg = new DoubleSolenoid(RobotMap.legmoduleNumber, RobotMap.legforwardChannel,RobotMap.legreverseChannel);
+	boolean tube4out=false;
 	
 	public void  firelegdoublesolenoid() {
 		leg.set(DoubleSolenoid.Value.kForward);
@@ -25,6 +26,12 @@ public class LegSolenoid extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+/*    	if (tube4out=true) {
+    		leg.set(DoubleSolenoid.Value.kReverse);
+    	}
+    	else if (tube4out=false) {
+    		
+    	}*/
     }
 }
 
