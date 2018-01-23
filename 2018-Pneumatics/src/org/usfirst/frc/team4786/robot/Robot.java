@@ -1,15 +1,15 @@
 package org.usfirst.frc.team4786.robot;
 
-import org.usfirst.frc.team4786.robot.commands.PistonIn;
-import org.usfirst.frc.team4786.robot.commands.PistonOut;
-import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
-//import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
-import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
-import org.usfirst.frc.team4786.robot.subsystems.ArmSolenoid;
-import org.usfirst.frc.team4786.robot.subsystems.EyeSolenoid;
-import org.usfirst.frc.team4786.robot.subsystems.HeadSolenoid;
-import org.usfirst.frc.team4786.robot.subsystems.LegSolenoid;
 
+import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
+
+import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
+import org.usfirst.frc.team4786.robot.subsystems.GameMech;
+import org.usfirst.frc.team4786.robot.subsystems.Shifter;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.TimedRobot;
@@ -34,14 +34,17 @@ public class Robot extends IterativeRobot {
 	
 	
 	public static AirCompressor aircompressor;
-	public static ArmSolenoid armsolenoid;
-	public static EyeSolenoid eyesolenoid;
-	public static HeadSolenoid headsolenoid;
-	public static LegSolenoid legsolenoid;
+
+	public static Shifter shifter;
+	
+	public static GameMech gamemech;
+	
 	public static OI oi;
+
 	
 	XboxController xbox2 = new XboxController(0);
-	boolean ATube = false;
+	
+	
 	
 	Command teleopcommandc;
 	Command teleopcommandin;
@@ -60,10 +63,10 @@ public class Robot extends IterativeRobot {
 		
 		
 		aircompressor= new AirCompressor(RobotMap.compressormodule);
-		armsolenoid = new ArmSolenoid();
-		eyesolenoid = new EyeSolenoid();
-		headsolenoid = new HeadSolenoid();
-		legsolenoid = new LegSolenoid();
+		
+		shifter = new Shifter();
+		gamemech= new GameMech();
+		
 		oi = new OI();
 		
 		SmartDashboard.putData("Auto choices", chooser);
@@ -93,20 +96,6 @@ public class Robot extends IterativeRobot {
 		/*PistonOut firepiston = new PistonOut();
 		firepiston.start();*/
 		
-		
-	/*	armsolenoid.retractarmdoublesolenoid();
-		eyesolenoid.retracteyedoublesolenoid();
-		headsolenoid.retractheaddoublesolenoid();
-		legsolenoid.retractlegdoublesolenoid(); 
-		
-		boolean fire = 
-		
-		if ()
-		armsolenoid.firearmdoublesolenoid();
-		eyesolenoid.fireeyedoublesolenoid();
-		headsolenoid.fireheaddoublesolenoid();
-		legsolenoid.firelegdoublesolenoid(); */
-		//eyesolenoid.fireeyedoublesolenoid();
 		
 	}
 
@@ -145,37 +134,23 @@ public class Robot extends IterativeRobot {
 		
 		
 		
-	/*	if (xbox2.getAButtonPressed()){
-			ATube = !ATube;
+		if (xbox2.getAButtonPressed()){
+			gamemech.liftdown();
+		} 
+		if (xbox2.getYButtonPressed()){
+			gamemech.liftup();
+		} 
+		if (xbox2.getXButtonPressed()){
+			gamemech.open();
+		} 
+		if (xbox2.getBButtonPressed()) {
+			gamemech.close();
 		}
 		
-		if (ATube) {
-			armsolenoid.firearmdoublesolenoid();
-		} else {
-			armsolenoid.retractarmdoublesolenoid();
-		} */
 		
-		
-		if (xbox2.getYButtonPressed()) {
-			teleopcommandout= new PistonOut();
-			teleopcommandout.start();
-			
-	/*	armsolenoid.firearmdoublesolenoid();
-		eyesolenoid.fireeyedoublesolenoid();
-		headsolenoid.fireheaddoublesolenoid();
-		legsolenoid.firelegdoublesolenoid();  */
-		} else if (xbox2.getXButtonPressed()) {
-			teleopcommandin = new PistonIn();
-			teleopcommandin.start();
-			
-	/*		armsolenoid.retractarmdoublesolenoid();
-			eyesolenoid.retracteyedoublesolenoid();
-			headsolenoid.retractheaddoublesolenoid();
-			legsolenoid.retractlegdoublesolenoid(); */
-		} else {
-			
+		if (xbox2.getStickButtonPressed(GenericHID.Hand.kRight)){
+			shifter.shift();
 		}
-		
 		
 	}
 	
@@ -192,19 +167,9 @@ public class Robot extends IterativeRobot {
 		//AirCompressor.c.setClosedLoopControl(true);
 		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
 			teleopcommandc.start();
-			if (xbox2.getYButtonPressed()) {
-				teleopcommandout= new PistonOut();
-				teleopcommandout.start();
-				
-		/*	armsolenoid.firearmdoublesolenoid();
-			eyesolenoid.fireeyedoublesolenoid();
-			headsolenoid.fireheaddoublesolenoid();
-			legsolenoid.firelegdoublesolenoid();  */
-			} else if (xbox2.getXButtonPressed()) {
-				teleopcommandin = new PistonIn();
-				teleopcommandin.start();
+		
 		}
 	}
 }
-}
+
 

@@ -44,8 +44,7 @@ public OI(){
 	xbox1XButton = new JoystickButton(xbox1,3);
 	xbox1YButton = new JoystickButton (xbox1,4);
 	
-	xbox1XButton.whenPressed(new PistonOut());
-	xbox1YButton.whenPressed(new PistonIn());
+	
 	
 }
     public void initDefaultCommand() {
