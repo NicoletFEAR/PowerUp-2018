@@ -23,12 +23,28 @@ public class GameMech extends Subsystem {
 		
 	}
 	
+	public void lift() {
+		if(lift.get()==DoubleSolenoid.Value.kForward==true){
+			liftdown();
+		}else if (lift.get()==DoubleSolenoid.Value.kForward==false) {
+			liftup();
+		}
+	}
+	
 	public void close(){
 		grab.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void open(){
 		grab.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void gate() {
+		if (grab.get()==DoubleSolenoid.Value.kForward) {
+			open();
+		}else if (grab.get()==DoubleSolenoid.Value.kReverse) {
+			close();
+		}
 	}
 	
 

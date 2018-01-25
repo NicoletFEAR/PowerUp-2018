@@ -10,39 +10,31 @@ import edu.wpi.first.wpilibj.buttons.Button;
  *
  */
 public class OI {
-	/* public static Joystick gameMech;
-	public static Button aButton;
-    public static Button bButton;
-    public static Button xButton;
-    public static Button yButton;
-    public static Button rightBumper;
-    public static Button leftBumper;
-    public static Button start;*/
-    private XboxController xbox1;
-    private Button xbox1XButton;
-    private Button xbox1YButton;
+	XboxController xbox1= new XboxController(0);
+    
+	Button AButton = new JoystickButton(xbox1, 0);
+	Button BButton = new JoystickButton(xbox1,1);
+	Button XButton = new JoystickButton(xbox1,3);
+	Button YButton = new JoystickButton(xbox1,4);
+	Button LeftBump = new JoystickButton(xbox1,5);
+	Button RightBump = new JoystickButton(xbox1,6);
+	Button Back = new JoystickButton(xbox1,7);
+	Button Start = new JoystickButton(xbox1,8);
+	Button LeftStick = new JoystickButton(xbox1,9);
+	Button RightStick = new JoystickButton(xbox1,10);
+	//Still need for Triggers
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 public OI(){
-//	gameMech = new Joystick(1);
-/*	aButton = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.A);
-	bButton = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.B);
-	yButton = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.Y);
-	xButton = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.X);
-	rightBumper = new JoystickButton(gameMech ,  org.usfirst.frc.team4786.robot.xbox.Buttons.RightBump);
-	leftBumper = new JoystickButton(gameMech ,  org.usfirst.frc.team4786.robot.xbox.Buttons.LeftBump);
-	start = new JoystickButton(gameMech , org.usfirst.frc.team4786.robot.xbox.Buttons.Start);
-	aButton.whileHeld(new PistonIn());
-	bButton.whileHeld(new PistonIn());
-	yButton.whileHeld(new PistonOut());
-	xButton.whileHeld(new PistonOut());*/
-//	leftBumper.whenPressed(new PistonIn());
-//	rightBumper.whenPressed(new PistonOut());
+	AButton.whenPressed(new Lift());
+	BButton.whenPressed(new OpennClose());
+	XButton.whenPressed(new Shift());
 	
-	xbox1 = new XboxController(4);
 	
-	xbox1XButton = new JoystickButton(xbox1,3);
-	xbox1YButton = new JoystickButton (xbox1,4);
+//	xbox1 = new XboxController(4);
+	
+//	xbox1XButton = new JoystickButton(xbox1,3);
+//	xbox1YButton = new JoystickButton (xbox1,4);
 	
 	
 	

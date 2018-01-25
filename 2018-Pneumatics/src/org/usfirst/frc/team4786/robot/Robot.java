@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,16 +40,16 @@ public class Robot extends IterativeRobot {
 	
 	public static GameMech gamemech;
 	
+	//public static XboxController xbox2;
+	
 	public static OI oi;
 
 	
-	XboxController xbox2 = new XboxController(0);
 	
 	
-	
-	Command teleopcommandc;
-	Command teleopcommandin;
-	Command teleopcommandout;
+	Command teleopcommandShift;
+	Command teleopcommandOpennClose;
+	Command teleopcommandLift;
 	
 
 	/**
@@ -63,10 +64,9 @@ public class Robot extends IterativeRobot {
 		
 		
 		aircompressor= new AirCompressor(RobotMap.compressormodule);
-		
 		shifter = new Shifter();
 		gamemech= new GameMech();
-		
+	//	xbox2 = new XboxController(0);
 		oi = new OI();
 		
 		SmartDashboard.putData("Auto choices", chooser);
@@ -114,6 +114,11 @@ public class Robot extends IterativeRobot {
 			break;
 		}
 	}
+	
+	public void teleopInit() {
+		
+	}
+	
 
 	/**
 	 * This function is called periodically during operator control
@@ -124,6 +129,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
 		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
 		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
+		Scheduler.getInstance().run();
+		// really need the above line
 /*		teleopcommandc = new QueryCompressorStatus();
 		teleopcommandin = new PistonIn();
 		teleopcommandout= new PistonOut();
@@ -134,7 +141,7 @@ public class Robot extends IterativeRobot {
 		
 		
 		
-		if (xbox2.getAButtonPressed()){
+	/*	if (xbox2.getAButtonPressed()){
 			gamemech.liftdown();
 		} 
 		if (xbox2.getYButtonPressed()){
@@ -150,7 +157,7 @@ public class Robot extends IterativeRobot {
 		
 		if (xbox2.getStickButtonPressed(GenericHID.Hand.kRight)){
 			shifter.shift();
-		}
+		}*/
 		
 	}
 	
@@ -165,10 +172,9 @@ public class Robot extends IterativeRobot {
 	}
 	public void disabledPeriodic(){
 		//AirCompressor.c.setClosedLoopControl(true);
-		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
-			teleopcommandc.start();
 		
-		}
+		
+		
 	}
 }
 
