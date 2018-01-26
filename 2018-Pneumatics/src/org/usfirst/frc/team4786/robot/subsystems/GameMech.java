@@ -23,6 +23,15 @@ public class GameMech extends Subsystem {
 		
 	}
 	
+	public void toggleLift() {
+		if (lift.get() == DoubleSolenoid.Value.kForward) {
+			liftdown();
+		} else {
+			liftup();
+		}
+	}
+	
+	
 	public void close(){
 		grab.set(DoubleSolenoid.Value.kForward);
 	}
@@ -36,6 +45,8 @@ public class GameMech extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
+    	open();
+    	liftdown();
     }
 }
 

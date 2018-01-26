@@ -1,20 +1,13 @@
 package org.usfirst.frc.team4786.robot;
 
-
-import org.usfirst.frc.team4786.robot.commands.QueryCompressorStatus;
-
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.GameMech;
 import org.usfirst.frc.team4786.robot.subsystems.Shifter;
-
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.GenericHID;
+import org.usfirst.frc.team4786.robot.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,20 +28,11 @@ public class Robot extends IterativeRobot {
 	
 	public static AirCompressor aircompressor;
 
-	public static Shifter shifter;
-	
-	public static GameMech gamemech;
+	public static Shifter shifter = new Shifter();
+	public static GameMech gamemech = new GameMech();
 	
 	public static OI oi;
 
-	
-	XboxController xbox2 = new XboxController(0);
-	
-	
-	
-	Command teleopcommandc;
-	Command teleopcommandin;
-	Command teleopcommandout;
 	
 
 	/**
@@ -64,10 +48,8 @@ public class Robot extends IterativeRobot {
 		
 		aircompressor= new AirCompressor(RobotMap.compressormodule);
 		
-		shifter = new Shifter();
-		gamemech= new GameMech();
-		
 		oi = new OI();
+		
 		
 		SmartDashboard.putData("Auto choices", chooser);
 		SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
@@ -115,6 +97,11 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
+	public void teleopInit(){
+//		Command shiftUp = new ShiftUp();
+//		shiftUp.start();
+	}
+	
 	/**
 	 * This function is called periodically during operator control
 	 */
@@ -124,34 +111,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
 		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
 		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
-/*		teleopcommandc = new QueryCompressorStatus();
-		teleopcommandin = new PistonIn();
-		teleopcommandout= new PistonOut();
-		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
-			teleopcommandc.start();
-			teleopcommandin.start();
-			teleopcommandout.start(); */
 		
-		
-		
-		if (xbox2.getAButtonPressed()){
-			gamemech.liftdown();
-		} 
-		if (xbox2.getYButtonPressed()){
-			gamemech.liftup();
-		} 
-		if (xbox2.getXButtonPressed()){
-			gamemech.open();
-		} 
-		if (xbox2.getBButtonPressed()) {
-			gamemech.close();
-		}
-		
-		
-		if (xbox2.getStickButtonPressed(GenericHID.Hand.kRight)){
-			shifter.shift();
-		}
-		
+		Scheduler.getInstance().run();
 	}
 	
 
@@ -164,12 +125,11 @@ public class Robot extends IterativeRobot {
 	
 	}
 	public void disabledPeriodic(){
-		//AirCompressor.c.setClosedLoopControl(true);
-		if(teleopcommandc != null && teleopcommandin!=null && teleopcommandout!=null ){
-			teleopcommandc.start();
+		AirCompressor.c.setClosedLoopControl(true);
+
 		
 		}
 	}
-}
+
 
 
