@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
-/**
- *
- */
+
 public class SwitchFront extends Command {
 
+	boolean sideSwitched = false;
+	
 	public SwitchFront() {
     	requires(Robot.driveTrain);
     	this.setInterruptible(false);
@@ -35,6 +35,8 @@ public class SwitchFront extends Command {
     protected void initialize() {
     	//Flip direction of travel
     	Robot.driveTrain.switchFront();
+    	sideSwitched = !sideSwitched;
+    	SmartDashboard.putBoolean("Side Switched?", sideSwitched);
     	//Flip left and right
     	//Robot.oi.switchJoystickIDs();
     }

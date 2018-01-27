@@ -75,7 +75,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void stop () {
-    	m_drive.tankDrive(0, 0);
+    	m_drive.stopMotor();
     }
     
     public boolean isReversed(){
