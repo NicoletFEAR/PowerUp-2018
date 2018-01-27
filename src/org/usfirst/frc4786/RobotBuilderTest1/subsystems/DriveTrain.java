@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
 	
     //SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13);
     //SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15);
-    SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13, RobotMap.driveTrainTalonSRX14);
-    SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15, RobotMap.driveTrainTalonSRX16);
+    SpeedControllerGroup m_left = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX13, RobotMap.driveTrainTalonSRX15, RobotMap.driveTrainTalonSRX17);
+    SpeedControllerGroup m_right = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX14, RobotMap.driveTrainTalonSRX16, RobotMap.driveTrainTalonSRX18);
     public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);    
     
     public double leftSideSwitchSide;
