@@ -30,21 +30,21 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RobotMap {
 	//Left Side Motor Controllers
-    public static WPI_TalonSRX frontLeftTalon;
-    public static WPI_TalonSRX middleLeftTalon;
-    public static WPI_TalonSRX backLeftTalon;
+    public static WPI_TalonSRX frontLeft;
+    public static WPI_TalonSRX midLeft;
+    public static WPI_TalonSRX backLeft;
     //Right Side Motor Controllers
-    public static WPI_TalonSRX frontRightTalon;
-    public static WPI_TalonSRX middleRightTalon;
-    public static WPI_TalonSRX backRightTalon;
+    public static WPI_TalonSRX frontRight;
+    public static WPI_TalonSRX midRight;
+    public static WPI_TalonSRX backRight;
 
     public static void init() {
-    	frontLeftTalon = new WPI_TalonSRX(13);        
-        frontRightTalon = new WPI_TalonSRX(14);
-        middleLeftTalon = new WPI_TalonSRX(15);
-        middleRightTalon = new WPI_TalonSRX(16);
-        backLeftTalon = new WPI_TalonSRX(17);
-        backRightTalon = new WPI_TalonSRX(18);
+    	frontLeft = new WPI_TalonSRX(13);        
+        frontRight = new WPI_TalonSRX(14);
+        midLeft = new WPI_TalonSRX(15);
+        midRight = new WPI_TalonSRX(16);
+        backLeft = new WPI_TalonSRX(17);
+        backRight = new WPI_TalonSRX(18);
         
         /*
         //Autonomous Switcher Stuff!
