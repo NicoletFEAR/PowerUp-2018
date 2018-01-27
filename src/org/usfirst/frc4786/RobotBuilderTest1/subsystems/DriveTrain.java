@@ -54,7 +54,7 @@ public class DriveTrain extends Subsystem {
     }
     public void takeInputValues(double robotSpeed, double turnAmount) {
     	if (!reversed) {
-    		m_drive.tankDrive(robotSpeed, turnAmount);
+    		m_drive.arcadeDrive(robotSpeed, turnAmount);
     		SmartDashboard.putData("Drive Train", m_drive);
     		SmartDashboard.putNumber("Left Side", m_left.get());
     		SmartDashboard.putNumber("Right Side", m_right.get());
@@ -66,7 +66,6 @@ public class DriveTrain extends Subsystem {
     	}
     	
     }
-    
 
     @Override
     public void periodic() {

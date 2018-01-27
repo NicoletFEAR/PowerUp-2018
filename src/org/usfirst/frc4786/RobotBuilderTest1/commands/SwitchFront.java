@@ -37,8 +37,6 @@ public class SwitchFront extends Command {
     	Robot.driveTrain.switchFront();
     	sideSwitched = !sideSwitched;
     	SmartDashboard.putBoolean("Side Switched?", sideSwitched);
-    	//Flip left and right
-    	//Robot.oi.switchJoystickIDs();
     }
 
     // Called repeatedly when this Command is scheduled to run
