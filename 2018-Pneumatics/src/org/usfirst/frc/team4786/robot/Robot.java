@@ -29,7 +29,8 @@ public class Robot extends IterativeRobot {
 	public static AirCompressor aircompressor;
 
 	public static Shifter shifter = new Shifter();
-	public static GameMech gamemech = new GameMech();
+	
+	public static GameMech gameMech = new GameMech();
 	
 	public static OI oi;
 
@@ -54,7 +55,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", chooser);
 		SmartDashboard.putBoolean("The Compressor is on", AirCompressor.c.enabled());
 		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
-		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
+		SmartDashboard.putBoolean("The pressure is enough", AirCompressor.c.getPressureSwitchValue());
 		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
 	}
 

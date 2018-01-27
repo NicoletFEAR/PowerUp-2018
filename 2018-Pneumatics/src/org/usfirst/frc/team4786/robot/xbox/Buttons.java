@@ -19,5 +19,7 @@ public class Buttons {
 		public static final int Start = 8;
 		public static final int LeftStick = 9;
 		public static final int RightStick = 10;
+		
+		
 }
 

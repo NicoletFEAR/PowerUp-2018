@@ -5,6 +5,7 @@ package org.usfirst.frc.team4786.robot;
 import edu.wpi.first.wpilibj.XboxController;
 
 import org.usfirst.frc.team4786.robot.commands.Grab;
+import org.usfirst.frc.team4786.robot.commands.Lift;
 import org.usfirst.frc.team4786.robot.commands.Shift;
 import org.usfirst.frc.team4786.robot.xbox.Buttons;
 
@@ -40,8 +41,8 @@ public OI(){
 	leftBumper = new JoystickButton(xbox2, Buttons.LeftBump);
 	xboxLeftStick = new JoystickButton(xbox2, 9);
 	xboxLeftStick.whenPressed(new Shift());
-	leftBumper.whenPressed(new Grab());
-		
+	rightBumper.whenPressed(new Lift());
+	leftBumper.whenPressed(new Grab());	
 }
 	
 

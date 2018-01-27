@@ -23,14 +23,13 @@ public class GameMech extends Subsystem {
 		
 	}
 	
-	public void toggleLift() {
-		if (lift.get() == DoubleSolenoid.Value.kForward) {
+	public void lift() {
+		if(lift.get()==DoubleSolenoid.Value.kForward==true){
 			liftdown();
-		} else {
+		}else if (lift.get()==DoubleSolenoid.Value.kForward==false) {
 			liftup();
 		}
 	}
-	
 	
 	public void close(){
 		grab.set(DoubleSolenoid.Value.kForward);
@@ -40,7 +39,14 @@ public class GameMech extends Subsystem {
 		grab.set(DoubleSolenoid.Value.kReverse);
 	}
 	
-
+	public void gate() {
+		if (grab.get()==DoubleSolenoid.Value.kForward) {
+			open();
+		}else if (grab.get()==DoubleSolenoid.Value.kReverse) {
+			close();
+		}
+	}
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

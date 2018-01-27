@@ -15,13 +15,13 @@ public class Grab extends Command {
 
     public Grab() {
         // Use requires() here to declare subsystem dependencies
-       requires(Robot.gamemech);
+       requires(Robot.gameMech);
        this.setInterruptible(false);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gamemech.toggleLift();
+    	Robot.gameMech.gate();
     }
 
     // Called repeatedly when this Command is scheduled to run
