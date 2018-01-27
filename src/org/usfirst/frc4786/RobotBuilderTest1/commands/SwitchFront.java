@@ -35,6 +35,7 @@ public class SwitchFront extends Command {
     protected void initialize() {
     	//Flip direction of travel
     	Robot.driveTrain.switchFront();
+    	SmartDashboard.putBoolean("Front Switched?", Robot.driveTrain.isReversed());
     	//Flip left and right
     	//Robot.oi.switchJoystickIDs();
     }

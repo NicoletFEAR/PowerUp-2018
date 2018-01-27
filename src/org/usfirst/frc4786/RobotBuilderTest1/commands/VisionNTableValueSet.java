@@ -20,8 +20,12 @@ public class VisionNTableValueSet extends Command{
 	
 	//@SuppressWarnings("deprecation")
 	@SuppressWarnings("deprecation")
-	@Override
+	//@Override
 	protected void initialize() {
+		
+
+    	SmartDashboard.putNumber("valuecommandinit", 444);
+    	
 		myTable = NetworkTable.getTable("GRIP/myContoursReport"); // makes the table myTable properly what it should be
 		NetworkTable.setUpdateRate(0.05);
 		 
@@ -57,17 +61,21 @@ public class VisionNTableValueSet extends Command{
 	 
 	 @Override
 	    protected void execute() {
+
+	    	//SmartDashboard.putNumber("value", 333);
+	    	
 	    }
 	 
 	 
      @Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}  
      
      @Override
      protected void end() {
+    	 SmartDashboard.putNumber("valueendtest", 888);
      }
      
      @Override

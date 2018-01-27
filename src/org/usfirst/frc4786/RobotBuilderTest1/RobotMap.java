@@ -46,8 +46,8 @@ public class RobotMap {
         driveTrainTalonSRX14 = new WPI_TalonSRX(14);
         driveTrainTalonSRX15 = new WPI_TalonSRX(15);
         driveTrainTalonSRX16 = new WPI_TalonSRX(16);
-        driveTrainTalonSRX15 = new WPI_TalonSRX(17);
-        driveTrainTalonSRX16 = new WPI_TalonSRX(18);
+        driveTrainTalonSRX17 = new WPI_TalonSRX(17);
+        driveTrainTalonSRX18 = new WPI_TalonSRX(18);
         
         /*
         //Autonomous Switcher Stuff!

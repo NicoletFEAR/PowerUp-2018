@@ -86,6 +86,7 @@ public class Robot extends TimedRobot {
         // Using old deprecated code on purpose - it still works!
          myTable = NetworkTable.getTable("GRIP/myContoursReport"); // makes the table myTable properly what it should be
 		 NetworkTable.setUpdateRate(0.05);
+		 /*
 		 myTable.putNumber("hsvHueMin", 31);
 		 myTable.putNumber("hsvHueMax", 69);
 		 myTable.putNumber("hsvSatMin", 71);
@@ -98,7 +99,7 @@ public class Robot extends TimedRobot {
 		 myTable.putNumber("solidityMax", 100);
 		 myTable.putNumber("ratioMin", 0);
 		 myTable.putNumber("ratioMax", 4);
-		
+		 */
 		 myTable.setPersistent("hsvHueMin");
 		 myTable.setPersistent("hsvHueMax");
 		 myTable.setPersistent("hsvSatMin");
@@ -160,14 +161,24 @@ public class Robot extends TimedRobot {
     
     @Override
 	public void testInit(){
+
+
+   	 myTable.putNumber("contourAreaMin", 9999);//1000
+    	//SmartDashboard.putNumber("valuetest", 555);
+    	
+   	 
+   	 	new VisionNTableValueSet(); 
     	//This will override the persistent values!!! Be careful!
     	 new VisionNTableValueSet(); // sets new values for the first time
-	}
+    }
     
     @Override
 	public void testPeriodic() {
+    	
+    	//SmartDashboard.putNumber("hsvHueMin", myTable.getDouble("hsvHueMin", 0));
+    	
     	//This will override the persistent values!!! Be careful!
-    	 new VisionNTableValueSet(); // sets new values for the first time
+    	 //new VisionNTableValueSet(); // sets new values for the first time
     }
     
     
