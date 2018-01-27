@@ -1,6 +1,7 @@
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
+import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,26 +11,60 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Play6 extends Command {
 
+	public static RobotMap.AutoPosition myPosition;
+	
     public Play6() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	 String gameData;
  		gameData = DriverStation.getInstance().getGameSpecificMessage();
- 		if(gameData == "LRL" || gameData == "LRR")
- 		{
+ 		if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.A) {
  			
- 		} else if (gameData == "LLR" || gameData == "LLL") {
+ 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.B) {
  			
- 		} else if (gameData == "RRL" || gameData == "RRR") {
+ 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.C) {
  			
- 		} else if (gameData == "RLL" || gameData == "RLR"){
+ 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.D) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.E) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.A) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.B) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.C) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.D) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.E) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.A) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.B) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.C) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.D) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.E) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.A) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.B) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.C) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.D) {
+ 			
+ 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.E) {
  			
  		} else {
- 			Robot.driveTrain.driveForSeconds(5, .75, .75);
+ 			
  		}
     }
 
