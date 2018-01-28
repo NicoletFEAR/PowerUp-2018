@@ -9,6 +9,7 @@ import org.usfirst.frc.team4786.robot.commands.Lift;
 import org.usfirst.frc.team4786.robot.commands.Shift;
 import org.usfirst.frc.team4786.robot.xbox.Buttons;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
@@ -32,7 +33,6 @@ public class OI {
 	public static final int RightStick = 10;
 	private static Button rightBumper;
 	private static Button leftBumper;
-	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 public OI(){
@@ -43,9 +43,14 @@ public OI(){
 	xboxLeftStick.whenPressed(new Shift());
 	rightBumper.whenPressed(new Lift());
 	leftBumper.whenPressed(new Grab());	
+	
 }
 	
-
+	public XboxController getXbox2()
+	{
+		return xbox2;
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

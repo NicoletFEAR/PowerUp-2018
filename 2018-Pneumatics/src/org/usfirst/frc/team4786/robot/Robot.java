@@ -3,6 +3,9 @@ package org.usfirst.frc.team4786.robot;
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.GameMech;
 import org.usfirst.frc.team4786.robot.subsystems.Shifter;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import org.usfirst.frc.team4786.robot.commands.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -34,7 +37,9 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 
-	
+	TalonSRX motor1 = new TalonSRX(13);
+	TalonSRX motor2 = new TalonSRX(14);
+	TalonSRX motor3 = new TalonSRX(16);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -57,6 +62,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
 		SmartDashboard.putBoolean("The pressure is enough", AirCompressor.c.getPressureSwitchValue());
 		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
+		SmartDashboard.putNumber("Group 1 value is", gameMech.groupVal(4.0, GameMech.switch0));
+		SmartDashboard.putNumber("Group 2 value is", gameMech.groupVal(4.0, GameMech.switch1));
+		SmartDashboard.putBoolean("The digital input's value is", gameMech.testVal());
+		
 	}
 
 	/**
@@ -112,6 +121,18 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean ("The Compressor is on control mode", AirCompressor.c.getClosedLoopControl());
 		SmartDashboard.putBoolean("The pressure is low", AirCompressor.c.getPressureSwitchValue());
 		SmartDashboard.putNumber("Pressure (amps):", AirCompressor.c.getCompressorCurrent());
+		SmartDashboard.putNumber("Group 1 value is", gameMech.groupVal(4.0, GameMech.switch0));
+		SmartDashboard.putNumber("Group 2 value is", gameMech.groupVal(4.0, GameMech.switch1));
+		SmartDashboard.putBoolean("The digital input's value is", gameMech.testVal());
+		SmartDashboard.putString("AutoPlan: ", gameMech.autonomousMode());
+		
+		
+		
+		double rightJoyVal = ((oi.getXbox2().getY(Hand.kRight)) * 100);
+		motor1.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, rightJoyVal);
+		motor2.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, rightJoyVal);
+		motor3.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, rightJoyVal);
+		
 		
 		Scheduler.getInstance().run();
 	}
