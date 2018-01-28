@@ -52,6 +52,7 @@ public class Robot extends TimedRobot {
     
   
     @SuppressWarnings("deprecation")
+	
 	// We are using the old network tables code because it makes a lot more sense! (so deprecation warnings are OK!)
     NetworkTable myTable; // starts myTable (We think that you have to put this and make a table to access the data in all of the different places that you want the data to be used in (same for the myTable = one!))
 	// myTable is the table you use to put the data from the GRIP Contours Report into

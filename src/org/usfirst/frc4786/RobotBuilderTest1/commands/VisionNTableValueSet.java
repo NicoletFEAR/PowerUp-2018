@@ -20,7 +20,7 @@ public class VisionNTableValueSet extends Command{
 	
 	//@SuppressWarnings("deprecation")
 	@SuppressWarnings("deprecation")
-	//@Override
+	@Override
 	protected void initialize() {
 		
 
