@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -41,6 +43,8 @@ public class RobotMap {
     public static AnalogInput playSwitch;
     public static AnalogInput positionSwitch;
     
+    public static I2C arduinoInterface;
+    
     public enum AutoPosition {
     	A, B, C, D, E
     }
@@ -62,8 +66,7 @@ public class RobotMap {
 
         positionSwitch = new AnalogInput(0);
         playSwitch = new AnalogInput(1);
-        
-        
+       
         /*
         SpeedControllerGroup m_left = new SpeedControllerGroup(driveTrainTalonSRX13, driveTrainTalonSRX15);
         SpeedControllerGroup m_right = new SpeedControllerGroup(driveTrainTalonSRX14, driveTrainTalonSRX16);
