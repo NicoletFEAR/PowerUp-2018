@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Play3 extends Command {
 
-	public static RobotMap.AutoPosition myPosition;
+
 	
     public Play3() {
         // Use requires() here to declare subsystem dependencies
@@ -23,45 +23,45 @@ public class Play3 extends Command {
     protected void initialize() {
     	 String gameData;
  		gameData = DriverStation.getInstance().getGameSpecificMessage();
- 		if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.A) {
+ 		if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.A) {
  			
- 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.B) {
+ 		} else if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.B) {
  			
- 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.C) {
+ 		} else if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.C) {
  			
- 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.D) {
+ 		} else if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.D) {
  			
- 		} else if(gameData.substring(0, 1) == "LR" && myPosition == RobotMap.AutoPosition.E) {
+ 		} else if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.E) {
  			
- 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.A) {
+ 		} else if(gameData.substring(0, 1) == "LL" && Robot.myPosition == RobotMap.AutoPosition.A) {
  			
- 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.B) {
+ 		} else if(gameData.substring(0, 1) == "LL" && Robot.myPosition == RobotMap.AutoPosition.B) {
  			
- 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.C) {
+ 		} else if(gameData.substring(0, 1) == "LL" && Robot.myPosition == RobotMap.AutoPosition.C) {
  			
- 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.D) {
+ 		} else if(gameData.substring(0, 1) == "LL" && Robot.myPosition == RobotMap.AutoPosition.D) {
  			
- 		} else if(gameData.substring(0, 1) == "LL" && myPosition == RobotMap.AutoPosition.E) {
+ 		} else if(gameData.substring(0, 1) == "LL" && Robot.myPosition == RobotMap.AutoPosition.E) {
  			
- 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.A) {
+ 		} else if(gameData.substring(0, 1) == "RR" && Robot.myPosition == RobotMap.AutoPosition.A) {
  			
- 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.B) {
+ 		} else if(gameData.substring(0, 1) == "RR" && Robot.myPosition == RobotMap.AutoPosition.B) {
  			
- 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.C) {
+ 		} else if(gameData.substring(0, 1) == "RR" && Robot.myPosition == RobotMap.AutoPosition.C) {
  			
- 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.D) {
+ 		} else if(gameData.substring(0, 1) == "RR" && Robot.myPosition == RobotMap.AutoPosition.D) {
  			
- 		} else if(gameData.substring(0, 1) == "RR" && myPosition == RobotMap.AutoPosition.E) {
+ 		} else if(gameData.substring(0, 1) == "RR" && Robot.myPosition == RobotMap.AutoPosition.E) {
  			
- 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.A) {
+ 		} else if(gameData.substring(0, 1) == "RL" && Robot.myPosition == RobotMap.AutoPosition.A) {
  			
- 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.B) {
+ 		} else if(gameData.substring(0, 1) == "RL" && Robot.myPosition == RobotMap.AutoPosition.B) {
  			
- 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.C) {
+ 		} else if(gameData.substring(0, 1) == "RL" && Robot.myPosition == RobotMap.AutoPosition.C) {
  			
- 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.D) {
+ 		} else if(gameData.substring(0, 1) == "RL" && Robot.myPosition == RobotMap.AutoPosition.D) {
  			
- 		} else if(gameData.substring(0, 1) == "RL" && myPosition == RobotMap.AutoPosition.E) {
+ 		} else if(gameData.substring(0, 1) == "RL" && Robot.myPosition == RobotMap.AutoPosition.E) {
  			
  		} else {
  			

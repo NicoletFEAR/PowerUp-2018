@@ -38,6 +38,9 @@ public class RobotMap {
     public static WPI_TalonSRX backRight;
     public static DifferentialDrive robotDrive;
     
+    public static AnalogInput playSwitch;
+    public static AnalogInput positionSwitch;
+    
     public enum AutoPosition {
     	A, B, C, D, E
     }
@@ -56,22 +59,9 @@ public class RobotMap {
         midRight = new WPI_TalonSRX(16);
         backLeft = new WPI_TalonSRX(17);
         backRight = new WPI_TalonSRX(18);
-        
 
-        
-        /*
-        //Autonomous Switcher Stuff!
-        Potentiometer pot;
-     	pot = new AnalogPotentiometer(0, 360, 30);
-     	AnalogInput ai = new AnalogInput(1);
-     	pot = new AnalogPotentiometer(ai, 360, 30);
-        
-     	//Auto Switcher Button (coded as limit switch)
-     	DigitalInput autoButton;
-     	autoButton = new DigitalInput(1);
-     	
-     	*/
-        
+        positionSwitch = new AnalogInput(0);
+        playSwitch = new AnalogInput(1);
         
         
         /*
