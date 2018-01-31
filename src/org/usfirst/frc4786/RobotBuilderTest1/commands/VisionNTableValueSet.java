@@ -6,7 +6,7 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class VisionNTableValueSet extends Command{
+public class VisionNTableValueSet extends Command {
 	
 	// We are using the old network tables code because it makes a lot more sense! (so deprecation warnings are OK!)
 	NetworkTable myTable; // starts myTable (We think that you have to put this and make a table to access the data in all of the different places that you want the data to be used in (same for the myTable = one!))
@@ -18,29 +18,28 @@ public class VisionNTableValueSet extends Command{
     }
 	
 	
-	//@SuppressWarnings("deprecation")
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void initialize() {
-		
 
+    	SmartDashboard.putNumber("jaehtshfs", 4567890);
     	SmartDashboard.putNumber("valuecommandinit", 444);
     	
 		myTable = NetworkTable.getTable("GRIP/myContoursReport"); // makes the table myTable properly what it should be
 		NetworkTable.setUpdateRate(0.05);
 		 
-     myTable.putNumber("hsvHueMin", 31);
-	 myTable.putNumber("hsvHueMax", 69);
-	 myTable.putNumber("hsvSatMin", 71);
-	 myTable.putNumber("hsvSatMax", 182);
-	 myTable.putNumber("hsvValMin", 102);
-	 myTable.putNumber("hsvValMax", 255);
-	 myTable.putNumber("contourAreaMin", 1000);
+     myTable.putNumber("hsvHueMin", 60);
+	 myTable.putNumber("hsvHueMax", 220);
+	 myTable.putNumber("hsvSatMin", 168);
+	 myTable.putNumber("hsvSatMax", 255);
+	 myTable.putNumber("hsvValMin", 100);
+	 myTable.putNumber("hsvValMax", 185);
+	 myTable.putNumber("contourAreaMin", 6000);
 	 
 	 myTable.putNumber("solidityMin", 77);
 	 myTable.putNumber("solidityMax", 100);
 	 myTable.putNumber("ratioMin", 0);
-	 myTable.putNumber("ratioMax", 4);
+	 myTable.putNumber("ratioMax", 2);
 	
 	 myTable.setPersistent("hsvHueMin");
 	 myTable.setPersistent("hsvHueMax");
@@ -55,6 +54,15 @@ public class VisionNTableValueSet extends Command{
 	 myTable.setPersistent("solidityMax");
 	 myTable.setPersistent("ratioMin");
 	 myTable.setPersistent("ratioMax");
+	 
+
+		myTable.putNumber("centerX", 0);
+		myTable.putNumber("centerY", 0);
+		myTable.putNumber("boxWidth", 0);
+		 myTable.setPersistent("centerX");
+		 myTable.setPersistent("centerY");
+		 myTable.setPersistent("boxWidth");
+		
     }
 	 
 	 

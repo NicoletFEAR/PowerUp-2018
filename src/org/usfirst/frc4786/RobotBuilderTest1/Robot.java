@@ -25,6 +25,7 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap.*;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.SwitchFront;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.VisionNTableValueSet;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +36,8 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.SwitchFront;
  */
 public class Robot extends TimedRobot {
 
+	Command VisionNTableValueSet;
+	Command CubeVisionDrive;
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -163,8 +166,6 @@ public class Robot extends TimedRobot {
     @Override
 	public void testInit(){
 
-
-   	 myTable.putNumber("contourAreaMin", 9999);//1000
     	//SmartDashboard.putNumber("valuetest", 555);
     	
    	 
