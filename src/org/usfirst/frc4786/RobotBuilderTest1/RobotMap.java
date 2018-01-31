@@ -43,8 +43,6 @@ public class RobotMap {
     public static AnalogInput playSwitch;
     public static AnalogInput positionSwitch;
     
-    public static I2C arduinoInterface;
-    
     public enum AutoPosition {
     	A, B, C, D, E
     }

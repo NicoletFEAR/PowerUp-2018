@@ -67,6 +67,15 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         SmartDashboard.putData("Auto mode", chooser);
     }
+    
+    @Override
+    public void robotPeriodic()
+    {
+    	
+    	autoChooser.autonomousMode();
+    	SmartDashboard.putString("Current Play:", autoChooser.getPlayString());
+    	SmartDashboard.putString("Current Position:", autoChooser.getPositionString());
+    }
 
     /**
      * This function is called when the disabled button is hit.
@@ -136,13 +145,5 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-    }
-    
-    @Override
-    public void robotPeriodic()
-    {
-    	autoChooser.autonomousMode();
-    	SmartDashboard.putString("Current Play:", autoChooser.getPlayString());
-    	SmartDashboard.putString("Current Position:", autoChooser.getPositionString());
     }
 }

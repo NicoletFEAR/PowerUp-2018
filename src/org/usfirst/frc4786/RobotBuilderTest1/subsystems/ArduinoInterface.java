@@ -1,6 +1,8 @@
 package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
+import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -22,7 +24,20 @@ public class ArduinoInterface extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new DisplayAutonomous());
+    }
+    
+    public void connectToArduino()
+    {
+    	String connection = "Bad";
+    	
+    	Robot.arduinoLCDInterface.writeStringData("init");
+    	// Arduino my love!
+    	System.out.println("Attempting to Connect to Arduino");
+    	while (connection != "Ok")
+    		connection = Robot.arduinoLCDInterface.readStringData();
+    	// Senpai has noticed me! XD
+    	System.out.println("Connected to Arduino! :D");
     }
     
     public void writeStringData(String writeable){
@@ -47,5 +62,16 @@ public class ArduinoInterface extends Subsystem {
     	String result = String.copyValueOf(charArray);
     	return result;
     }
+    
+    public void sendPlayToArduino()
+    {
+       	Robot.arduinoLCDInterface.writeStringData("0, " + Robot.autoChooser.getPlayString());
+    }
+    
+    public void sendPosToArduino()
+    {
+    	Robot.arduinoLCDInterface.writeStringData("1, " + Robot.autoChooser.getPositionString());
+    }
+    
 }
 

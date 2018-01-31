@@ -4,6 +4,7 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap.AutoPlay;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap.AutoPosition;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,7 +18,6 @@ public class AutoChooser extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
     }
     
     public int groupVal(double options, AnalogInput mySwitch) {
@@ -32,8 +32,8 @@ public class AutoChooser extends Subsystem {
     }
     
     public void autonomousMode() {
-		int prePosition = groupVal(4, RobotMap.positionSwitch);
-		int preMovement = groupVal(4, RobotMap.playSwitch);
+		int prePosition = groupVal(5, RobotMap.positionSwitch);
+		int preMovement = groupVal(6, RobotMap.playSwitch);
 		if (prePosition == 1){
 			Robot.myPosition = AutoPosition.A;
 		} else if (prePosition == 2){
@@ -42,7 +42,9 @@ public class AutoChooser extends Subsystem {
 			Robot.myPosition = AutoPosition.C;
 		} else if (prePosition == 4){
 			Robot.myPosition = AutoPosition.D;
-		} 
+		} else if (prePosition == 5){
+			Robot.myPosition = AutoPosition.E;
+		}
 		
 		if (preMovement == 1){
 			Robot.myPlay = AutoPlay.ONE;
@@ -52,7 +54,11 @@ public class AutoChooser extends Subsystem {
 			Robot.myPlay = AutoPlay.THREE;
 		} else if (preMovement == 4){
 			Robot.myPlay = AutoPlay.FOUR;
-		} 
+		} else if (preMovement == 5){
+			Robot.myPlay = AutoPlay.FIVE;
+		} else if (preMovement == 6){
+			Robot.myPlay = AutoPlay.SIX;
+		}
 		
 		return;
 	}

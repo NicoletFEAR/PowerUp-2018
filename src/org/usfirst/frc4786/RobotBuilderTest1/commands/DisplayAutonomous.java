@@ -8,27 +8,22 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DisplayAutonomous extends Command {
-	
-	String connection = "Bad";
 
     public DisplayAutonomous() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arduinoLCDInterface);
+        requires(Robot.autoChooser);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arduinoLCDInterface.writeStringData("init");
-    	System.out.println("Attempting to Connect to Arduino");
-    	while (connection != "Ok")
-    		connection = Robot.arduinoLCDInterface.readStringData();
-    	System.out.println("Connected to Arduino! :D");
+    	Robot.arduinoLCDInterface.connectToArduino();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arduinoLCDInterface.writeStringData("1, " + Robot.autoChooser.getPlayString());
-    	Robot.arduinoLCDInterface.writeStringData("2, " + Robot.autoChooser.getPositionString());
+    	Robot.arduinoLCDInterface.sendPlayToArduino();
+    	Robot.arduinoLCDInterface.sendPosToArduino();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,5 +38,6 @@ public class DisplayAutonomous extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
