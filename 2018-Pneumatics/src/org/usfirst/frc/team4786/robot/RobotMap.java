@@ -27,7 +27,7 @@ public class RobotMap {
 	public  static int dReverseChannel = 7;
 	
 	public  static int compressormodule =0;
-	
+	public static final int ledArduinoPort = 8;
 	
 	public static void init(){
 	}

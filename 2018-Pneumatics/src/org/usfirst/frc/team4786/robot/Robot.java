@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4786.robot;
 
 import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
+import org.usfirst.frc.team4786.robot.subsystems.Arduino;
 import org.usfirst.frc.team4786.robot.subsystems.GameMech;
 import org.usfirst.frc.team4786.robot.subsystems.Shifter;
 
@@ -50,7 +51,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.init();
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
-		
+		final Arduino arduino;
+		arduino = new Arduino(RobotMap.ledArduinoPort);
 		
 		aircompressor= new AirCompressor(RobotMap.compressormodule);
 		
