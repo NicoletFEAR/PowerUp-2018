@@ -18,6 +18,12 @@ public class AutoChooser extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
+    	setDefaultCommand(new DisplayAutonomous());
+    }
+    
+    @Override
+    public void periodic() {
+    	autonomousMode();
     }
     
     public int groupVal(double options, AnalogInput mySwitch) {

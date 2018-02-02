@@ -3,6 +3,7 @@ package org.usfirst.frc4786.RobotBuilderTest1.commands;
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,6 +14,8 @@ public class DisplayAutonomous extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arduinoLCDInterface);
         requires(Robot.autoChooser);
+        
+        setInterruptible(false);
     }
 
     // Called just before this Command runs the first time
@@ -22,6 +25,9 @@ public class DisplayAutonomous extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.autoChooser.autonomousMode();
+    	SmartDashboard.putString("Selected Play:", Robot.autoChooser.getPlayString());
+    	SmartDashboard.putString("Selected Position:", Robot.autoChooser.getPositionString());
     	Robot.arduinoLCDInterface.sendPlayToArduino();
     	Robot.arduinoLCDInterface.sendPosToArduino();
     }

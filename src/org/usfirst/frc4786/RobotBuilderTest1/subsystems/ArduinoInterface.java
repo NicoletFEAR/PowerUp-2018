@@ -24,20 +24,14 @@ public class ArduinoInterface extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new DisplayAutonomous());
     }
     
     public void connectToArduino()
-    {
-    	String connection = "Bad";
-    	
+    {	
     	Robot.arduinoLCDInterface.writeStringData("init");
-    	// Arduino my love!
-    	System.out.println("Attempting to Connect to Arduino");
-    	while (connection != "Ok")
-    		connection = Robot.arduinoLCDInterface.readStringData();
+    	// Arduino my love, Wakey, Wakey!
+    	System.out.println("Wake Up Arduino!");
     	// Senpai has noticed me! XD
-    	System.out.println("Connected to Arduino! :D");
     }
     
     public void writeStringData(String writeable){
@@ -52,6 +46,7 @@ public class ArduinoInterface extends Subsystem {
     	WriteData = null;
     }
     
+    /* Doesn't Work at The Moment
     public String readStringData(){
     	byte[] data = new byte[8];
     	char[] charArray = new char[8];
@@ -62,6 +57,7 @@ public class ArduinoInterface extends Subsystem {
     	String result = String.copyValueOf(charArray);
     	return result;
     }
+    */
     
     public void sendPlayToArduino()
     {
