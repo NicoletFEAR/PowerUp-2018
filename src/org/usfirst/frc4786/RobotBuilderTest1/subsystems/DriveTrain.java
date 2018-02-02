@@ -61,7 +61,7 @@ public class DriveTrain extends Subsystem {
 
         setDefaultCommand(new OpenLoopDrive());
         robotDrive.setSafetyEnabled(true);
-        robotDrive.setExpiration(0.1);
+        robotDrive.setExpiration(1);
         robotDrive.setMaxOutput(1.0);
     }
 
