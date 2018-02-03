@@ -70,11 +70,14 @@ public class Robot extends TimedRobot {
      * You can use it to reset subsystems before shutting down.
      */
     @Override
-    public void disabledInit(){
+    public void disabledInit() {
+    	disabledCommand = new DisplayAutonomous();
+    	disabledCommand.setRunWhenDisabled(true);
     }
 
     @Override
     public void disabledPeriodic() {
+    	disabledCommand.start();
         Scheduler.getInstance().run();
     }
 
@@ -86,6 +89,7 @@ public class Robot extends TimedRobot {
         driveTrain.robotDrive.setExpiration(1);
         driveTrain.robotDrive.setMaxOutput(1.0);
         
+        if (disabledCommand != null) disabledCommand.cancel();
         autoChooser.autonomousMode();
         
         switch (myPlay) {
@@ -124,6 +128,7 @@ public class Robot extends TimedRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        if (disabledCommand != null) disabledCommand.cancel();
     }
 
     /**

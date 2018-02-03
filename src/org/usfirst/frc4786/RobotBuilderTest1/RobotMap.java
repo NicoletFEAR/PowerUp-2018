@@ -40,8 +40,8 @@ public class RobotMap {
     public static WPI_TalonSRX backRight;
     public static DifferentialDrive robotDrive;
     
-    public static AnalogInput playSwitch;
-    public static AnalogInput positionSwitch;
+    public static AnalogPotentiometer playKnob;
+    public static AnalogPotentiometer positionKnob;
     
     public enum AutoPosition {
     	A, B, C, D, E
@@ -62,8 +62,8 @@ public class RobotMap {
         backLeft = new WPI_TalonSRX(17);
         backRight = new WPI_TalonSRX(18);
 
-        positionSwitch = new AnalogInput(0);
-        playSwitch = new AnalogInput(1);
+        positionKnob = new AnalogPotentiometer(0, 270, 0);
+        playKnob = new AnalogPotentiometer(1, 270, 0);
        
         /*
         SpeedControllerGroup m_left = new SpeedControllerGroup(driveTrainTalonSRX13, driveTrainTalonSRX15);

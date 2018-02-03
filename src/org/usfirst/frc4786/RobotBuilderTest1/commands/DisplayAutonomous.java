@@ -14,8 +14,6 @@ public class DisplayAutonomous extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.arduinoLCDInterface);
         requires(Robot.autoChooser);
-        
-        setInterruptible(false);
     }
 
     // Called just before this Command runs the first time
