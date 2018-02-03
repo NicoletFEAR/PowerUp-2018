@@ -14,13 +14,8 @@ package org.usfirst.frc4786.RobotBuilderTest1;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.SwitchFront;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.*;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
-
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
 
 
 /**
