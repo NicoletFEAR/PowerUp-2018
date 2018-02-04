@@ -15,6 +15,13 @@ import org.usfirst.frc4786.RobotBuilderTest1.OI;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 
+import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -49,7 +56,14 @@ public class DriveTrain extends Subsystem {
     //SpeedControllerGroup rightSide = new SpeedControllerGroup(RobotMap.driveTrainTalonSRX15);
     SpeedControllerGroup leftSide = new SpeedControllerGroup(RobotMap.frontLeft, RobotMap.midLeft, RobotMap.backLeft);
     SpeedControllerGroup rightSide = new SpeedControllerGroup(RobotMap.frontRight, RobotMap.midRight, RobotMap.backRight);
-    public DifferentialDrive robotDrive = new DifferentialDrive(leftSide, rightSide);    
+    
+    public DifferentialDrive robotDrive = new DifferentialDrive(leftSide, rightSide); 
+    
+    TalonSRX _talon = new TalonSRX(14);
+    
+    
+    
+    
     
     public double leftSideSwitchSide;
     public double rightSideSwitchSide;
@@ -77,15 +91,27 @@ public class DriveTrain extends Subsystem {
     public void takeStickInputValues(double leftStickV, double rightStickV) {
     	if (!reversed) {
     		robotDrive.tankDrive(leftStickV, rightStickV);
-    		SmartDashboard.putData("Drive Train", robotDrive);
-    		SmartDashboard.putNumber("Left Side", leftSide.get());
-    		SmartDashboard.putNumber("Right Side", rightSide.get());
+    		
     	} else {
     		robotDrive.tankDrive(rightStickV, leftStickV);
-    		SmartDashboard.putData("Drive Train", robotDrive);
-    		SmartDashboard.putNumber("Left Side Robot Speed", leftSide.get());
-    		SmartDashboard.putNumber("Right Side Robot Speed", rightSide.get());
     	}
+    	RobotMap.frontRight.get();
+    	
+    	SmartDashboard.putData("Drive Train", robotDrive);
+		SmartDashboard.putNumber("Left Side", leftSide.get());
+		SmartDashboard.putNumber("Right Side", rightSide.get());
+		
+		
+		
+		SensorCollection sensor = RobotMap.frontRight.getSensorCollection();
+		
+		SmartDashboard.putNumber("sensor analogin", sensor.getAnalogIn());
+		SmartDashboard.putNumber("sensor analoginraw", sensor.getAnalogInRaw());
+		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
+		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
+		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
+		
+		
     	
     }
     
