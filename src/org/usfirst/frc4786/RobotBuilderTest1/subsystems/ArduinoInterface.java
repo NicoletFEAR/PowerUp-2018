@@ -31,7 +31,7 @@ public class ArduinoInterface extends Subsystem {
     	Robot.arduinoLCDInterface.writeStringData("init");
     	// Arduino my love, Wakey, Wakey!
     	System.out.println("Wake Up Arduino!");
-    	// Senpai has noticed me! XD
+    	// Senpai has noticed me! {:D
     }
     
     public void writeStringData(String writeable){

@@ -25,7 +25,9 @@ public class DisplayAutonomous extends Command {
     protected void execute() {
     	Robot.autoChooser.autonomousMode();
     	SmartDashboard.putString("Selected Play:", Robot.autoChooser.getPlayString());
+    	System.out.println(Robot.autoChooser.getPlayString());
     	SmartDashboard.putString("Selected Position:", Robot.autoChooser.getPositionString());
+    	System.out.print(Robot.autoChooser.getPositionString());
     	Robot.arduinoLCDInterface.sendPlayToArduino();
     	Robot.arduinoLCDInterface.sendPosToArduino();
     }
