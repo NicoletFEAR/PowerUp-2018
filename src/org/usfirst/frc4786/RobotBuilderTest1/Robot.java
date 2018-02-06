@@ -41,8 +41,8 @@ public class Robot extends TimedRobot {
     public static DriveTrain driveTrain;
     public static AutoChooser autoChooser;
     public static ArduinoInterface arduinoLCDInterface;
-    public static ArduinoInterface arduinoLEDInterface;
-    public static ArduinoInterface arduinoCameraInterface;
+//    public static ArduinoInterface arduinoLEDInterface;
+//    public static ArduinoInterface arduinoCameraInterface;
     
     public static RobotMap.AutoPlay myPlay = RobotMap.AutoPlay.ONE;
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
@@ -60,8 +60,8 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain();
         autoChooser =  new AutoChooser();
         arduinoLCDInterface = new ArduinoInterface(8);
-        arduinoLEDInterface = new ArduinoInterface(7);
-        arduinoCameraInterface = new ArduinoInterface(6);
+        //arduinoLEDInterface = new ArduinoInterface(7);
+        //arduinoCameraInterface = new ArduinoInterface(6);
         
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -88,6 +88,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+    	/* Once we have a working 2nd Arduino + LED System
     	//send correct alliance data to arduino
 		alliance = DriverStation.getInstance().getAlliance();
     	
@@ -102,6 +103,7 @@ public class Robot extends TimedRobot {
     		arduinoLEDInterface.writeStringData(allianceColorVal);
     	}
     	SmartDashboard.putString("Alliance", allianceColorVal);
+    	*/
         
         driveTrain.robotDrive.setSafetyEnabled(true);
         driveTrain.robotDrive.setExpiration(1);
@@ -159,6 +161,6 @@ public class Robot extends TimedRobot {
     
     @Override
     public void testInit() {
-		Robot.arduinoLEDInterface.writeStringData("rainbowlight");
+		//Robot.arduinoLEDInterface.writeStringData("rainbowlight");
     }
 }

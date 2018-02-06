@@ -26,14 +26,6 @@ public class ArduinoInterface extends Subsystem {
         // Set the default command for a subsystem here.
     }
     
-    public void connectToArduino()
-    {	
-    	Robot.arduinoLCDInterface.writeStringData("init");
-    	// Arduino my love, Wakey, Wakey!
-    	System.out.println("Wake Up Arduino!");
-    	// Senpai has noticed me! {:D
-    }
-    
     public void writeStringData(String writeable){
     	String WriteString = writeable;
     	char[] CharArray;

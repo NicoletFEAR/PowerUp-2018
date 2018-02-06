@@ -18,16 +18,14 @@ public class DisplayAutonomous extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arduinoLCDInterface.connectToArduino();
+    	System.out.println("Go Arduino, my love!");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.autoChooser.autonomousMode();
     	SmartDashboard.putString("Selected Play:", Robot.autoChooser.getPlayString());
-    	System.out.println(Robot.autoChooser.getPlayString());
     	SmartDashboard.putString("Selected Position:", Robot.autoChooser.getPositionString());
-    	System.out.print(Robot.autoChooser.getPositionString());
     	Robot.arduinoLCDInterface.sendPlayToArduino();
     	Robot.arduinoLCDInterface.sendPosToArduino();
     }
