@@ -58,12 +58,7 @@ public class DriveTrain extends Subsystem {
     SpeedControllerGroup rightSide = new SpeedControllerGroup(RobotMap.frontRight, RobotMap.midRight, RobotMap.backRight);
     
     public DifferentialDrive robotDrive = new DifferentialDrive(leftSide, rightSide); 
-    
-    TalonSRX _talon = new TalonSRX(14);
-    
-    
-    
-    
+        
     
     public double leftSideSwitchSide;
     public double rightSideSwitchSide;
