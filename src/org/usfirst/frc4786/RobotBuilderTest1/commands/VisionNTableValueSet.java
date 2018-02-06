@@ -22,6 +22,7 @@ public class VisionNTableValueSet extends Command {
 	@Override
 	protected void initialize() {
 
+		
     	SmartDashboard.putNumber("jaehtshfs", 4567890);
     	SmartDashboard.putNumber("valuecommandinit", 444);
     	

@@ -12,6 +12,7 @@ public class CubeVisionDrive extends Command {
 	
 	
 		NetworkTable myTable;
+		boolean isFinished;
 		
 	public CubeVisionDrive() {
 		requires(Robot.driveTrain);
@@ -20,6 +21,7 @@ public class CubeVisionDrive extends Command {
 	@Override
 	protected void initialize() {	
 		
+		isFinished = false;
 		myTable = NetworkTable.getTable("GRIP/myContoursReport"); // makes the table myTable properly what it should be
 		myTable.setUpdateRate(0.05);
 		SmartDashboard.putNumber("CubeVisionDriveNum", 1);
@@ -32,30 +34,40 @@ public class CubeVisionDrive extends Command {
 		double centreX = myTable.getNumber("centerX", 0);
 		double centreY = myTable.getNumber("centerY", 0);
 		double boxWidth = myTable.getNumber("boxWidth", 0);
+
+			
 		
-		if (boxWidth < 640) {
-			if (centreX < 315) {
-				Robot.driveTrain.takeJoystickInputsValues(0.6, 0.4);
-
-				SmartDashboard.putNumber("CubeVisionDriveNum", 3);
-			} else if (centreX > 325) {
-				Robot.driveTrain.takeJoystickInputsValues(0.2, 0.1);
-				SmartDashboard.putNumber("CubeVisionDriveNum", 4);
+		if (boxWidth < 600) {	// the cube is a reasonable distance away
+			if (centreX < 315) { // the cube is left
+				Robot.driveTrain.takeJoystickInputsValues(0.2, 0.6);
+			} else if (centreX > 325) { // the cube is right
+				Robot.driveTrain.takeJoystickInputsValues(0.6, 0.2);
 			} else {
-				Robot.driveTrain.takeJoystickInputsValues(.3, .3);
-
-				SmartDashboard.putNumber("CubeVisionDriveNum", 0);
+				Robot.driveTrain.takeJoystickInputsValues(.5, .5);
 			}
-		} else {
-			Robot.driveTrain.takeJoystickInputsValues(1, 1);
+		} else { // when the cube is super close
+			isFinished = true; // This ends the command!! Done! Terminated! you will have to change this to actually pick up the cube
+			end();
 		}
-    	
+			
+			
+	}
+	public void finish() {
+		
+		
+		
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isFinished;
 	}
+	
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+    	Robot.driveTrain.stop();
+    }
 	
 	@Override
 	protected void interrupted() {
