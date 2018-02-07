@@ -19,6 +19,7 @@ import com.ctre.CANTalon;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -83,6 +84,7 @@ public class DriveTrain extends Subsystem {
     public void takeJoystickInputs(Joystick left, Joystick right) {
     	robotDrive.tankDrive(left.getY(), right.getY());
     }
+    
     public void takeStickInputValues(double leftStickV, double rightStickV) {
     	if (!reversed) {
     		robotDrive.tankDrive(leftStickV, rightStickV);
@@ -105,16 +107,140 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
 		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
-		
-		
-    	
     }
+    
+  //Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
+	
+    private double convertToRotations(double distanceInFeet){
+		return (distanceInFeet)/(Math.PI * (RobotMap.WHEEL_RADIUS * 2));
+    }
+    
+  	public void driveToPositionInit(double distanceToDrive){
+  		//Change Talon modes to "position" just in case
+  		//they were in another mode before
+		RobotMap.frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+		RobotMap.frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+		
+    	RobotMap.frontRight.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+		RobotMap.frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+		
+		//Set our encoders' positions to 0, we haven't moved yet!
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  		
+  		//Run convertToRotations function
+  		double rot = convertToRotations(distanceToDrive);
+  		
+  		//Make motors drive number of rotations
+  		//calculated before by convertToRotations()
+  		RobotMap.frontLeft.set(ControlMode.Position, -rot);
+  		RobotMap.frontRight.set(ControlMode.Position, rot);
+  		try {
+  			Thread.sleep(10);
+  		} catch (InterruptedException e) {
+  			e.printStackTrace();
+  		}
+  		//Make sure we inverse this right side,
+  		//otherwise, you have a spinning robot on your hands
+  		RobotMap.frontLeft.set(ControlMode.Position, -rot);
+  		RobotMap.frontRight.set(ControlMode.Position, rot);
+
+  		
+  		SmartDashboard.putNumber("Rotations Calculated", rot);
+  	}
+  	
+  	public void driveArcInit(double horizontalDist, double theta){
+  		//Set Encoder Position to 0
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  		try {
+  			Thread.sleep(10);
+  		} catch (InterruptedException e) {
+  			e.printStackTrace();
+  		}
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  		
+  		//Calculate arc lengths
+  		theta = Math.toRadians(theta);
+  		double radius = horizontalDist / (1 - Math.cos(theta));
+  		double leftArcLength = theta * (radius + RobotMap.WHEEL_SEPARATION / 2);
+  		double rightArcLength = theta * (radius - RobotMap.WHEEL_SEPARATION / 2);
+  		if(horizontalDist < 0){
+  			leftArcLength *= -1;
+  			rightArcLength *= -1;
+  		}
+  		
+  		//Run convertToRotations functions
+  		double leftRot = convertToRotations(leftArcLength);
+  		double rightRot = convertToRotations(rightArcLength);
+  		
+  		//Make motors drive number of rotations
+  		//calculated before by convertToRotations()
+  		RobotMap.frontLeft.set(leftRot/* * RobotMap.turnFudgeFactor*/);
+  		//Make sure we inverse this right side,
+  		//otherwise, you have a spinning robot on your hands
+  		RobotMap.frontRight.set(-rightRot/* * RobotMap.turnFudgeFactor*/);
+  	}
+  	
+  	public void driveArcSpeedInit(double leftSpeed, double rightSpeed){
+  		//Set Encoder Position to 0
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  		try {
+  			Thread.sleep(10);
+  		} catch (InterruptedException e) {
+  			e.printStackTrace();
+  		}
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  		
+  		RobotMap.frontLeft.set(ControlMode.PercentOutput, -leftSpeed);
+  		RobotMap.frontRight.set(ControlMode.PercentOutput, -rightSpeed);
+  	}
+  	
+  	public void driveArcSpeedEnd(){
+  		RobotMap.frontLeft.set(0);
+  		RobotMap.frontRight.set(0);
+  	}
+  	
+  	//Some special isFinished() command stuff to not stop before the robot has even moved
+
+  	public boolean driveToPositionIsFinished() {
+  		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ERROR_CONSTANT_LEFT && Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ERROR_CONSTANT_RIGHT;
+  	}
+
+  	public void driveToPositionEnd(){
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+  	}
+  	
+  	public double getLeftEncoderPosition()
+  	{
+  		return RobotMap.frontLeft.getSelectedSensorPosition(0);
+  	}
+  	
+  	public double getRightEncoderPosition()
+  	{
+  		//Make sure graph isn't upside down (The stocks are going into the toilet!!)
+  		return -(RobotMap.frontRight.getSelectedSensorPosition(0));
+  	}
+  	
+  	public double getLeftEncoderVelocity()
+  	{
+  		return RobotMap.frontLeft.getSelectedSensorVelocity(0);
+  	}
+  	
+  	public double getRightEncoderVelocity()
+  	{
+  		//Make sure graph isn't upside down (The stocks are going into the toilet!!)
+  		return -(RobotMap.frontRight.getSelectedSensorVelocity(0));
+  	}
     
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
     }
 
     public void stop () {
