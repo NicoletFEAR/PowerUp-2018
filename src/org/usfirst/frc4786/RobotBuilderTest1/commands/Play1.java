@@ -21,7 +21,7 @@ public class Play1 extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	 String gameData;
+    	String gameData;
  		gameData = DriverStation.getInstance().getGameSpecificMessage();
  		if(gameData.substring(0, 1) == "LR" && Robot.myPosition == RobotMap.AutoPosition.A) {
  			

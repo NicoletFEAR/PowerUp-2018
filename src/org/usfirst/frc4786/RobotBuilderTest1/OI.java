@@ -55,8 +55,6 @@ public class OI {
     private Button xbox1ButtonX;
     private Button xbox1StartButton;
     private Button xbox1XButton;
-    private Button xbox1XButton2;
-    private Button xbox1XButton3;
     private XboxController xbox1;
 
     public OI() {
@@ -65,8 +63,6 @@ public class OI {
          xbox1StartButton = new JoystickButton(xbox1,8);
          xbox1LeftStick = new JoystickButton(xbox1, 9);
          xbox1RightStick = new JoystickButton(xbox1, 10);
-         
-         
          
      	 xbox1ButtonX.whenPressed(new SwitchFront());
      	 xbox1StartButton.whenPressed(new NoMatterWhat());
