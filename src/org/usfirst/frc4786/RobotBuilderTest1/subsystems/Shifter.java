@@ -31,7 +31,6 @@ public class Shifter extends Subsystem {
 		}else {
 			shiftup();
 		}
-	
 	}
 	
 	public void stop(){
@@ -40,14 +39,11 @@ public class Shifter extends Subsystem {
 	
 	public boolean getNoMatterWhat(){
 		return nomatterwhat;
-		
 	}
 	
 	public void setNoMatterWhat(){
 		nomatterwhat=!nomatterwhat;
-	    SmartDashboard.putBoolean("Start button hit", Robot.shifter.getNoMatterWhat());
-	    
-        
+	    SmartDashboard.putBoolean("Start button hit", Robot.shifter.getNoMatterWhat());   
 	}
 
     // Put methods for controlling this subsystem
