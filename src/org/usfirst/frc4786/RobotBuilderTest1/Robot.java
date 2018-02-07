@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
         
         switch (myPlay) {
         	case ONE:
-        		autonomousCommand = new Play1();
+        		autonomousCommand = new DriveToPosition(5);
         	case TWO:
         		autonomousCommand = new Play2();
         	case THREE:
