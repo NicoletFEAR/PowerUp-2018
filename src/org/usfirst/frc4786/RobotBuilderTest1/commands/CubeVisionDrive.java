@@ -38,12 +38,17 @@ public class CubeVisionDrive extends Command {
 			
 		
 		if (boxWidth < 600) {	// the cube is a reasonable distance away
-			if (centreX < 315) { // the cube is left
-				Robot.driveTrain.takeJoystickInputsValues(0.2, 0.6);
+		    
+			if (centreX < 50) { // the cube is far left
+				Robot.driveTrain.takeJoystickInputsValues(0.3, 0.9);
+			} else if (centreX > 590) { // the cube is far right
+				Robot.driveTrain.takeJoystickInputsValues(0.9, 0.3);
+			} else if (centreX < 315) { // the cube is left
+				Robot.driveTrain.takeJoystickInputsValues(0.3, 0.6);
 			} else if (centreX > 325) { // the cube is right
-				Robot.driveTrain.takeJoystickInputsValues(0.6, 0.2);
+				Robot.driveTrain.takeJoystickInputsValues(0.6, 0.3);
 			} else {
-				Robot.driveTrain.takeJoystickInputsValues(.5, .5);
+				Robot.driveTrain.takeJoystickInputsValues(.4, .4);
 			}
 		} else { // when the cube is super close
 			isFinished = true; // This ends the command!! Done! Terminated! you will have to change this to actually pick up the cube
