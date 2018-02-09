@@ -19,8 +19,11 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -47,10 +50,12 @@ public class RobotMap {
 	public static AnalogPotentiometer playKnob;
 	public static AnalogPotentiometer positionKnob;
 	public static AHRS navX;
+	public static PIDController turnController;
 
 	//PID Constants
 	public static final int ALLOWABLE_ERROR_CONSTANT_LEFT = 0;
 	public static final int ALLOWABLE_ERROR_CONSTANT_RIGHT = 0;
+	public static final int ALLOWABLE_TURN_ERROR = 1; //In degrees
 	public static final double WHEEL_RADIUS = 0.2604; //Feet
 	public static final double WHEEL_SEPARATION = 0.416; //Feet
 	public static final double fudgeFactor = 0.0;
@@ -58,16 +63,28 @@ public class RobotMap {
 	public static final double CLOSED_LOOP_RAMP_RATE = 0.015625;
 	public static final int IZONE = 0;
 	
+	//NavX turn PID Constants
+/*	public static final double TurnP = 0.025;
+	public static final double TurnI = 0.006;
+	public static final double TurnD = 0.04;
+	public static final double TurnF = 0.0; */
+	public static final double TurnP = 0.0;
+	public static final double TurnI = 0.0;
+	public static final double TurnD = 0.0;
+	public static final double TurnF = 0.0;
+	
 	//Left PIDF
 	public static final double LeftP = 0.0001;
-	public static final double LeftI = 0.000010;
+	public static final double LeftI = 0.0;
 	public static final double LeftD = 0.0;
 	public static final double LeftF = 0.0;
 	//Right PIDF
 	public static final double RightP = 0.0001;
-	public static final double RightI = 0.000010;
+	public static final double RightI = 0.0;
 	public static final double RightD = 0.0;
 	public static final double RightF = 0.0;
+	
+	Gyro gyro;
 	
 	public enum AutoPosition {
     	A, B, C, D, E
@@ -86,5 +103,6 @@ public class RobotMap {
         
         positionKnob = new AnalogPotentiometer(1, 5);
         playKnob = new AnalogPotentiometer(2, 6);
+        navX = new AHRS(Port.kMXP);
     }
 }

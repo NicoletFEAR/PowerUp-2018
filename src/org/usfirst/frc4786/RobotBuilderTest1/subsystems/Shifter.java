@@ -45,6 +45,12 @@ public class Shifter extends Subsystem {
 		nomatterwhat=!nomatterwhat;
 	    SmartDashboard.putBoolean("Start button hit", Robot.shifter.getNoMatterWhat());   
 	}
+	
+	@Override
+	public void periodic()
+	{
+        Robot.pressureSensor.getPressure();
+	}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

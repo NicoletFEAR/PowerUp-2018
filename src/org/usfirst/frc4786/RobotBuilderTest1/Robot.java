@@ -71,6 +71,11 @@ public class Robot extends TimedRobot {
 
         SmartDashboard.putData("Auto mode", chooser);
     }
+    
+    @Override
+    public void robotPeriodic()
+    {
+    }
 
     /**
      * This function is called when the disabled button is hit.
@@ -118,7 +123,7 @@ public class Robot extends TimedRobot {
         	case ONE:
         		autonomousCommand = new DriveToPosition(5);
         	case TWO:
-        		autonomousCommand = new Play2();
+        		autonomousCommand = new TurnToAngle(90);
         	case THREE:
         		autonomousCommand = new Play3();
         	case FOUR:
@@ -159,7 +164,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        pressureSensor.getPressure();
         
         double velocityRight = Robot.driveTrain.getRightEncoderVelocity();
         double velocityLeft = Robot.driveTrain.getLeftEncoderVelocity();
