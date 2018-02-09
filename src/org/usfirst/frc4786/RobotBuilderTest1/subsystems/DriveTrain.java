@@ -19,6 +19,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -47,9 +48,39 @@ public class DriveTrain extends Subsystem {
     public void initDefaultCommand() {
     	
         setDefaultCommand(new OpenLoopDrive());
+        initPID();
         robotDrive.setSafetyEnabled(true);
         robotDrive.setExpiration(0.1);
         robotDrive.setMaxOutput(1.0);
+    }
+    
+    public void initPID()
+    {
+    	RobotMap.frontLeft.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT, 10);
+		RobotMap.frontRight.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT, 10);
+		
+		//Make sure the CANTalons are looking at the right stored PID values with the Profile
+		//Set our PID Values
+		
+		RobotMap.frontLeft.config_kP(RobotMap.PIDSLOT, RobotMap.LeftP, 10);
+		RobotMap.frontLeft.config_kI(RobotMap.PIDSLOT, RobotMap.LeftI, 10);
+		RobotMap.frontLeft.config_kD(RobotMap.PIDSLOT, RobotMap.LeftD, 10);
+		RobotMap.frontLeft.config_kF(RobotMap.PIDSLOT, RobotMap.LeftF, 10);
+		RobotMap.frontLeft.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
+		/* Set how fast of a rate the robot will accelerate
+		   Do not remove or you get a fabulous prize of a
+		   Flipping robot - CLOSED_LOOP_RAMP_RATE */
+		RobotMap.frontLeft.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
+		
+		RobotMap.frontRight.config_kP(RobotMap.PIDSLOT, RobotMap.RightP, 10);
+		RobotMap.frontRight.config_kI(RobotMap.PIDSLOT, RobotMap.RightI, 10);
+		RobotMap.frontRight.config_kD(RobotMap.PIDSLOT, RobotMap.RightD, 10);
+		RobotMap.frontRight.config_kF(RobotMap.PIDSLOT, RobotMap.RightF, 10);
+		RobotMap.frontRight.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
+		/* Set how fast of a rate the robot will accelerate
+		   Do not remove or you get a fabulous prize of a
+		   Flipping robot - CLOSED_LOOP_RAMP_RATE */
+		RobotMap.frontRight.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
     }
 
     public void takeJoystickInputs(Joystick left, Joystick right) {
@@ -184,7 +215,7 @@ public class DriveTrain extends Subsystem {
   	//Some special isFinished() command stuff to not stop before the robot has even moved
 
   	public boolean driveToPositionIsFinished() {
-  		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ERROR_CONSTANT_LEFT && Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ERROR_CONSTANT_RIGHT;
+  		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT && Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT;
   	}
 
   	public void driveToPositionEnd(){
