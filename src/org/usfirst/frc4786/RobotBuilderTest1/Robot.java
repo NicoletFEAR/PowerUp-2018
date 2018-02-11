@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
         
         switch (myPlay) {
         	case ONE:
-        		autonomousCommand = new StopAtMetersFromSurface(3, 0.25);
+        		autonomousCommand = new StopAtMetersFromSurface(1, 0.25);
         	case TWO:
         		autonomousCommand = new Play2();
         	case THREE:
