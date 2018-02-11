@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
         
         switch (myPlay) {
         	case ONE:
-        		autonomousCommand = new Play1();
+        		autonomousCommand = new StopAtMetersFromSurface(3, 0.25);
         	case TWO:
         		autonomousCommand = new Play2();
         	case THREE:
@@ -140,6 +140,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+        SmartDashboard.putNumber("Distance (Meters)", Robot.proximitySensor.getDistance());
         Scheduler.getInstance().run();
     }
 
@@ -159,7 +160,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Distance (Meters)", Robot.proximitySensor.getDistance());
     }
     
     @Override
