@@ -62,8 +62,8 @@ public class RobotMap {
         backLeft = new WPI_TalonSRX(17);
         backRight = new WPI_TalonSRX(18);
 
-        positionKnob = new AnalogPotentiometer(0, 5);
-        playKnob = new AnalogPotentiometer(1, 6);
+        positionKnob = new AnalogPotentiometer(1, 5);
+        playKnob = new AnalogPotentiometer(2, 6);
        
         /*
         SpeedControllerGroup m_left = new SpeedControllerGroup(driveTrainTalonSRX13, driveTrainTalonSRX15);
