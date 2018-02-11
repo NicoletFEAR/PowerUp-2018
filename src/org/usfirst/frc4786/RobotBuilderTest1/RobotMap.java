@@ -43,6 +43,10 @@ public class RobotMap {
     public static AnalogPotentiometer playKnob;
     public static AnalogPotentiometer positionKnob;
     
+	public static AnalogInput proximity;
+	public static double proxmitySensorScaling = 1023.54145343;
+	
+    
     public enum AutoPosition {
     	A, B, C, D, E
     }
@@ -64,6 +68,8 @@ public class RobotMap {
 
         positionKnob = new AnalogPotentiometer(1, 5);
         playKnob = new AnalogPotentiometer(2, 6);
+        
+        proximity = new AnalogInput(3);
        
         /*
         SpeedControllerGroup m_left = new SpeedControllerGroup(driveTrainTalonSRX13, driveTrainTalonSRX15);

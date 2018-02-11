@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
 
@@ -42,6 +44,7 @@ public class Robot extends TimedRobot {
     public static ArduinoInterface arduinoLCDInterface;
 //    public static ArduinoInterface arduinoLEDInterface;
 //    public static ArduinoInterface arduinoCameraInterface;
+    public static Proximity proximitySensor;
     
     public static RobotMap.AutoPlay myPlay = RobotMap.AutoPlay.ONE;
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
@@ -156,6 +159,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Distance (Meters)", Robot.proximitySensor.getDistance());
     }
     
     @Override
