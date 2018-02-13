@@ -1,8 +1,6 @@
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
-
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,11 +21,7 @@ public class CubeMech extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.oi.xbox1.getBumper(Hand.kLeft)) {
-    		Robot.cubeMech.cubeIntake();
-    	} else if (Robot.oi.xbox1.getBumper(Hand.kRight)) {
-    		Robot.cubeMech.cubeOuttake();
-    	}
+    	Robot.cubeMech.takeBumperInputs(Robot.oi.xbox1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
