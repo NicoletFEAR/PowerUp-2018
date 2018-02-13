@@ -29,12 +29,12 @@ public class VisionNTableValueSet extends Command {
 		myTable = NetworkTable.getTable("GRIP/myContoursReport"); // makes the table myTable properly what it should be
 		NetworkTable.setUpdateRate(0.05);
 		 
-     myTable.putNumber("hsvHueMin", 60);
-	 myTable.putNumber("hsvHueMax", 220);
-	 myTable.putNumber("hsvSatMin", 168);
+     myTable.putNumber("hsvHueMin", 87);
+	 myTable.putNumber("hsvHueMax", 90);
+	 myTable.putNumber("hsvSatMin", 210);
 	 myTable.putNumber("hsvSatMax", 255);
-	 myTable.putNumber("hsvValMin", 100);
-	 myTable.putNumber("hsvValMax", 185);
+	 myTable.putNumber("hsvValMin", 85);
+	 myTable.putNumber("hsvValMax", 255);
 	 myTable.putNumber("contourAreaMin", 6000);
 	 
 	 myTable.putNumber("solidityMin", 77);
