@@ -36,7 +36,12 @@ public class Lift extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-//		leftDS.set(DoubleSolenoid.Value.kOff);
-//		rightDS.set(DoubleSolenoid.Value.kOff);
+		leftDS.set(DoubleSolenoid.Value.kReverse);
+		rightDS.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void stop(){
+		leftDS.set(DoubleSolenoid.Value.kOff);
+		rightDS.set(DoubleSolenoid.Value.kOff);
 	}
 }
