@@ -39,12 +39,25 @@ public class RobotMap {
     public static TalonSRX backRight;
     
     public static DifferentialDrive robotDrive;
-	public static int aForwardChannel = 0;
+    public static int module0 =0;
+	public static int aForwardChannel = 0; // shifter
 	public static int aReverseChannel = 1;
-	public static int bForwardChannel = 2;
+	public static int bForwardChannel = 2; // liftLeftDS
 	public static int bReverseChannel = 3;
-	public static int cForwardChannel = 4;
+	public static int cForwardChannel = 4; // liftRightDS
 	public static int cReverseChannel = 5;
+	public static int dForwardChannel = 6;
+	public static int dReverseChannel = 7;
+	
+	public static int module1 =1;
+	public static int eForwardChannel = 0;
+	public static int eReverseChannel = 1;
+	public static int fForwardChannel = 2;
+	public static int fReverseChannel = 3;
+	public static int gForwardChannel = 4;
+	public static int gReverseChannel = 5;
+	public static int hForwardChannel = 6;
+	public static int hReverseChannel = 7;
 	public static int compressormodule = 0;
 	
 	//PID Constants

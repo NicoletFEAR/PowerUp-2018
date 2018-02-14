@@ -14,6 +14,9 @@ public class Lift extends Subsystem {
 	// here. Call these from Commands.
 	private final DoubleSolenoid leftDS = new DoubleSolenoid(RobotMap.bForwardChannel, RobotMap.bReverseChannel);
 	private final DoubleSolenoid rightDS = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
+	
+	private final DoubleSolenoid leftramprealease = new DoubleSolenoid(RobotMap.bForwardChannel, RobotMap.bReverseChannel);
+	private final DoubleSolenoid rightramprelease = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
 
 	public void ascend() {
 		leftDS.set(DoubleSolenoid.Value.kForward);
@@ -23,6 +26,11 @@ public class Lift extends Subsystem {
 	public void descend() {
 		leftDS.set(DoubleSolenoid.Value.kReverse);
 		rightDS.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void release() {
+		leftramprealease.set(DoubleSolenoid.Value.kReverse);
+		rightramprelease.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void lift() {
