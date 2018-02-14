@@ -1,27 +1,26 @@
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CubeMech extends Command {
+public class CubeFlywheelStop extends Command {
 
-    public CubeMech() {
+    public CubeFlywheelStop() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.cubeMech);
+        requires(Robot.cubeMech);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.cubeMech.cubeFlywheelStop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.cubeMech.takeBumperInputs(Robot.oi.xbox1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
