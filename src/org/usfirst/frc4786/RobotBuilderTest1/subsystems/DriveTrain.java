@@ -102,17 +102,17 @@ public class DriveTrain extends Subsystem {
 
 	public void takeStickInputValues(double leftStickV, double rightStickV) {
 		if (!reversed) {
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, leftStickV);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, -leftStickV);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, -rightStickV);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, rightStickV);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, rightStickV);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, -rightStickV);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, -leftStickV);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, leftStickV);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
