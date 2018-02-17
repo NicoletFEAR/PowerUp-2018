@@ -33,7 +33,7 @@ public class Cube extends Subsystem {
 
     }
     
-    public void cubeIntake() {
+    public void cubeFlywheelBackward() {
     	flyWheelDrive.tankDrive(1, -1);
     }
     

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class CubeLaunch extends CommandGroup {
 
-    public CubeLaunch() {
+    public CubeLaunch() { // sequence of commands that launches a cube
     	addSequential(new CubeFlywheelForward());
     	addSequential(new WaitCommand(1));
     	addSequential(new CubePistonExtend());
