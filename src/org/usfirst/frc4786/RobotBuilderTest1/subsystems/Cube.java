@@ -32,13 +32,13 @@ public class Cube extends Subsystem {
 	}
 
 	public void cubeFlywheelBackward() {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -1);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 1);
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, 1);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -1);
 	}
 
 	public void cubeFlywheelForward() {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, 1);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -1);
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -1);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 1);
 	}
 
 	public void cubeFlywheelStop() {
