@@ -20,10 +20,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class Cube extends Subsystem {
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-	// public DifferentialDrive flyWheelDrive = new
-	// DifferentialDrive(RobotMap.frontLeft, RobotMap.frontRight);
 	private final DoubleSolenoid cubeLiftLeft = new DoubleSolenoid(RobotMap.module0, RobotMap.cForwardChannel,
 			RobotMap.cReverseChannel);
 	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.dForwardChannel,
@@ -32,30 +28,22 @@ public class Cube extends Subsystem {
 			RobotMap.bReverseChannel);
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-		// flyWheelDrive.setSafetyEnabled(false);
-		// flyWheelDrive.setExpiration(1);
-		// flyWheelDrive.setMaxOutput(1.0);
-
+		
 	}
 
 	public void cubeFlywheelBackward() {
 		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -1);
 		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 1);
-		// flyWheelDrive.tankDrive(1, -1);
 	}
 
 	public void cubeFlywheelForward() {
 		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, 1);
 		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -1);
-		// flyWheelDrive.tankDrive(1, -1);
 	}
 
 	public void cubeFlywheelStop() {
 		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, 0);
 		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 0);
-		// flyWheelDrive.tankDrive(0, 0);
 	}
 
 	public void raise() {
