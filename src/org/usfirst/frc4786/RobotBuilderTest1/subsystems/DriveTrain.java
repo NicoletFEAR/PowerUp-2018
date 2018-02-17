@@ -91,7 +91,7 @@ public class DriveTrain extends Subsystem {
 //		RobotMap.frontRight.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
 	}
 
-	public void takeJoystickInputs(Joystick left, Joystick right) {
+	public void takeJoystickInputs(Joystick left, Joystick right) { // tank drive
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, left.getY());
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
@@ -100,7 +100,7 @@ public class DriveTrain extends Subsystem {
 		RobotMap.backRight.follow(RobotMap.frontRight);
 	}
 
-	public void takeStickInputValues(double leftStickV, double rightStickV) {
+	public void takeStickInputValues(double leftStickV, double rightStickV) { // arcade drive
 		if (!reversed) {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, -leftStickV);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);

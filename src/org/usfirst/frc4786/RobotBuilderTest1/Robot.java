@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
+import edu.wpi.first.wpilibj.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
     public static AutoChooser autoChooser;
     public static ArduinoInterface arduinoLCDInterface;
     public static Cube cubeMech;
+    public static Lifter lifty;
 //    public static ArduinoInterface arduinoLEDInterface;
 //    public static ArduinoInterface arduinoCameraInterface;
     
@@ -62,6 +64,7 @@ public class Robot extends TimedRobot {
         autoChooser =  new AutoChooser();
         arduinoLCDInterface = new ArduinoInterface(8);
         cubeMech = new Cube();
+        lifty = new Lifter();
         //arduinoLEDInterface = new ArduinoInterface(7);
         //arduinoCameraInterface = new ArduinoInterface(6);
         
@@ -70,8 +73,15 @@ public class Robot extends TimedRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         oi = new OI();
+        
+        CameraServer camera = CameraServer.getInstance();
+        camera.startAutomaticCapture("cam0", 50);
+        camera.startAutomaticCapture();
 
         SmartDashboard.putData("Auto mode", chooser);
+        
+        //Camera stuff
+        
     }
 
     /**
