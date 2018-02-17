@@ -1,4 +1,4 @@
-package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
+package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;

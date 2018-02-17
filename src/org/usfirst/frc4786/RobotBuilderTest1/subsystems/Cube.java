@@ -1,4 +1,4 @@
-package org.usfirst.frc4786.RobotBuilderTest1.commands;
+package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;

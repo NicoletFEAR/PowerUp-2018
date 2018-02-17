@@ -1,4 +1,4 @@
-package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
+package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CubePistonExtend extends Command {
+public class CubeMechLift extends Command {
 
-    public CubePistonExtend() {
+    public CubeMechLift() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.cubeMech);
+    	requires(Robot.cubeMech);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.cubeMech.extend();
+    	Robot.cubeMech.lift();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +25,7 @@ public class CubePistonExtend extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
