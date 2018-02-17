@@ -29,7 +29,7 @@ public class LiftRamp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return true; // true makes it run once
     }
 
     // Called once after isFinished returns true

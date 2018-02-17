@@ -35,9 +35,9 @@ public class Lifter extends Subsystem {
 
 	public void lift() {
 		if (leftDS.get()==DoubleSolenoid.Value.kForward){
-			ascend();
-		} else {
 			descend();
+		} else {
+			ascend();
 		}
 	}
 
