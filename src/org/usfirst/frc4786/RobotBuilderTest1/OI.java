@@ -92,6 +92,8 @@ public class OI {
 //        leftJoystickButton1.whileHeld(new SwitchFront());
 //       xbox1StartButton = new JoystickButton(xbox1,8);
 
+    	
+    	 // create our buttons
          xbox1 = new XboxController(0);
          
          xbox1ButtonX = new JoystickButton(xbox1, 3);
@@ -106,6 +108,7 @@ public class OI {
          xbox2Y = new JoystickButton(xbox2, 4);
          xbox2B = new JoystickButton(xbox2, 2);
          
+         // tie commands to buttons
          xbox1ButtonX.whenPressed(new Shift());
          xbox1LeftStick.whenPressed(new SwitchFront());
          xbox1RightStick.whenPressed(new SwitchFront());

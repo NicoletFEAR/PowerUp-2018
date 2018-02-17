@@ -39,6 +39,7 @@ public class RobotMap {
     public static TalonSRX backRight;
     
     public static DifferentialDrive robotDrive;
+    
     public static int module0 = 0;
 	public static int aForwardChannel = 0;
 	public static int aReverseChannel = 1;
