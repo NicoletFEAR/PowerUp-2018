@@ -26,8 +26,8 @@ public class Lifter extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final DoubleSolenoid leftDS = new DoubleSolenoid(RobotMap.bForwardChannel, RobotMap.bReverseChannel);
-	private final DoubleSolenoid rightDS = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
+	private final DoubleSolenoid leftDS = new DoubleSolenoid(RobotMap.abcdModuleNum, RobotMap.bForwardChannel, RobotMap.bReverseChannel);
+	private final DoubleSolenoid rightDS = new DoubleSolenoid(RobotMap.abcdModuleNum, RobotMap.cForwardChannel, RobotMap.cReverseChannel);
 
 	public void ascend() {
 		leftDS.set(DoubleSolenoid.Value.kForward);
@@ -44,7 +44,7 @@ public class Lifter extends Subsystem {
 			descend();
 		} else {
 			ascend();
-		}
+		}s
 	}
 
 	public void initDefaultCommand() {
