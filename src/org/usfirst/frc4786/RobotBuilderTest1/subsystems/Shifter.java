@@ -49,6 +49,6 @@ public class Shifter extends Subsystem {
 	// here. Call these from Commands.
 	// make sure the pistons are closed at first
 	public void initDefaultCommand() {
-		shiftdown();
+		
 	}
 }
