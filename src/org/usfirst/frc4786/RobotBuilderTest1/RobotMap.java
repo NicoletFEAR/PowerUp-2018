@@ -37,6 +37,8 @@ public class RobotMap {
     public static TalonSRX midRight;
     public static TalonSRX backLeft;
     public static TalonSRX backRight;
+    public static TalonSRX flyWheelLeft;
+    public static TalonSRX flyWheelRight;
     
     public static DifferentialDrive robotDrive;
     
@@ -76,6 +78,9 @@ public class RobotMap {
         midRight = new TalonSRX(16);
         backLeft = new TalonSRX(17);
         backRight = new TalonSRX(18);
+        
+        flyWheelLeft = new TalonSRX(21);
+        flyWheelRight = new TalonSRX(22);
         
         /*
         //Autonomous Switcher Stuff!
