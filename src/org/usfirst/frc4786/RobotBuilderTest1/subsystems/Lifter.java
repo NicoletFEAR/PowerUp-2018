@@ -12,29 +12,29 @@ public class Lifter extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final DoubleSolenoid leftDS = new DoubleSolenoid(RobotMap.bForwardChannel, RobotMap.bReverseChannel);
-	private final DoubleSolenoid rightDS = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
+	private final DoubleSolenoid rampLiftLeft = new DoubleSolenoid(RobotMap.module1, RobotMap.fForwardChannel, RobotMap.fReverseChannel);
+	private final DoubleSolenoid rampLiftRight = new DoubleSolenoid(RobotMap.module1, RobotMap.gForwardChannel, RobotMap.gReverseChannel);
 	
-	private final DoubleSolenoid leftramprealease = new DoubleSolenoid(RobotMap.bForwardChannel, RobotMap.bReverseChannel);
-	private final DoubleSolenoid rightramprelease = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
+	private final DoubleSolenoid rampRealease = new DoubleSolenoid(RobotMap.module1, RobotMap.eForwardChannel, RobotMap.eReverseChannel);
+//	private final DoubleSolenoid rightramprelease = new DoubleSolenoid(RobotMap.cForwardChannel, RobotMap.cReverseChannel);
 
 	public void ascend() {
-		leftDS.set(DoubleSolenoid.Value.kForward);
-		rightDS.set(DoubleSolenoid.Value.kForward);
+		rampLiftLeft.set(DoubleSolenoid.Value.kForward);
+		rampLiftRight.set(DoubleSolenoid.Value.kForward);
 	}
 
 	public void descend() {
-		leftDS.set(DoubleSolenoid.Value.kReverse);
-		rightDS.set(DoubleSolenoid.Value.kReverse);
+		rampLiftLeft.set(DoubleSolenoid.Value.kReverse);
+		rampLiftRight.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void release() {
-		leftramprealease.set(DoubleSolenoid.Value.kReverse);
-		rightramprelease.set(DoubleSolenoid.Value.kReverse);
+		rampRealease.set(DoubleSolenoid.Value.kReverse);
+//		rightramprelease.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void lift() {
-		if (leftDS.get()==DoubleSolenoid.Value.kForward){
+		if (rampLiftLeft.get()==DoubleSolenoid.Value.kForward){
 			descend();
 		} else {
 			ascend();
@@ -44,12 +44,12 @@ public class Lifter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		leftDS.set(DoubleSolenoid.Value.kReverse);
-		rightDS.set(DoubleSolenoid.Value.kReverse);
+		rampLiftLeft.set(DoubleSolenoid.Value.kReverse);
+		rampLiftRight.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void stop(){
-		leftDS.set(DoubleSolenoid.Value.kOff);
-		rightDS.set(DoubleSolenoid.Value.kOff);
+		rampLiftLeft.set(DoubleSolenoid.Value.kOff);
+		rampLiftRight.set(DoubleSolenoid.Value.kOff);
 	}
 }
