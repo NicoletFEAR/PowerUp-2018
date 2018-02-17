@@ -129,6 +129,38 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
 		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
 	}
+	
+	
+	public void ArcadeDrive(double robotOutput, double turnAmount) {
+		if (!reversed) {
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, -robotOutput - turnAmount);
+			RobotMap.midLeft.follow(RobotMap.frontLeft);
+			RobotMap.backLeft.follow(RobotMap.frontLeft);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, -robotOutput + turnAmount);
+			RobotMap.midRight.follow(RobotMap.frontRight);
+			RobotMap.backRight.follow(RobotMap.frontRight);
+		} else {
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, robotOutput + turnAmount);
+			RobotMap.midLeft.follow(RobotMap.frontLeft);
+			RobotMap.backLeft.follow(RobotMap.frontLeft);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, robotOutput - turnAmount);
+			RobotMap.midRight.follow(RobotMap.frontRight);
+			RobotMap.backRight.follow(RobotMap.frontRight);
+		}
+
+		// SmartDashboard.putData("Drive Train", robotDrive);
+		// SmartDashboard.putNumber("Left Side", leftSide.get());
+		// SmartDashboard.putNumber("Right Side", rightSide.get());
+
+		SensorCollection sensor = RobotMap.frontRight.getSensorCollection();
+
+		SmartDashboard.putNumber("sensor analogin", sensor.getAnalogIn());
+		SmartDashboard.putNumber("sensor analoginraw", sensor.getAnalogInRaw());
+		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
+		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
+		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
+	}
+	
 
 	// Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
 
