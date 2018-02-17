@@ -11,7 +11,6 @@ public class LiftRamp extends Command {
 
     public LiftRamp() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.lifty);
     	this.setInterruptible(false);
     }
