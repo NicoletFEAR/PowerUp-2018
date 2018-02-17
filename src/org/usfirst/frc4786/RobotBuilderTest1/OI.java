@@ -14,6 +14,7 @@ package org.usfirst.frc4786.RobotBuilderTest1;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.SwitchFront;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.LiftRamp;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -111,10 +112,9 @@ public class OI {
          
      	 xbox2Start.whenPressed(new LiftRamp());      // these ones haven't quite been added yet   
      	 //xbox2Menu.whenPressed(new NTableValueSet());         
-     	 //xbox2X.whenPressed(new CubeLift());         
-     	 //xbox2Y.whenPressed(new CubeOut());         
-     	 //xbox2B.whenPressed(new CubeIn());        
-      
+     	 xbox2X.whenPressed(new CubeMechLift());          
+     	 xbox2Y.whenPressed(new CubeLaunch());
+     	 xbox2B.whileHeld(new CubeFlywheelBackward());  
         
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
