@@ -16,11 +16,11 @@ public class Shifter extends Subsystem {
 	public static boolean nomatterwhat = false;
 
 	public void shiftup() {
-		shifty.set(DoubleSolenoid.Value.kForward);
+		shifty.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void shiftdown() {
-		shifty.set(DoubleSolenoid.Value.kForward);
+		shifty.set(DoubleSolenoid.Value.kForward); //Low = forward
 	}
 
 	// shift the gearbox to the opposite state

@@ -172,7 +172,9 @@ public class DriveTrain extends Subsystem {
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		
 		if (averageVelocity < 0.05) {
-			//DO NOTHING!!!
+			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+				Robot.shifter.shiftdown();
+			}
 		} else if (averageVelocity < 0.25) {
 			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
 				Robot.shifter.shiftdown();
