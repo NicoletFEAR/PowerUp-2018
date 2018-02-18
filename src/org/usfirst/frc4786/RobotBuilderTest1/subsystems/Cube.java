@@ -66,9 +66,9 @@ public class Cube extends Subsystem {
 
 	public void lift() {
 		if (cubeLiftLeft.get() == DoubleSolenoid.Value.kForward) {
-			lower();
-		} else {
 			raise();
+		} else {
+			lower();
 		}
 	}
 

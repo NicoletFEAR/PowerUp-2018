@@ -141,17 +141,19 @@ public class DriveTrain extends Subsystem {
 	
 	public void ArcadeDrive(double robotOutput, double turnAmount) {
 		if (!reversed) {
+
+			SmartDashboard.putNumber("turnamount", turnAmount);
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, -robotOutput - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, -robotOutput + turnAmount);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, robotOutput - turnAmount);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, robotOutput + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, robotOutput - turnAmount);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, -robotOutput + turnAmount);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
@@ -171,12 +173,15 @@ public class DriveTrain extends Subsystem {
 		
 		// shifting
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
+
+		SmartDashboard.putNumber("averageVelocity", averageVelocity);
+		
 	if (!(Robot.oi.xbox1.getStartButton())) {
-		if (averageVelocity < 0.2) { // if not in low, switch to low
+		if (averageVelocity < 2000) { // if not in low, switch to low
 			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
 				Robot.shifter.shiftdown();
 			}
-		} else if (averageVelocity < 0.3) {
+		} else if (averageVelocity < 2300) {
 			//DO NOTHING
 		} else { // if in low, switch to high
 			if (Robot.shifter.shifty.get() == DoubleSolenoid.Value.kForward) {
