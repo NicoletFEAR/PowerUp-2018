@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Shifter extends Subsystem {
-	private final DoubleSolenoid shifty = new DoubleSolenoid(RobotMap.module0, RobotMap.aForwardChannel,
+	public final DoubleSolenoid shifty = new DoubleSolenoid(RobotMap.module0, RobotMap.aForwardChannel,
 			RobotMap.aReverseChannel);
 	public static boolean nomatterwhat = false;
 
@@ -20,12 +20,12 @@ public class Shifter extends Subsystem {
 	}
 
 	public void shiftdown() {
-		shifty.set(DoubleSolenoid.Value.kReverse);
+		shifty.set(DoubleSolenoid.Value.kForward);
 	}
 
 	// shift the gearbox to the opposite state
 	public void shift() {
-		if (shifty.get() == DoubleSolenoid.Value.kForward) {
+		if (shifty.get() == DoubleSolenoid.Value.kReverse) {
 			shiftdown();
 		} else {
 			shiftup();
@@ -37,7 +37,7 @@ public class Shifter extends Subsystem {
 	}
 
 	public boolean getNoMatterWhat() {
-		return nomatterwhat;
+		return nomatterwhat; // nomatterwhat overides the 40 limit
 	}
 
 	public void setNoMatterWhat() {

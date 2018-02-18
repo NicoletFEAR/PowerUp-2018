@@ -10,6 +10,7 @@
 
 package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
+import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 
@@ -17,6 +18,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -47,6 +50,7 @@ public class DriveTrain extends Subsystem {
 	// Setup our timed drive
 	double currentTime = 0.0;
 	double endTime = 0.0;
+
 
 	public void testCommand() {
 
@@ -128,6 +132,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
 		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
+		
+		
+		
 	}
 	
 	
@@ -152,13 +159,31 @@ public class DriveTrain extends Subsystem {
 		// SmartDashboard.putNumber("Left Side", leftSide.get());
 		// SmartDashboard.putNumber("Right Side", rightSide.get());
 
-		SensorCollection sensor = RobotMap.frontRight.getSensorCollection();
+		SensorCollection sensorRight = RobotMap.frontRight.getSensorCollection();
+		SensorCollection sensorLeft = RobotMap.frontLeft.getSensorCollection();
 
-		SmartDashboard.putNumber("sensor analogin", sensor.getAnalogIn());
-		SmartDashboard.putNumber("sensor analoginraw", sensor.getAnalogInRaw());
-		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
-		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
-		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
+		SmartDashboard.putNumber("sensor analogin", sensorRight.getAnalogIn());
+		SmartDashboard.putNumber("sensor analoginraw", sensorRight.getAnalogInRaw());
+		SmartDashboard.putNumber("sensor analongvel", sensorRight.getAnalogInVel());
+		SmartDashboard.putNumber("sensor widthpos", sensorRight.getPulseWidthPosition());
+		SmartDashboard.putNumber("sensor velocity", sensorRight.getQuadratureVelocity());
+		
+		// shifting
+		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
+		
+		if (averageVelocity < 0.05) {
+			//DO NOTHING!!!
+		} else if (averageVelocity < 0.25) {
+			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+				Robot.shifter.shiftdown();
+			}
+		} else {
+			if (Robot.shifter.shifty.get() == DoubleSolenoid.Value.kForward) {
+				Robot.shifter.shiftup();
+			}
+		}
+		
+		
 	}
 	
 
