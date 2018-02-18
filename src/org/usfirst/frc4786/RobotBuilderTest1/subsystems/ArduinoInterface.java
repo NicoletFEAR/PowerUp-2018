@@ -51,14 +51,9 @@ public class ArduinoInterface extends Subsystem {
     }
     */
     
-    public void sendPlayToArduino()
+    public void sendPosPlayToArduino()
     {
-       	Robot.arduinoLCDInterface.writeStringData("0, " + Robot.autoChooser.getPlayString());
-    }
-    
-    public void sendPosToArduino()
-    {
-    	Robot.arduinoLCDInterface.writeStringData("1, " + Robot.autoChooser.getPositionString());
+    	Robot.arduinoLCDInterface.writeStringData(Robot.autoChooser.getPositionString() + Robot.autoChooser.getPlayString());
     }
     
 }
