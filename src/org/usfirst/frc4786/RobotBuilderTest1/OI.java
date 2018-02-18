@@ -65,10 +65,11 @@ public class OI {
 //    private Joystick rightJoystick;
 //  private Button xbox1StartButton;
 	
-	private XboxController xbox1; // the drive controller
+	public XboxController xbox1; // the drive controller
 	private Button xbox1LeftStick;
 	private Button xbox1RightStick;
     private Button xbox1ButtonX;
+    public Button xbox1Start;
     
     private XboxController xbox2; // the game mech controller
     private Button xbox2Start;
@@ -99,6 +100,7 @@ public class OI {
          xbox1ButtonX = new JoystickButton(xbox1, 3);
          xbox1LeftStick = new JoystickButton(xbox1, 9);
          xbox1RightStick = new JoystickButton(xbox1, 10);
+         xbox1Start = new JoystickButton(xbox1, 8);
          
          xbox2 = new XboxController(1);
          
@@ -112,6 +114,7 @@ public class OI {
          //xbox1ButtonX.whenPressed(new Shift());
          xbox1LeftStick.whenPressed(new SwitchFront());
          xbox1RightStick.whenPressed(new SwitchFront());
+     	 
          
      	 xbox2Start.whenPressed(new LiftRamp());      // these ones haven't quite been added yet   
      	 //xbox2Menu.whenPressed(new NTableValueSet());         

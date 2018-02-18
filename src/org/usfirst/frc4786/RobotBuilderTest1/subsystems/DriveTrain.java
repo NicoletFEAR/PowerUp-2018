@@ -12,6 +12,7 @@ package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
+import org.usfirst.frc4786.RobotBuilderTest1.OI;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -170,20 +171,23 @@ public class DriveTrain extends Subsystem {
 		
 		// shifting
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
-		
-		if (averageVelocity < 0.05) {
+	if (!(Robot.oi.xbox1.getStartButton())) {
+		if (averageVelocity < 0.2) { // if not in low, switch to low
 			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
 				Robot.shifter.shiftdown();
 			}
-		} else if (averageVelocity < 0.25) {
-			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
-				Robot.shifter.shiftdown();
-			}
-		} else {
+		} else if (averageVelocity < 0.3) {
+			//DO NOTHING
+		} else { // if in low, switch to high
 			if (Robot.shifter.shifty.get() == DoubleSolenoid.Value.kForward) {
 				Robot.shifter.shiftup();
 			}
 		}
+	} else {
+		if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+			Robot.shifter.shiftdown();
+		}
+	}
 		
 		
 	}
