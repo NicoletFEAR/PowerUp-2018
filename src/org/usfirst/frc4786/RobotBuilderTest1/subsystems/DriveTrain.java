@@ -210,8 +210,8 @@ public class DriveTrain extends Subsystem {
 		while (currentTime < endTime) {
 			currentTime = System.currentTimeMillis();
 			// robotDrive.tankDrive(leftInput, rightInput);
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, 1);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, 1);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, leftInput);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, rightInput);
 		}
 		stop();
 	}

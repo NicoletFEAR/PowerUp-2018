@@ -125,12 +125,14 @@ public class Robot extends TimedRobot {
         
         if (disabledCommand != null) disabledCommand.cancel();
         autoChooser.autonomousMode();
-        myPlay = RobotMap.AutoPlay.ONE;
+        //myPlay = RobotMap.AutoPlay.ONE;
         switch (myPlay) {
         	case ONE:
-        		autonomousCommand = new DriveToPosition(2);
+        		//autonomousCommand = new DriveToPosition(2);
+        		driveTrain.driveForSeconds(4, -0.27, 0.5);
         	case TWO:
-//        		autonomousCommand = new Play2();
+        		driveTrain.driveForSeconds(4, -0.27, 0.5);
+        		new CubeLaunch();
         	case THREE:
 //        		autonomousCommand = new Play3();
         	case FOUR:
