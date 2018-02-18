@@ -63,6 +63,7 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain();
         autoChooser =  new AutoChooser();
         arduinoLCDInterface = new ArduinoInterface(8);
+        new DisplayAutonomous();
         cubeMech = new Cube();
         lifty = new Lifter();
         //arduinoLEDInterface = new ArduinoInterface(7);
@@ -125,6 +126,8 @@ public class Robot extends TimedRobot {
         
         if (disabledCommand != null) disabledCommand.cancel();
         autoChooser.autonomousMode();
+
+        new DisplayAutonomous();
         //myPlay = RobotMap.AutoPlay.ONE;
         switch (myPlay) {
         	case ONE:
