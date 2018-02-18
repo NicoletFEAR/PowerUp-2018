@@ -109,7 +109,7 @@ public class OI {
          xbox2B = new JoystickButton(xbox2, 2);
          
          // tie commands to buttons
-         xbox1ButtonX.whenPressed(new Shift());
+         //xbox1ButtonX.whenPressed(new Shift());
          xbox1LeftStick.whenPressed(new SwitchFront());
          xbox1RightStick.whenPressed(new SwitchFront());
          
