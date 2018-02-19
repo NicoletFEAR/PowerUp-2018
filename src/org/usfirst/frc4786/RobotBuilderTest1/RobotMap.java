@@ -31,6 +31,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RobotMap {
 
+	public static boolean cubeLaunch;
     public static TalonSRX frontLeft;
     public static TalonSRX frontRight;
     public static TalonSRX midLeft;
@@ -94,6 +95,8 @@ public class RobotMap {
         positionKnob = new AnalogPotentiometer(1, 5);
         playKnob = new AnalogPotentiometer(2, 6);
         
+    	cubeLaunch = false;
+
         /*
         //Autonomous Switcher Stuff!
         Potentiometer pot;

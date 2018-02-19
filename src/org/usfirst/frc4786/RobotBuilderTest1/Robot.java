@@ -78,6 +78,8 @@ public class Robot extends TimedRobot {
         CameraServer camera = CameraServer.getInstance();
         camera.startAutomaticCapture("cam0", 50);
         camera.startAutomaticCapture();
+        
+        
 
         SmartDashboard.putData("Auto mode", chooser);
         
@@ -132,13 +134,16 @@ public class Robot extends TimedRobot {
         switch (myPlay) {
         	case ONE:
         		//autonomousCommand = new DriveToPosition(2);
-        		driveTrain.driveForSeconds(4, -0.27, 0.5);
+        		driveTrain.driveForSeconds(4, -0.4, 0.7);
         	case TWO:
-        		driveTrain.driveForSeconds(4, -0.27, 0.5);
+        		driveTrain.driveForSeconds(4, -0.5, 0.5);
         		new CubeLaunch();
         	case THREE:
+        		driveTrain.driveForSeconds(4, -0.5, 0.5);
 //        		autonomousCommand = new Play3();
         	case FOUR:
+        		driveTrain.driveForSeconds(4, -0.5, 0.5);
+        		new CubeLaunch();
 //        		autonomousCommand = new Play4();
         	case FIVE:
 //        		autonomousCommand = new Play5();

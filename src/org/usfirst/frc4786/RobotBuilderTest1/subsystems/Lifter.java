@@ -30,6 +30,10 @@ public class Lifter extends Subsystem {
 	public void release() {
 		rampRealease.set(DoubleSolenoid.Value.kReverse);
 	}
+	
+	public void push() {
+		rampRealease.set(DoubleSolenoid.Value.kForward);
+	}
 
 	public void lift() {
 		if (rampLiftLeft.get()==DoubleSolenoid.Value.kForward){
