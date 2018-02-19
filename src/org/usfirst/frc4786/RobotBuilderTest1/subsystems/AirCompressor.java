@@ -14,8 +14,6 @@ public class AirCompressor extends Subsystem{
 	public AirCompressor (int CompressorModule) {
 	
 	}
-		
-	
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -24,16 +22,7 @@ public class AirCompressor extends Subsystem{
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    
-    
- /*   public void initTable(ITable subtable) {
-		// TODO Auto-generated method stub
-		
-	}
-	public ITable getTable() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+
 	public void periodic(){
 		// Put code here to be run every loop
 	}
@@ -43,12 +32,4 @@ public class AirCompressor extends Subsystem{
 	public Compressor getC() {
 		return c;
 	}
-
-
-
-
-	/*public String getSmartDashboardType() {
-		// TODO Auto-generated method stub
-		return null;	}*/
-	
-	}
+}

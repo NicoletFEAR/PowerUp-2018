@@ -36,18 +36,7 @@ public class OpenLoopDrive extends Command {
     }
 
     @Override
-    protected void execute() {
- 
-    	//for joy sticks
- //   	Robot .driveTrain.takeJoystickInputs(Robot.oi.getLeftJoystick() , Robot.oi.getRightJoystick());
-
-    	// for xbox controller     
-//    	double rightStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kRight);   	
-//    	double leftStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kLeft);
-//    	//System.out.println(-leftStickValue);
-//    	Robot.driveTrain.takeStickInputValues( - leftStickValue , - rightStickValue);
-    	
-    	
+    protected void execute() {  	
     	double forwardValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kRight) * 0.75;   	
     	double reverseValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kLeft) * 0.75;
     	double turnAmount = Robot.oi.getXbox1().getX(GenericHID.Hand.kLeft);

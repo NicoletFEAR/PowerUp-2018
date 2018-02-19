@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
-import edu.wpi.first.wpilibj.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,8 +41,6 @@ public class Robot extends TimedRobot {
     public static DriveTrain driveTrain;
     public static AutoChooser autoChooser;
     public static ArduinoInterface arduinoLCDInterface;
-    public static Cube cubeMech;
-    public static Lifter lifty;
 //    public static ArduinoInterface arduinoLEDInterface;
 //    public static ArduinoInterface arduinoCameraInterface;
     
@@ -63,9 +60,6 @@ public class Robot extends TimedRobot {
         driveTrain = new DriveTrain();
         autoChooser =  new AutoChooser();
         arduinoLCDInterface = new ArduinoInterface(8);
-        new DisplayAutonomous();
-        cubeMech = new Cube();
-        lifty = new Lifter();
         //arduinoLEDInterface = new ArduinoInterface(7);
         //arduinoCameraInterface = new ArduinoInterface(6);
         
@@ -75,11 +69,9 @@ public class Robot extends TimedRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
         
-        CameraServer camera = CameraServer.getInstance();
-        camera.startAutomaticCapture("cam0", 50);
-        camera.startAutomaticCapture();
-        
-        
+//        CameraServer camera = CameraServer.getInstance();
+//        camera.startAutomaticCapture("cam0", 50);
+//        camera.startAutomaticCapture();
 
         SmartDashboard.putData("Auto mode", chooser);
         
@@ -128,22 +120,17 @@ public class Robot extends TimedRobot {
         
         if (disabledCommand != null) disabledCommand.cancel();
         autoChooser.autonomousMode();
-
-        new DisplayAutonomous();
         //myPlay = RobotMap.AutoPlay.ONE;
         switch (myPlay) {
         	case ONE:
         		//autonomousCommand = new DriveToPosition(2);
-        		driveTrain.driveForSeconds(4, -0.4, 0.7);
+        		driveTrain.driveForSeconds(4, -0.5, 0.7);
         	case TWO:
-        		driveTrain.driveForSeconds(4, -0.5, 0.5);
-        		new CubeLaunch();
+        		driveTrain.driveForSeconds(4, -0.27, 0.5);
+//        		new CubeLaunch();
         	case THREE:
-        		driveTrain.driveForSeconds(4, -0.5, 0.5);
 //        		autonomousCommand = new Play3();
         	case FOUR:
-        		driveTrain.driveForSeconds(4, -0.5, 0.5);
-        		new CubeLaunch();
 //        		autonomousCommand = new Play4();
         	case FIVE:
 //        		autonomousCommand = new Play5();

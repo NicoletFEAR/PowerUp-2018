@@ -4,10 +4,6 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap.AutoPlay;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap.AutoPosition;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
-
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**

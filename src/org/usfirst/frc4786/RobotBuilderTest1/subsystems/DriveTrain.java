@@ -172,8 +172,8 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("sensor velocity", sensorRight.getQuadratureVelocity());
 		
 		// shifting
-		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
-
+//		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
+		double averageVelocity = Math.abs(sensorRight.getQuadratureVelocity());
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
 		
 	if (!(Robot.oi.xbox1.getStartButton())) {
