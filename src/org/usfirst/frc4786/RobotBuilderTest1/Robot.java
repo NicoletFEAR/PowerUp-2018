@@ -79,8 +79,9 @@ public class Robot extends TimedRobot {
         camera.startAutomaticCapture("cam0", 50);
         camera.startAutomaticCapture();
         
+        lifty.push();
+        cubeMech.raise();
         
-
         SmartDashboard.putData("Auto mode", chooser);
         
         //Camera stuff

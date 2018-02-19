@@ -359,12 +359,12 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void switchFront() {
-		RobotMap.frontLeft.setInverted(!RobotMap.frontLeft.getInverted());
-		RobotMap.midLeft.setInverted(!RobotMap.midLeft.getInverted());
-		RobotMap.backLeft.setInverted(!RobotMap.backLeft.getInverted());
-		RobotMap.frontRight.setInverted(!RobotMap.frontRight.getInverted());
-		RobotMap.midRight.setInverted(!RobotMap.midRight.getInverted());
-		RobotMap.backRight.setInverted(!RobotMap.backRight.getInverted());
+//		RobotMap.frontLeft.setInverted(!RobotMap.frontLeft.getInverted());
+//		RobotMap.midLeft.setInverted(!RobotMap.midLeft.getInverted());
+//		RobotMap.backLeft.setInverted(!RobotMap.backLeft.getInverted());
+//		RobotMap.frontRight.setInverted(!RobotMap.frontRight.getInverted());
+//		RobotMap.midRight.setInverted(!RobotMap.midRight.getInverted());
+//		RobotMap.backRight.setInverted(!RobotMap.backRight.getInverted());
 		reversed = !reversed;
 	}
 	// Put methods for controlling this subsystem
