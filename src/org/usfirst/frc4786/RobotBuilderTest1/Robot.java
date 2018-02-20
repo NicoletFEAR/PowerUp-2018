@@ -147,6 +147,13 @@ public class Robot extends TimedRobot {
      * This function is called periodically during operator control
      */
     @Override
+//    public void teleopInit(){
+//        shifter.shiftdown();
+//    }
+    public void teleopInit(){
+    	RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+    	RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+    }
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         pressureSensor.getPressure();

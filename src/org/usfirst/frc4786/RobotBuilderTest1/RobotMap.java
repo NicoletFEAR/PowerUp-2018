@@ -41,8 +41,8 @@ public class RobotMap {
     public static DifferentialDrive robotDrive;
     
     public static int module0 = 0;
-	public static int aForwardChannel = 0;
-	public static int aReverseChannel = 1;
+	public static int aForwardChannel = 1;
+	public static int aReverseChannel = 0;
 	public static int bForwardChannel = 2;
 	public static int bReverseChannel = 3;
 	public static int cForwardChannel = 4;
