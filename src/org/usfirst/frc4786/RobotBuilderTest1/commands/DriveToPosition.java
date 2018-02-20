@@ -16,6 +16,7 @@ public class DriveToPosition extends Command {
     public DriveToPosition(double distance) {
     	//We require the driveTrain to drive, obviously!!!!
     	requires(Robot.driveTrain);
+    	requires(Robot.cubeMech);
     	
     	//So we can use this variable in the execute() function
     	targetPosition = distance * RobotMap.fudgeFactor;

@@ -16,6 +16,7 @@ public class Lifter extends Subsystem {
 	private final DoubleSolenoid rampLiftRight = new DoubleSolenoid(RobotMap.module1, RobotMap.gForwardChannel, RobotMap.gReverseChannel);
 	
 	private final DoubleSolenoid rampRealease = new DoubleSolenoid(RobotMap.module1, RobotMap.eForwardChannel, RobotMap.eReverseChannel);
+	
 
 	public void ascend() {
 		rampLiftLeft.set(DoubleSolenoid.Value.kForward);

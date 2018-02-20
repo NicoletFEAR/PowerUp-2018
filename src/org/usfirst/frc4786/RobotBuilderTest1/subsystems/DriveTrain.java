@@ -367,7 +367,10 @@ public class DriveTrain extends Subsystem {
 //		RobotMap.backRight.setInverted(!RobotMap.backRight.getInverted());
 		reversed = !reversed;
 	}
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
+	
+	public void resetEncoders()
+	{
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+	}
 }
