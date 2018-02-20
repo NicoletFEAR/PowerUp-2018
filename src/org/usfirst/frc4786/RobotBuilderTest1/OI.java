@@ -69,7 +69,7 @@ public class OI {
          xbox1RightStick.whenPressed(new SwitchFront());
         
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("SwitchFront", new SwitchFront());
     }
     

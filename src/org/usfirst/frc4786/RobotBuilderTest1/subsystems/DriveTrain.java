@@ -165,12 +165,23 @@ public class DriveTrain extends Subsystem {
 		SensorCollection sensorRight = RobotMap.frontRight.getSensorCollection();
 		SensorCollection sensorLeft = RobotMap.frontLeft.getSensorCollection();
 
+		/*
 		SmartDashboard.putNumber("sensor analogin", sensorRight.getAnalogIn());
 		SmartDashboard.putNumber("sensor analoginraw", sensorRight.getAnalogInRaw());
 		SmartDashboard.putNumber("sensor analongvel", sensorRight.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensorRight.getPulseWidthPosition());
 		SmartDashboard.putNumber("sensor velocity", sensorRight.getQuadratureVelocity());
+		*/
 		
+
+		SmartDashboard.putNumber("velocity Right", sensorRight.getQuadratureVelocity());
+		SmartDashboard.putNumber("velocity Left", sensorLeft.getQuadratureVelocity());
+		
+		if (sensorRight.getQuadratureVelocity() != 0){
+			SmartDashboard.putNumber("L/R Encoder Velocity Ratio", (sensorLeft.getQuadratureVelocity()/sensorRight.getQuadratureVelocity()));
+		} else {
+			SmartDashboard.putNumber("L/R Encoder Velocity Ratio", 0);
+		}
 		// shifting
 //		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		double averageVelocity = Math.abs(sensorRight.getQuadratureVelocity());

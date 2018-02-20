@@ -124,7 +124,7 @@ public class Robot extends TimedRobot {
         switch (myPlay) {
         	case ONE:
         		//autonomousCommand = new DriveToPosition(2);
-        		driveTrain.driveForSeconds(4, -0.5, 0.7);
+        		driveTrain.driveForSeconds(4, -0.5, 0.5);
         	case TWO:
         		driveTrain.driveForSeconds(4, -0.27, 0.5);
 //        		new CubeLaunch();
