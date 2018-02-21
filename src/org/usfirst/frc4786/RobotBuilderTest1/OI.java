@@ -12,7 +12,6 @@
 package org.usfirst.frc4786.RobotBuilderTest1;
 
 import org.usfirst.frc4786.RobotBuilderTest1.commands.SwitchFront;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.*;
@@ -69,7 +68,6 @@ public class OI {
          xbox1RightStick.whenPressed(new SwitchFront());
         
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("SwitchFront", new SwitchFront());
     }
     

@@ -12,26 +12,18 @@ package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
-import org.usfirst.frc4786.RobotBuilderTest1.OI;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.OpenLoopDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 
 	private boolean reversed;
 
@@ -51,49 +43,66 @@ public class DriveTrain extends Subsystem {
 	// Setup our timed drive
 	double currentTime = 0.0;
 	double endTime = 0.0;
+	
+	private double turnToAngleRate = 0.0;
+	private double currentTargetAngle = 0.0;
 
-
-	public void testCommand() {
-
+	
+	public DriveTrain()
+	{
+		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
+		initPID();
+		RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontLeft);
+		RobotMap.backRight.follow(RobotMap.frontLeft);
 	}
-
+	
 	@Override
 	public void initDefaultCommand() {
-
 		setDefaultCommand(new OpenLoopDrive());
-		initPID();
 	}
 
 	public void initPID() {
-//		RobotMap.frontLeft.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT, 10);
-//		RobotMap.frontRight.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT,
-//				10);
-//
-//		// Make sure the CANTalons are looking at the right stored PID values
-//		// with the Profile
-//		// Set our PID Values
-//
-//		RobotMap.frontLeft.config_kP(RobotMap.PIDSLOT, RobotMap.LeftP, 10);
-//		RobotMap.frontLeft.config_kI(RobotMap.PIDSLOT, RobotMap.LeftI, 10);
-//		RobotMap.frontLeft.config_kD(RobotMap.PIDSLOT, RobotMap.LeftD, 10);
-//		RobotMap.frontLeft.config_kF(RobotMap.PIDSLOT, RobotMap.LeftF, 10);
-//		RobotMap.frontLeft.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
-//		/*
-//		 * Set how fast of a rate the robot will accelerate Do not remove or you
-//		 * get a fabulous prize of a Flipping robot - CLOSED_LOOP_RAMP_RATE
-//		 */
-//		RobotMap.frontLeft.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
-//
-//		RobotMap.frontRight.config_kP(RobotMap.PIDSLOT, RobotMap.RightP, 10);
-//		RobotMap.frontRight.config_kI(RobotMap.PIDSLOT, RobotMap.RightI, 10);
-//		RobotMap.frontRight.config_kD(RobotMap.PIDSLOT, RobotMap.RightD, 10);
-//		RobotMap.frontRight.config_kF(RobotMap.PIDSLOT, RobotMap.RightF, 10);
-//		RobotMap.frontRight.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
-//		/*
-//		 * Set how fast of a rate the robot will accelerate Do not remove or you
-//		 * get a fabulous prize of a Flipping robot - CLOSED_LOOP_RAMP_RATE
-//		 */
-//		RobotMap.frontRight.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
+		System.out.println("Starting Up PID!");
+		//Turning Angle Setup
+		RobotMap.navX.reset();
+		getPIDController().setInputRange(-180.0f,  180.0f);
+		getPIDController().setOutputRange(-1.0, 1.0);
+		getPIDController().setAbsoluteTolerance(RobotMap.ALLOWABLE_TURN_ERROR);
+		getPIDController().setContinuous(true);
+		
+		RobotMap.frontLeft.configAllowableClosedloopError(RobotMap.PIDSLOT,
+															RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT, 10);
+		RobotMap.frontRight.configAllowableClosedloopError(RobotMap.PIDSLOT, 
+															RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT, 10);
+
+		// Make sure the CANTalons are looking at the right stored PID values
+		// with the Profile
+		// Set our PID Values
+
+		RobotMap.frontLeft.config_kP(RobotMap.PIDSLOT, RobotMap.LeftP, 10);
+		RobotMap.frontLeft.config_kI(RobotMap.PIDSLOT, RobotMap.LeftI, 10);
+		RobotMap.frontLeft.config_kD(RobotMap.PIDSLOT, RobotMap.LeftD, 10);
+		RobotMap.frontLeft.config_kF(RobotMap.PIDSLOT, RobotMap.LeftF, 10);
+		RobotMap.frontLeft.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
+		/*
+		 * Set how fast of a rate the robot will accelerate Do not remove or you
+		 * get a fabulous prize of a Flipping robot - CLOSED_LOOP_RAMP_RATE
+		 */
+		RobotMap.frontLeft.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
+
+		RobotMap.frontRight.config_kP(RobotMap.PIDSLOT, RobotMap.RightP, 10);
+		RobotMap.frontRight.config_kI(RobotMap.PIDSLOT, RobotMap.RightI, 10);
+		RobotMap.frontRight.config_kD(RobotMap.PIDSLOT, RobotMap.RightD, 10);
+		RobotMap.frontRight.config_kF(RobotMap.PIDSLOT, RobotMap.RightF, 10);
+		RobotMap.frontRight.config_IntegralZone(RobotMap.PIDSLOT, RobotMap.IZONE, 10);
+		/*
+		 * Set how fast of a rate the robot will accelerate Do not remove or you
+		 * get a fabulous prize of a Flipping robot - CLOSED_LOOP_RAMP_RATE
+		 */
+		RobotMap.frontRight.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
+		System.out.println("PID has started up!");
 	}
 
 	public void takeJoystickInputs(Joystick left, Joystick right) { // tank drive
@@ -132,35 +141,27 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("sensor analoginraw", sensor.getAnalogInRaw());
 		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
-		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
-		
-		
-		
+		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());	
 	}
-	
 	
 	public void ArcadeDrive(double robotOutput, double turnAmount) {
 		if (!reversed) {
 
 			SmartDashboard.putNumber("turnamount", turnAmount);
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, -robotOutput - turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput * RobotMap.leftMotorScaling) - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
 			RobotMap.frontRight.set(ControlMode.PercentOutput, robotOutput - turnAmount);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, robotOutput + turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput * RobotMap.leftMotorScaling) + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
 			RobotMap.frontRight.set(ControlMode.PercentOutput, -robotOutput + turnAmount);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
-
-		// SmartDashboard.putData("Drive Train", robotDrive);
-		// SmartDashboard.putNumber("Left Side", leftSide.get());
-		// SmartDashboard.putNumber("Right Side", rightSide.get());
 
 		SensorCollection sensorRight = RobotMap.frontRight.getSensorCollection();
 		SensorCollection sensorLeft = RobotMap.frontLeft.getSensorCollection();
@@ -175,7 +176,7 @@ public class DriveTrain extends Subsystem {
 //		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		double averageVelocity = Math.abs(sensorRight.getQuadratureVelocity());
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
-		
+/*	
 	if (!(Robot.oi.xbox1.getStartButton())) {
 		if (averageVelocity < 2000) { // if not in low, switch to low
 			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
@@ -193,11 +194,9 @@ public class DriveTrain extends Subsystem {
 			Robot.shifter.shiftdown();
 		}
 	}
-		
-		
+*/	
 	}
 	
-
 	// Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
 
 	private double convertToRotations(double distanceInFeet) {
@@ -250,68 +249,45 @@ public class DriveTrain extends Subsystem {
 		this.driveToPositionIsFinished();
 	}
 
-	public void driveArcInit(double horizontalDist, double theta) {
-		// Set Encoder Position to 0
-		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
-		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
-		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-
-		// Calculate arc lengths
-		theta = Math.toRadians(theta);
-		double radius = horizontalDist / (1 - Math.cos(theta));
-		double leftArcLength = theta * (radius + RobotMap.WHEEL_SEPARATION / 2);
-		double rightArcLength = theta * (radius - RobotMap.WHEEL_SEPARATION / 2);
-		if (horizontalDist < 0) {
-			leftArcLength *= -1;
-			rightArcLength *= -1;
-		}
-
-		// Run convertToRotations functions
-		double leftRot = convertToRotations(leftArcLength);
-		double rightRot = convertToRotations(rightArcLength);
-
-		// Make motors drive number of rotations
-		// calculated before by convertToRotations()
-		// RobotMap.frontLeft.set(leftRot/* * RobotMap.turnFudgeFactor*/);
-		// //Make sure we inverse this right side,
-		// //otherwise, you have a spinning robot on your hands
-		// RobotMap.frontRight.set(-rightRot/* * RobotMap.turnFudgeFactor*/);
+	//Methods called by TurnToAngle
+	public void turnToAngleInit(double targetAngle){
+		//Initialize turnController and set the target
+		currentTargetAngle = targetAngle;
+		RobotMap.navX.reset();
+		getPIDController().enable();
+		getPIDController().setSetpoint(currentTargetAngle);
+		System.out.println("Finished Init of TurnToAngle");
 	}
-
-	public void driveArcSpeedInit(double leftSpeed, double rightSpeed) {
-		// Set Encoder Position to 0
-		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
-		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
-		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-
-		RobotMap.frontLeft.set(ControlMode.PercentOutput, -leftSpeed);
-		RobotMap.frontRight.set(ControlMode.PercentOutput, -rightSpeed);
+	
+	public void turnToAngleExecute(){
+		//Set the CANTalons to the speed calculated by PIDController
+		/* PIDController calculates a rate of motor output,
+		 * so the CANTalons need to be in PercentOutput mode */
+		System.out.println("The target is " + currentTargetAngle);
+		
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -turnToAngleRate);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, -turnToAngleRate);
+		
+		SmartDashboard.putNumber("NavX Angle", RobotMap.navX.getAngle());
+		SmartDashboard.putNumber("NavX Turn Rate", RobotMap.navX.getRate());
 	}
-
-	public void driveArcSpeedEnd() {
-		// RobotMap.frontLeft.set(0);
-		// RobotMap.frontRight.set(0);
+	
+	//Another weird variable check for if turning should stop
+	public boolean turnToAngleIsFinished(){
+		return getPIDController().onTarget();
 	}
+	
+	public void turnToAngleEnd(){
+		getPIDController().disable();
+		Robot.driveTrain.stop();
+}
 
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
 
 	public boolean driveToPositionIsFinished() {
-//		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT
-//				&& Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT;
-		return true;
+		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT
+				&& Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT;
 	}
 
 	public void driveToPositionEnd() {
@@ -320,7 +296,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getLeftEncoderPosition() {
-		return -(RobotMap.frontLeft.getSelectedSensorPosition(0));
+		return (RobotMap.frontLeft.getSelectedSensorPosition(0));
 	}
 
 	public double getRightEncoderPosition() {
@@ -341,7 +317,8 @@ public class DriveTrain extends Subsystem {
 
 	@Override
 	public void periodic() {
-		// Put code here to be run every loop
+		SmartDashboard.putNumber("Left Encoder: ", Robot.driveTrain.getLeftEncoderPosition());
+		SmartDashboard.putNumber("Right Encoder: ", Robot.driveTrain.getRightEncoderPosition());
 	}
 
 	public void stop() {
@@ -367,7 +344,16 @@ public class DriveTrain extends Subsystem {
 		RobotMap.backRight.setInverted(!RobotMap.backRight.getInverted());
 		reversed = !reversed;
 	}
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+
+	@Override
+	protected double returnPIDInput() {
+		return RobotMap.navX.getAngle();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		turnToAngleRate = output;
+		System.out.println("Value Written: " + output);
+	}
 
 }
