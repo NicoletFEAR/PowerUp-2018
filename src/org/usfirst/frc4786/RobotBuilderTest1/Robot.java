@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -82,6 +83,7 @@ public class Robot extends TimedRobot {
         
         lifty.push();
         cubeMech.raise();
+        lifty.descend();
         
         SmartDashboard.putData("Auto mode", chooser);
         
@@ -109,6 +111,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
     	
     	lifty.push();
+        lifty.descend();
     	/* Once we have a working 2nd Arduino + LED System
     	//send correct alliance data to arduino
 		alliance = DriverStation.getInstance().getAlliance();
@@ -139,7 +142,8 @@ public class Robot extends TimedRobot {
 
         switch (myPlay) {
         	case ONE:
-        		autonomousCommand = new PlayDoNothing();
+//        		autonomousCommand = new PlayDoNothing();
+        		driveTrain.driveForSeconds(4, .5, -.5);
         	case TWO:
         		autonomousCommand = new PlayDriveForward();
         	case THREE:
@@ -162,6 +166,15 @@ public class Robot extends TimedRobot {
     {
     	lifty.push();
     	Robot.driveTrain.resetEncoders();
+        lifty.descend();
+        
+        double velocityRight = Robot.driveTrain.getRightEncoderVelocity();
+        double velocityLeft = Robot.driveTrain.getLeftEncoderVelocity();
+		SmartDashboard.putNumber("velR", velocityRight);
+		SmartDashboard.putNumber("velL", velocityLeft);
+		
+		SmartDashboard.putNumber("Left Encoder: ", Robot.driveTrain.getLeftEncoderPosition());
+		SmartDashboard.putNumber("Right Encoder: ", Robot.driveTrain.getRightEncoderPosition());
     }
     
     /**
