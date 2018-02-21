@@ -97,8 +97,8 @@ public class Robot extends TimedRobot {
     public void disabledInit() {
     	disabledCommand = new DisplayAutonomous();
     	disabledCommand.setRunWhenDisabled(true);
+    	lifty.push();
     }
-
     @Override
     public void disabledPeriodic() {
     	disabledCommand.start();
@@ -107,6 +107,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+    	
+    	lifty.push();
     	/* Once we have a working 2nd Arduino + LED System
     	//send correct alliance data to arduino
 		alliance = DriverStation.getInstance().getAlliance();
@@ -158,6 +160,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit()
     {
+    	lifty.push();
     	Robot.driveTrain.resetEncoders();
     }
     

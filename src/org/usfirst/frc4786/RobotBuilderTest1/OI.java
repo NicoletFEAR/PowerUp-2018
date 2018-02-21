@@ -122,7 +122,7 @@ public class OI {
          xbox1RightStick.whenPressed(new SwitchFront());
          xbox1Start.whenPressed(new RampPush());
          
-     	 xbox2Start.whenPressed(new LiftRamp());      // these ones haven't quite been added yet   
+     	 xbox2Start.whenPressed(new LiftRamp());// these ones haven't quite been added yet
      	 xbox2Back.whenPressed(new RampRelease());         
      	 xbox2X.whenPressed(new CubeMechLift());          
      	 xbox2Y.whenPressed(new CubeLaunch());
@@ -132,7 +132,6 @@ public class OI {
      	 xbox2RTrig.whenPressed(new CubePistonExtend());
         
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("SwitchFront", new SwitchFront());
         SmartDashboard.putData("Lift Ramp", new LiftRamp());
         //SmartDashboard.putData("Lift Ramp", new NTableValueSet());

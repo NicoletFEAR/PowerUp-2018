@@ -35,17 +35,15 @@ public class PlayDriveToSideSwitch extends CommandGroup {
     		switch (Robot.myPosition)
     		{
     			case A:
-    				addSequential(new DriveToPosition(4));
+    				addSequential(new DriveToPosition(15));
 //    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(9));
-//    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(10));
+    				addSequential(new DriveToPosition(2));
     			case B:
     				addSequential(new DriveToPosition(4));
-//    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(6));
 //    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(10));
+    				addSequential(new DriveToPosition(6));
+//    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(8));
     			case C:
     				addSequential(new DriveToPosition(4));
 //    				addSequential(new TurnToAngle(-90));
@@ -57,7 +55,7 @@ public class PlayDriveToSideSwitch extends CommandGroup {
 //    				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(16));
 //    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(6));
+    				addSequential(new DriveToPosition(8));
     			case E:
     				addSequential(new DriveToPosition(4));
 //    				addSequential(new TurnToAngle(-90));

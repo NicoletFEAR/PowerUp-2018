@@ -17,9 +17,9 @@ public class LiftRamp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.pressureSensor.getPressure()>40){
+    	//if (Robot.pressureSensor.getPressure()>40){
     		Robot.lifty.lift();
-    	}
+    	//}
     }
 
     // Called repeatedly when this Command is scheduled to run

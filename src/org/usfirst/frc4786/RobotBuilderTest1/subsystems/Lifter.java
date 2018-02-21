@@ -29,7 +29,12 @@ public class Lifter extends Subsystem {
 	}
 	
 	public void release() {
-		rampRealease.set(DoubleSolenoid.Value.kReverse);
+		
+		if (rampRealease.get()==DoubleSolenoid.Value.kForward){
+			rampRealease.set(DoubleSolenoid.Value.kReverse);
+		} else {
+			rampRealease.set(DoubleSolenoid.Value.kForward);
+		}
 	}
 	
 	public void push() {
@@ -47,6 +52,7 @@ public class Lifter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+		rampRealease.set(DoubleSolenoid.Value.kForward);
 		rampLiftLeft.set(DoubleSolenoid.Value.kReverse);
 		rampLiftRight.set(DoubleSolenoid.Value.kReverse);
 	}
