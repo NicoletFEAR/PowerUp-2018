@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
+import edu.wpi.first.wpilibj.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -68,9 +69,9 @@ public class Robot extends TimedRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
         
-//        CameraServer camera = CameraServer.getInstance();
-//        camera.startAutomaticCapture("cam0", 50);
-//        camera.startAutomaticCapture();
+        CameraServer camera = CameraServer.getInstance();
+        camera.startAutomaticCapture("cam0", 50);
+        camera.startAutomaticCapture();
 
         SmartDashboard.putData("Auto mode", chooser);
         
