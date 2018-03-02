@@ -151,14 +151,14 @@ public class DriveTrain extends PIDSubsystem {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput * RobotMap.leftMotorScaling) - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, robotOutput - turnAmount);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, (robotOutput - turnAmount) * 0.87);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput * RobotMap.leftMotorScaling) + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, -robotOutput + turnAmount);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, (-robotOutput + turnAmount) * 0.87);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}

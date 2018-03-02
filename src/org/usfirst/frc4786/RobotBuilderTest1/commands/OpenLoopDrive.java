@@ -37,8 +37,8 @@ public class OpenLoopDrive extends Command {
 
     @Override
     protected void execute() {  	
-    	double forwardValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kRight);   	
-    	double reverseValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);
+    	double forwardValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kLeft);   	
+    	double reverseValue = Robot.oi.getXbox1().getTriggerAxis(GenericHID.Hand.kRight); // switched comp practice
     	double turnAmount = Robot.oi.getXbox1().getX(GenericHID.Hand.kLeft);
     	
     	//Calculate an Arcade drive speed by taking forward speed and subtracting it by reverse speed
