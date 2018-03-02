@@ -56,6 +56,8 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
 		RobotMap.midRight.follow(RobotMap.frontLeft);
 		RobotMap.backRight.follow(RobotMap.frontLeft);
+		RobotMap.frontLeft.setSensorPhase(true);
+		RobotMap.frontRight.setSensorPhase(false);
 	}
 	
 	@Override
@@ -148,17 +150,17 @@ public class DriveTrain extends PIDSubsystem {
 		if (!reversed) {
 
 			SmartDashboard.putNumber("turnamount", turnAmount);
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput * RobotMap.leftMotorScaling) - turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput) - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, (robotOutput - turnAmount) * 0.87);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, ((robotOutput * RobotMap.rightMotorScaling) - turnAmount));
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput * RobotMap.leftMotorScaling) + turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput) + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, (-robotOutput + turnAmount) * 0.87);
+			RobotMap.frontRight.set(ControlMode.PercentOutput, ((-robotOutput * RobotMap.rightMotorScaling) + turnAmount));
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
@@ -199,8 +201,8 @@ public class DriveTrain extends PIDSubsystem {
 	
 	// Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
 
-	private double convertToRotations(double distanceInFeet) {
-		return (distanceInFeet) / (Math.PI * (RobotMap.WHEEL_RADIUS * 2));
+	public double convertToRotations(double distanceInInches) {
+		return (distanceInInches) / (Math.PI * (RobotMap.WHEEL_RADIUS * 2));
 	}
 
 	public void driveForSeconds(double seconds, double leftInput, double rightInput) {
@@ -233,9 +235,9 @@ public class DriveTrain extends PIDSubsystem {
 
 		// Make motors drive number of rotations
 		// calculated before by convertToRotations()
-		RobotMap.frontLeft.set(ControlMode.Position, rot);
-		RobotMap.frontRight.set(ControlMode.Position, rot);
-		try {
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * (RobotMap.autoSpeed * RobotMap.leftMotorScaling));
+		RobotMap.frontRight.set(ControlMode.PercentOutput, RobotMap.autoSpeed);
+		/*try {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -243,10 +245,10 @@ public class DriveTrain extends PIDSubsystem {
 		// Make sure we inverse this right side,
 		// otherwise, you have a spinning robot on your hands
 		RobotMap.frontLeft.set(ControlMode.Position, rot);
-		RobotMap.frontRight.set(ControlMode.Position, rot);
+		RobotMap.frontRight.set(ControlMode.Position, rot);*/
 
 		SmartDashboard.putNumber("Rotations Calculated", rot);
-		this.driveToPositionIsFinished();
+		this.driveToPositionIsFinished(rot);
 	}
 
 	//Methods called by TurnToAngle
@@ -285,9 +287,17 @@ public class DriveTrain extends PIDSubsystem {
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
 
-	public boolean driveToPositionIsFinished() {
-		return Math.abs(RobotMap.frontLeft.getClosedLoopError(0)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT
-				&& Math.abs(RobotMap.frontRight.getClosedLoopError(10)) <= RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT;
+	public boolean driveToPositionIsFinished(double rotations) {
+		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
+		double rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
+		double leftRotations = leftEncoderValue / 7610;
+		double rightRotations = rightEncoderValue / 7610;
+		
+		SmartDashboard.putNumber("Left Rotations", leftRotations);
+		SmartDashboard.putNumber("Right Rotations", rightRotations);
+		
+		return (leftRotations >= rotations - RobotMap.driveToPositionError && leftRotations <= rotations + RobotMap.driveToPositionError)
+				&& (rightRotations >= rotations - RobotMap.driveToPositionError && rightRotations <= rotations + RobotMap.driveToPositionError);
 	}
 
 	public void driveToPositionEnd() {
