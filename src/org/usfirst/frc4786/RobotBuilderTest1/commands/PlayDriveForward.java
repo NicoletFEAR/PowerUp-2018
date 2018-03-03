@@ -32,21 +32,21 @@ public class PlayDriveForward extends CommandGroup {
     	switch (Robot.myPosition)
     	{
     		case A:
-    			addSequential(new DriveToPosition(130, .85));
+    			addSequential(new DriveToPosition(130, 1));
     			break;
     		case B:
-    			addSequential(new DriveToPosition(130, .85));
+    			addSequential(new DriveToPosition(130, 1));
     			break;
     		case C:
-    			addSequential(new DriveToPosition(36, .85));
+    			addSequential(new DriveToPosition(36, 1));
     			addSequential(new TurnToAngle(45));
-    			addSequential(new DriveToPosition(100, .7));
+    			addSequential(new DriveToPosition(100, 1));
     			break;
     		case D:
-    			addSequential(new DriveToPosition(130, .85));
+    			addSequential(new DriveToPosition(130, 1));
     			break;
     		case E:
-    			addSequential(new DriveToPosition(130, .85));
+    			addSequential(new DriveToPosition(130, 1));
     			break;	
     	}
     }
