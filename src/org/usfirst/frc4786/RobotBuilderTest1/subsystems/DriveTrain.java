@@ -47,6 +47,8 @@ public class DriveTrain extends PIDSubsystem {
 	private double turnToAngleRate = 0.0;
 	private double currentTargetAngle = 0.0;
 	private double driveAngle = 0.0;
+	
+	private boolean turned = false;
 
 	public DriveTrain() {
 		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
@@ -150,6 +152,10 @@ public class DriveTrain extends PIDSubsystem {
 		double leftSpeed = robotOutput;
 		double rightSpeed = robotOutput;
 		if (turnAmount == 0) {
+			if (turned = false){
+				RobotMap.navX.reset();
+				turned = true;
+			}
 			if (robotOutput > 0) {
 				if (RobotMap.navX.getAngle() < 0) {
 					rightSpeed *= .9;
@@ -171,6 +177,7 @@ public class DriveTrain extends PIDSubsystem {
 			}
 		} else {
 			RobotMap.navX.reset();
+			turned = false;
 		}
 		
 		if (!reversed) {
