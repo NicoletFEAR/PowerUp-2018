@@ -89,7 +89,7 @@ public class RobotMap {
 	
 	public static AnalogPotentiometer playKnob;
 	public static AnalogPotentiometer positionKnob;
-	
+		
 	public enum AutoPosition {
     	A, B, C, D, E
     }

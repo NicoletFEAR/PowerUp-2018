@@ -11,26 +11,15 @@
 
 package org.usfirst.frc4786.RobotBuilderTest1;
 
-import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveForward;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToNULL;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToSideSwitch;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Shifter;
-
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
+import edu.wpi.first.wpilibj.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
