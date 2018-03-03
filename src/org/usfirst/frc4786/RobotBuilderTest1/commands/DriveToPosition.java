@@ -13,6 +13,7 @@ public class DriveToPosition extends Command {
 
 	private double targetPosition;
 	private double speed;
+	
     public DriveToPosition(double distance, double inputSpeed) {
     	//We require the driveTrain to drive, obviously!!!!
     	requires(Robot.driveTrain);
