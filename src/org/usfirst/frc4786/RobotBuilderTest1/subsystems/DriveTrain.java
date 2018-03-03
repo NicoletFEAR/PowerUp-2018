@@ -147,22 +147,46 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void ArcadeDrive(double robotOutput, double turnAmount) {
+		double leftSpeed = robotOutput;
+		double rightSpeed = robotOutput;
+		if (turnAmount == 0) {
+			if (robotOutput > 0) {
+				if (RobotMap.navX.getAngle() < 0) {
+					rightSpeed *= .9;
+				} else if (RobotMap.navX.getAngle() > 0) {
+					leftSpeed *= .9;
+				} else {
+					rightSpeed = robotOutput;
+					leftSpeed = robotOutput;
+				}
+			} else {
+				if (RobotMap.navX.getAngle() < 0) {
+					leftSpeed *= .9;
+				} else if (RobotMap.navX.getAngle() > 0) {
+					rightSpeed *= .9;
+				} else {
+					rightSpeed = robotOutput;
+					leftSpeed = robotOutput;
+				}
+			}
+		} else {
+			RobotMap.navX.reset();
+		}
+		
 		if (!reversed) {
-
 			SmartDashboard.putNumber("turnamount", turnAmount);
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput) - turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-leftSpeed) - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput,
-					((robotOutput * RobotMap.rightMotorScaling) - turnAmount));
+			RobotMap.frontRight.set(ControlMode.PercentOutput, (rightSpeed) - turnAmount);
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
-			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput) + turnAmount);
+			RobotMap.frontLeft.set(ControlMode.PercentOutput, (leftSpeed) + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
 			RobotMap.frontRight.set(ControlMode.PercentOutput,
-					((-robotOutput * RobotMap.rightMotorScaling) + turnAmount));
+					((-rightSpeed) + turnAmount));
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
@@ -180,7 +204,7 @@ public class DriveTrain extends PIDSubsystem {
 		// double averageVelocity =
 		// (Math.abs(sensorRight.getQuadratureVelocity()) +
 		// Math.abs(sensorLeft.getQuadratureVelocity()))/2;
-		double averageVelocity = Math.abs(sensorRight.getQuadratureVelocity());
+		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
 		/*
 		 * if (!(Robot.oi.xbox1.getStartButton())) { if (averageVelocity < 2000)
@@ -281,21 +305,22 @@ public class DriveTrain extends PIDSubsystem {
 
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
-	public void driveToPositionExecute(double targetPosition, double driveSpeed){
+	public void driveToPositionExecute(double targetPosition, double driveSpeed) {
 		driveAngle = 0;
 		double leftSpeed = driveSpeed;
 		double rightSpeed = driveSpeed;
-		if (RobotMap.navX.getAngle() < -driveAngle){
-			rightSpeed = rightSpeed * .9;
-		} else if (RobotMap.navX.getAngle() > driveAngle){
-			rightSpeed = rightSpeed * 1.1;
+		if (RobotMap.navX.getAngle() < -driveAngle) {
+			rightSpeed *= .9;
+		} else if (RobotMap.navX.getAngle() > driveAngle) {
+			leftSpeed *= .9;
 		} else {
 			rightSpeed = driveSpeed;
+			leftSpeed = driveSpeed;
 		}
-		
+
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
-		
+
 	}
 
 	public boolean driveToPositionIsFinished(double rotations) {

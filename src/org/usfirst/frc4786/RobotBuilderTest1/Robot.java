@@ -143,7 +143,7 @@ public class Robot extends TimedRobot {
         }
 */
 
-        autonomousCommand = new DriveToPosition(100, .7);
+        autonomousCommand = new DriveToPosition(200, 1);
         autonomousCommand.start();
     }
     

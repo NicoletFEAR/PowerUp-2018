@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveToPosition extends Command {
 
 	private double targetPosition;
-	
-    public DriveToPosition(double distance, double speed) {
+	private double speed;
+    public DriveToPosition(double distance, double inputSpeed) {
     	//We require the driveTrain to drive, obviously!!!!
     	requires(Robot.driveTrain);
     	
     	//So we can use this variable in the execute() function
     	targetPosition = distance * RobotMap.fudgeFactor;
+    	speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
