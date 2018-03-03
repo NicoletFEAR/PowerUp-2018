@@ -133,21 +133,27 @@ public class Robot extends TimedRobot {
         	case ONE:
 //        		autonomousCommand = new PlayDoNothing();
         		driveTrain.driveForSeconds(4, .5, -.5);
+        		break;
         	case TWO:
         		autonomousCommand = new PlayDriveForward();
+        		break;
         	case THREE:
         		autonomousCommand = new PlayShootNearSwitch();
+        		break;
         	case FOUR:
         		autonomousCommand = new PlayDriveToSideSwitch();
+        		break;
         	case FIVE:
         		autonomousCommand = new PlayShootGetCube();
+        		break;
         	case SIX:
         		autonomousCommand = new PlayDriveToNULL();
+        		break;
         	default:
         		autonomousCommand = new PlayDoNothing();
+        		break;
         }
-        
-        
+        autonomousCommand.start();
     } 
     
     @Override

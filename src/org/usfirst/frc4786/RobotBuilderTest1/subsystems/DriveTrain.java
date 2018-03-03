@@ -55,8 +55,8 @@ public class DriveTrain extends PIDSubsystem {
 		initPID();
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
-		RobotMap.midRight.follow(RobotMap.frontLeft);
-		RobotMap.backRight.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
 		RobotMap.frontLeft.setSensorPhase(true);
 		RobotMap.frontRight.setSensorPhase(false);
 	}
@@ -246,6 +246,10 @@ public class DriveTrain extends PIDSubsystem {
 	public void driveToPositionInit(double distanceToDrive, double driveSpeed) {
 		// Change Talon modes to "position" just in case
 		// they were in another mode before
+		RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontLeft);
+		RobotMap.backRight.follow(RobotMap.frontLeft);
 		RobotMap.frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		RobotMap.frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 
@@ -313,6 +317,10 @@ public class DriveTrain extends PIDSubsystem {
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
 	public void driveToPositionExecute(double targetPosition, double driveSpeed) {
+		RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
 		driveAngle = 0;
 		double leftSpeed = driveSpeed;
 		double rightSpeed = driveSpeed;
