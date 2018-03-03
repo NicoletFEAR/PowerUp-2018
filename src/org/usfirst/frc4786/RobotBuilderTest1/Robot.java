@@ -11,15 +11,26 @@
 
 package org.usfirst.frc4786.RobotBuilderTest1;
 
+import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveForward;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToNULL;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToSideSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Shifter;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.*;
-import edu.wpi.first.wpilibj.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,6 +55,7 @@ public class Robot extends TimedRobot {
     
     public static RobotMap.AutoPlay myPlay = RobotMap.AutoPlay.ONE;
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
+	public static String teamSwitchSide;
     public static Shifter shifter = new Shifter();
     public static PressureSensor pressureSensor = new PressureSensor();
 
@@ -121,31 +133,33 @@ public class Robot extends TimedRobot {
         if (disabledCommand != null) disabledCommand.cancel();
     	RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
     	RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-/*      autoChooser.autonomousMode();
     	
+    	teamSwitchSide = DriverStation.getInstance().getGameSpecificMessage().substring(1, 1);
+    	
+      autoChooser.autonomousMode();
+
+        new DisplayAutonomous();
+
         switch (myPlay) {
         	case ONE:
-        		//autonomousCommand = new DriveToPosition(2);
-        		driveTrain.driveForSeconds(4, -0.5, 0.7);
+//        		autonomousCommand = new PlayDoNothing();
+        		driveTrain.driveForSeconds(4, .5, -.5);
         	case TWO:
-        		driveTrain.driveForSeconds(4, -0.27, 0.5);
-//        		new CubeLaunch();
+        		autonomousCommand = new PlayDriveForward();
         	case THREE:
-//        		autonomousCommand = new Play3();
+        		autonomousCommand = new PlayShootNearSwitch();
         	case FOUR:
-//        		autonomousCommand = new Play4();
+        		autonomousCommand = new PlayDriveToSideSwitch();
         	case FIVE:
-//        		autonomousCommand = new Play5();
+        		autonomousCommand = new PlayShootGetCube();
         	case SIX:
-//        		autonomousCommand = new Play6();
+        		autonomousCommand = new PlayDriveToNULL();
         	default:
-//        		autonomousCommand = new AutoLine();
+        		autonomousCommand = new PlayDoNothing();
         }
-*/
-
-        autonomousCommand = new DriveToPosition(100, .7);
-        autonomousCommand.start();
-    }
+        
+        
+    } 
     
     @Override
     public void autonomousPeriodic()

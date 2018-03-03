@@ -16,7 +16,7 @@ public class NoDrivey extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.driveToPositionInit(0);
+    	Robot.driveTrain.driveToPositionInit(0, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
