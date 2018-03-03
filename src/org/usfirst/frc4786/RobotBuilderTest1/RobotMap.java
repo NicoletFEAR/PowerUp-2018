@@ -70,8 +70,8 @@ public class RobotMap {
 	public static final int IZONE = 0;
 	
 	//NavX turn PID Constants
-	public static final double TurnP = 0.25;
-	public static final double TurnI = 0.01;
+	public static final double TurnP = 0.028;
+	public static final double TurnI = 0.000005;
 	public static final double TurnD = 0.0;
 	public static final double TurnF = 0.0;
 	
