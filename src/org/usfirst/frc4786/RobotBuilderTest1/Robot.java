@@ -143,7 +143,7 @@ public class Robot extends TimedRobot {
         }
 */
 
-        autonomousCommand = new DriveToPosition(100);
+        autonomousCommand = new DriveToPosition(100, .7);
         autonomousCommand.start();
     }
     
@@ -152,7 +152,7 @@ public class Robot extends TimedRobot {
     {
     	Scheduler.getInstance().run();
     }
-    
+     
     @Override
     public void teleopInit()
     {

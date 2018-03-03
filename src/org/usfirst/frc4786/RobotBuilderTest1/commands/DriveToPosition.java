@@ -13,7 +13,7 @@ public class DriveToPosition extends Command {
 
 	private double targetPosition;
 	
-    public DriveToPosition(double distance) {
+    public DriveToPosition(double distance, double speed) {
     	//We require the driveTrain to drive, obviously!!!!
     	requires(Robot.driveTrain);
     	
@@ -23,12 +23,14 @@ public class DriveToPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		RobotMap.navX.reset();
     	//Let's drive!
-    	Robot.driveTrain.driveToPositionInit(targetPosition);
+    	Robot.driveTrain.driveToPositionInit(targetPosition, speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {	
+    	Robot.driveTrain.driveToPositionExecute(targetPosition, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

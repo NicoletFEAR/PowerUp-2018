@@ -1,6 +1,7 @@
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
+import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -18,6 +19,7 @@ public class TurnToAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	Robot.shifter.shiftdown();
+		RobotMap.navX.reset();
     	Robot.driveTrain.turnToAngleInit(targetAngle);
     }
 

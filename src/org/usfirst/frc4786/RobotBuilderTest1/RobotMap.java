@@ -32,8 +32,8 @@ public class RobotMap {
     public static TalonSRX backLeft;
     public static TalonSRX backRight;
     
-    public static final double leftMotorScaling = 0.89;
-    public static final double rightMotorScaling = 0.89;
+    public static double leftMotorScaling = 0.89;
+    public static double rightMotorScaling = 0.89;
     
     public static int module0 = 0;
 	public static int aForwardChannel = 0;
@@ -56,7 +56,6 @@ public class RobotMap {
 	public static int compressormodule = 0;
 	
 	//PID Constants
-	public static final double autoSpeed = .85;
 	public static final double driveToPositionError = .75; // rotations
 	public static double ERROR_CONSTANT_LEFT = 0.0;
 	public static double ERROR_CONSTANT_RIGHT = 0.0;

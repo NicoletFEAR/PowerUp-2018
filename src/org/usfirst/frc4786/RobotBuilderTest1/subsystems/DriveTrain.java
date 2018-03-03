@@ -43,13 +43,12 @@ public class DriveTrain extends PIDSubsystem {
 	// Setup our timed drive
 	double currentTime = 0.0;
 	double endTime = 0.0;
-	
+
 	private double turnToAngleRate = 0.0;
 	private double currentTargetAngle = 0.0;
+	private double driveAngle = 0.0;
 
-	
-	public DriveTrain()
-	{
+	public DriveTrain() {
 		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
 		initPID();
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
@@ -59,7 +58,7 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.frontLeft.setSensorPhase(true);
 		RobotMap.frontRight.setSensorPhase(false);
 	}
-	
+
 	@Override
 	public void initDefaultCommand() {
 		setDefaultCommand(new OpenLoopDrive());
@@ -67,17 +66,16 @@ public class DriveTrain extends PIDSubsystem {
 
 	public void initPID() {
 		System.out.println("Starting Up PID!");
-		//Turning Angle Setup
+		// Turning Angle Setup
 		RobotMap.navX.reset();
-		getPIDController().setInputRange(-180.0f,  180.0f);
+		getPIDController().setInputRange(-180.0f, 180.0f);
 		getPIDController().setOutputRange(-1.0, 1.0);
 		getPIDController().setAbsoluteTolerance(RobotMap.ALLOWABLE_TURN_ERROR);
 		getPIDController().setContinuous(true);
-		
-		RobotMap.frontLeft.configAllowableClosedloopError(RobotMap.PIDSLOT,
-															RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT, 10);
-		RobotMap.frontRight.configAllowableClosedloopError(RobotMap.PIDSLOT, 
-															RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT, 10);
+
+		RobotMap.frontLeft.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_LEFT, 10);
+		RobotMap.frontRight.configAllowableClosedloopError(RobotMap.PIDSLOT, RobotMap.ALLOWABLE_ERROR_CONSTANT_RIGHT,
+				10);
 
 		// Make sure the CANTalons are looking at the right stored PID values
 		// with the Profile
@@ -107,7 +105,8 @@ public class DriveTrain extends PIDSubsystem {
 		System.out.println("PID has started up!");
 	}
 
-	public void takeJoystickInputs(Joystick left, Joystick right) { // tank drive
+	public void takeJoystickInputs(Joystick left, Joystick right) { // tank
+																	// drive
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, left.getY());
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
@@ -116,7 +115,8 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.backRight.follow(RobotMap.frontRight);
 	}
 
-	public void takeStickInputValues(double leftStickV, double rightStickV) { // arcade drive
+	public void takeStickInputValues(double leftStickV, double rightStickV) { // arcade
+																				// drive
 		if (!reversed) {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, -leftStickV);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
@@ -143,9 +143,9 @@ public class DriveTrain extends PIDSubsystem {
 		SmartDashboard.putNumber("sensor analoginraw", sensor.getAnalogInRaw());
 		SmartDashboard.putNumber("sensor analongvel", sensor.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensor.getPulseWidthPosition());
-		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());	
+		SmartDashboard.putNumber("sensor velocity", sensor.getQuadratureVelocity());
 	}
-	
+
 	public void ArcadeDrive(double robotOutput, double turnAmount) {
 		if (!reversed) {
 
@@ -153,14 +153,16 @@ public class DriveTrain extends PIDSubsystem {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, (-robotOutput) - turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, ((robotOutput * RobotMap.rightMotorScaling) - turnAmount));
+			RobotMap.frontRight.set(ControlMode.PercentOutput,
+					((robotOutput * RobotMap.rightMotorScaling) - turnAmount));
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		} else {
 			RobotMap.frontLeft.set(ControlMode.PercentOutput, (robotOutput) + turnAmount);
 			RobotMap.midLeft.follow(RobotMap.frontLeft);
 			RobotMap.backLeft.follow(RobotMap.frontLeft);
-			RobotMap.frontRight.set(ControlMode.PercentOutput, ((-robotOutput * RobotMap.rightMotorScaling) + turnAmount));
+			RobotMap.frontRight.set(ControlMode.PercentOutput,
+					((-robotOutput * RobotMap.rightMotorScaling) + turnAmount));
 			RobotMap.midRight.follow(RobotMap.frontRight);
 			RobotMap.backRight.follow(RobotMap.frontRight);
 		}
@@ -173,32 +175,25 @@ public class DriveTrain extends PIDSubsystem {
 		SmartDashboard.putNumber("sensor analongvel", sensorRight.getAnalogInVel());
 		SmartDashboard.putNumber("sensor widthpos", sensorRight.getPulseWidthPosition());
 		SmartDashboard.putNumber("sensor velocity", sensorRight.getQuadratureVelocity());
-		
+
 		// shifting
-//		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
+		// double averageVelocity =
+		// (Math.abs(sensorRight.getQuadratureVelocity()) +
+		// Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		double averageVelocity = Math.abs(sensorRight.getQuadratureVelocity());
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
-/*	
-	if (!(Robot.oi.xbox1.getStartButton())) {
-		if (averageVelocity < 2000) { // if not in low, switch to low
-			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
-				Robot.shifter.shiftdown();
-			}
-		} else if (averageVelocity < 2300) {
-			//DO NOTHING
-		} else { // if in low, switch to high
-			if (Robot.shifter.shifty.get() == DoubleSolenoid.Value.kForward) {
-				Robot.shifter.shiftup();
-			}
-		}
-	} else {
-		if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
-			Robot.shifter.shiftdown();
-		}
+		/*
+		 * if (!(Robot.oi.xbox1.getStartButton())) { if (averageVelocity < 2000)
+		 * { // if not in low, switch to low if (Robot.shifter.shifty.get() !=
+		 * DoubleSolenoid.Value.kForward) { Robot.shifter.shiftdown(); } } else
+		 * if (averageVelocity < 2300) { //DO NOTHING } else { // if in low,
+		 * switch to high if (Robot.shifter.shifty.get() ==
+		 * DoubleSolenoid.Value.kForward) { Robot.shifter.shiftup(); } } } else
+		 * { if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+		 * Robot.shifter.shiftdown(); } }
+		 */
 	}
-*/	
-	}
-	
+
 	// Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
 
 	public double convertToRotations(double distanceInInches) {
@@ -217,7 +212,7 @@ public class DriveTrain extends PIDSubsystem {
 		stop();
 	}
 
-	public void driveToPositionInit(double distanceToDrive) {
+	public void driveToPositionInit(double distanceToDrive, double driveSpeed) {
 		// Change Talon modes to "position" just in case
 		// they were in another mode before
 		RobotMap.frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
@@ -235,69 +230,87 @@ public class DriveTrain extends PIDSubsystem {
 
 		// Make motors drive number of rotations
 		// calculated before by convertToRotations()
-		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * (RobotMap.autoSpeed * RobotMap.leftMotorScaling));
-		RobotMap.frontRight.set(ControlMode.PercentOutput, RobotMap.autoSpeed);
-		/*try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		// Make sure we inverse this right side,
-		// otherwise, you have a spinning robot on your hands
-		RobotMap.frontLeft.set(ControlMode.Position, rot);
-		RobotMap.frontRight.set(ControlMode.Position, rot);*/
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * driveSpeed);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, driveSpeed);
+		/*
+		 * try { Thread.sleep(10); } catch (InterruptedException e) {
+		 * e.printStackTrace(); } // Make sure we inverse this right side, //
+		 * otherwise, you have a spinning robot on your hands
+		 * RobotMap.frontLeft.set(ControlMode.Position, rot);
+		 * RobotMap.frontRight.set(ControlMode.Position, rot);
+		 */
 
 		SmartDashboard.putNumber("Rotations Calculated", rot);
 		this.driveToPositionIsFinished(rot);
 	}
 
-	//Methods called by TurnToAngle
-	public void turnToAngleInit(double targetAngle){
-		//Initialize turnController and set the target
+	// Methods called by TurnToAngle
+	public void turnToAngleInit(double targetAngle) {
+		// Initialize turnController and set the target
 		currentTargetAngle = targetAngle;
 		RobotMap.navX.reset();
 		getPIDController().enable();
 		getPIDController().setSetpoint(currentTargetAngle);
 		System.out.println("Finished Init of TurnToAngle");
 	}
-	
-	public void turnToAngleExecute(){
-		//Set the CANTalons to the speed calculated by PIDController
-		/* PIDController calculates a rate of motor output,
-		 * so the CANTalons need to be in PercentOutput mode */
+
+	public void turnToAngleExecute() {
+		// Set the CANTalons to the speed calculated by PIDController
+		/*
+		 * PIDController calculates a rate of motor output, so the CANTalons
+		 * need to be in PercentOutput mode
+		 */
 		System.out.println("The target is " + currentTargetAngle);
-		
+
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -turnToAngleRate);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, -turnToAngleRate);
-		
+
 		SmartDashboard.putNumber("NavX Angle", RobotMap.navX.getAngle());
 		SmartDashboard.putNumber("NavX Turn Rate", RobotMap.navX.getRate());
 	}
-	
-	//Another weird variable check for if turning should stop
-	public boolean turnToAngleIsFinished(){
+
+	// Another weird variable check for if turning should stop
+	public boolean turnToAngleIsFinished() {
 		return getPIDController().onTarget();
 	}
-	
-	public void turnToAngleEnd(){
+
+	public void turnToAngleEnd() {
 		getPIDController().disable();
 		Robot.driveTrain.stop();
-}
+	}
 
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
+	public void driveToPositionExecute(double targetPosition, double driveSpeed){
+		driveAngle = 0;
+		double leftSpeed = driveSpeed;
+		double rightSpeed = driveSpeed;
+		if (RobotMap.navX.getAngle() < -driveAngle){
+			rightSpeed = rightSpeed * .9;
+		} else if (RobotMap.navX.getAngle() > driveAngle){
+			rightSpeed = rightSpeed * 1.1;
+		} else {
+			rightSpeed = driveSpeed;
+		}
+		
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
+		
+	}
 
 	public boolean driveToPositionIsFinished(double rotations) {
 		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
 		double rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
 		double leftRotations = leftEncoderValue / 7610;
 		double rightRotations = rightEncoderValue / 7610;
-		
+
 		SmartDashboard.putNumber("Left Rotations", leftRotations);
 		SmartDashboard.putNumber("Right Rotations", rightRotations);
-		
-		return (leftRotations >= rotations - RobotMap.driveToPositionError && leftRotations <= rotations + RobotMap.driveToPositionError)
-				&& (rightRotations >= rotations - RobotMap.driveToPositionError && rightRotations <= rotations + RobotMap.driveToPositionError);
+
+		return (leftRotations >= rotations - RobotMap.driveToPositionError
+				&& leftRotations <= rotations + RobotMap.driveToPositionError)
+				&& (rightRotations >= rotations - RobotMap.driveToPositionError
+						&& rightRotations <= rotations + RobotMap.driveToPositionError);
 	}
 
 	public void driveToPositionEnd() {
