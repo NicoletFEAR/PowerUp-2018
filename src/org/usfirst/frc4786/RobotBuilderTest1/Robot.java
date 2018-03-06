@@ -153,6 +153,10 @@ public class Robot extends TimedRobot {
         		autonomousCommand = new PlayDoNothing();
         		break;
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> branch 'WOOD_V2' of https://github.com/NicoletFEAR/PowerUp-2018.git
         autonomousCommand.start();
     } 
     
