@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
     	RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
     	RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
     	
-    	teamSwitchSide = DriverStation.getInstance().getGameSpecificMessage().substring(1, 1);
+    	teamSwitchSide = DriverStation.getInstance().getGameSpecificMessage().substring(0, 1);
     	
       autoChooser.autonomousMode();
 
@@ -153,10 +153,6 @@ public class Robot extends TimedRobot {
         		autonomousCommand = new PlayDoNothing();
         		break;
         }
-<<<<<<< HEAD
-=======
-        
->>>>>>> branch 'WOOD_V2' of https://github.com/NicoletFEAR/PowerUp-2018.git
         autonomousCommand.start();
     } 
     

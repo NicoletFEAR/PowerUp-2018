@@ -28,7 +28,7 @@ public class PlayDriveToNULL extends CommandGroup {
     	switch (Robot.myPosition)
     	{
     		case A:
-    			addSequential(new DriveToPosition(300, .85));
+    			addSequential(new DriveToPosition(260, .85));
     			break;
     		case B:
     			addSequential(new DriveToPosition(36, .85));
@@ -52,7 +52,7 @@ public class PlayDriveToNULL extends CommandGroup {
     			addSequential(new DriveToPosition(180, .85));
     			break;
     		case E:
-    			addSequential(new DriveToPosition(300, .85));
+    			addSequential(new DriveToPosition(260, .85));
     			break;
     	}
     }

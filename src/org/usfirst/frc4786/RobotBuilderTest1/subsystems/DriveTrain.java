@@ -165,7 +165,6 @@ public class DriveTrain extends PIDSubsystem {
 					rightSpeed = robotOutput;
 					leftSpeed = robotOutput;
 				}
-			} else {
 				if (RobotMap.navX.getAngle() < 0) {
 					leftSpeed *= .9;
 				} else if (RobotMap.navX.getAngle() > 0) {
@@ -286,7 +285,6 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.navX.reset();
 		getPIDController().enable();
 		getPIDController().setSetpoint(currentTargetAngle);
-		System.out.println("Finished Init of TurnToAngle");
 	}
 
 	public void turnToAngleExecute() {
@@ -295,7 +293,6 @@ public class DriveTrain extends PIDSubsystem {
 		 * PIDController calculates a rate of motor output, so the CANTalons
 		 * need to be in PercentOutput mode
 		 */
-		System.out.println("The target is " + currentTargetAngle);
 
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -turnToAngleRate);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, -turnToAngleRate);
@@ -415,8 +412,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output;
-		System.out.println("Value Written: " + output);
+		turnToAngleRate = output * .6;
 	}
 
 }

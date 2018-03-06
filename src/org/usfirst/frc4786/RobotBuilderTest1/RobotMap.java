@@ -61,7 +61,7 @@ public class RobotMap {
 	public static double ERROR_CONSTANT_RIGHT = 0.0;
 	public static final int ALLOWABLE_ERROR_CONSTANT_LEFT = 0;
 	public static final int ALLOWABLE_ERROR_CONSTANT_RIGHT = 0;
-	public static final int ALLOWABLE_TURN_ERROR = 1; //In degrees
+	public static final int ALLOWABLE_TURN_ERROR = 2; //In degrees
 	public static final double WHEEL_RADIUS = 3; //Inches
 	public static final double fudgeFactor = 1.0;
 	public static final int PIDSLOT = 0;
@@ -69,8 +69,8 @@ public class RobotMap {
 	public static final int IZONE = 0;
 	
 	//NavX turn PID Constants
-	public static final double TurnP = 0.028;
-	public static final double TurnI = 0.000005;
+	public static final double TurnP = 0.03;
+	public static final double TurnI = 0.00;
 	public static final double TurnD = 0.0;
 	public static final double TurnF = 0.0;
 	

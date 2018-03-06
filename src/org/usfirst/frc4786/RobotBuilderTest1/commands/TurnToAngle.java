@@ -35,7 +35,9 @@ public class TurnToAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.turnToAngleEnd();
+    	RobotMap.navX.reset();
+    	RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+    	RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
     }
 
     // Called when another command which requires one or more of the same
