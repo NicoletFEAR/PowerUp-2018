@@ -36,7 +36,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(6, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(100, .7));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case B:
     				addSequential(new DriveToPosition(36, .85));
@@ -44,7 +44,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(24, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
@@ -52,7 +52,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(60, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());	
+    				addSequential(new CubeLaunch());	
     				break;
     			case D:
     				addSequential(new DriveToPosition(36, .85));
@@ -60,7 +60,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(85, .85));
     				addSequential(new TurnToAngle(45));
     				addSequential(new DriveToPosition(25, .85));
-//    				addSequential(new CubeLaunch());	
+    				addSequential(new CubeLaunch());	
     				break;
     			case E:
     				addSequential(new DriveToPosition(36, .85));
@@ -68,7 +68,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(108, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     		}
     	} else {
@@ -80,7 +80,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(108, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case B:
     				addSequential(new DriveToPosition(36, .85));
@@ -88,7 +88,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(84, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
@@ -96,11 +96,11 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(60, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case D:
     				addSequential(new DriveToPosition(110, .85));
- //   				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     			case E:
     				addSequential(new DriveToPosition(36, .85));
@@ -108,7 +108,7 @@ public class PlayShootNearSwitch extends CommandGroup {
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(140, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new CubeLaunch());
     				break;
     		}
     		

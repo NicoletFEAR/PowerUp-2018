@@ -32,10 +32,25 @@ public class PlayShootGetCube extends CommandGroup {
     	if (Robot.teamSwitchSide.equals("L")) {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(-90));
+    		addSequential(new DriveToPosition(48, .85));
+    		addSequential(new TurnToAngle(90));
+    		addSequential(new DriveToPosition(36, .85));
+    		addSequential(new TurnToAngle(90));
+    		addSequential(new CubeVisionDrive());
+    		addParallel(new CubeFlywheelBackward());
+    		addSequential(new DriveToPosition(24, .85));
+    		addSequential(new CubeFlywheelStop());
     	} else {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(90));
+    		addSequential(new DriveToPosition(48, .85));
+    		addSequential(new TurnToAngle(-90));
+    		addSequential(new DriveToPosition(36, .85));
+    		addSequential(new TurnToAngle(-90));
+    		addSequential(new CubeVisionDrive());
+    		addParallel(new CubeFlywheelBackward());
+    		addSequential(new DriveToPosition(24, .5));
+    		addSequential(new CubeFlywheelStop());
     	}
-    	//ADD VISION
     }
 }

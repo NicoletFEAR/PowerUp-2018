@@ -25,12 +25,15 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class RobotMap {
 
+	public static boolean cubeLaunch;
     public static TalonSRX frontLeft;
     public static TalonSRX frontRight;
     public static TalonSRX midLeft;
     public static TalonSRX midRight;
     public static TalonSRX backLeft;
     public static TalonSRX backRight;
+    public static TalonSRX flyWheelLeft;
+    public static TalonSRX flyWheelRight;
     
     public static double leftMotorScaling = 0.89;
     public static double rightMotorScaling = 0.89;
@@ -67,9 +70,10 @@ public class RobotMap {
 	public static final int PIDSLOT = 0;
 	public static final double CLOSED_LOOP_RAMP_RATE = 0.015625;
 	public static final int IZONE = 0;
+	public static final double FLY_WHEEL_SPEED = .5;
 	
 	//NavX turn PID Constants
-	public static final double TurnP = 0.03;
+	public static final double TurnP = 0.13;
 	public static final double TurnI = 0.00;
 	public static final double TurnD = 0.0;
 	public static final double TurnF = 0.0;
@@ -105,8 +109,13 @@ public class RobotMap {
         backLeft = new TalonSRX(17);
         backRight = new TalonSRX(18);
         
+        flyWheelLeft = new TalonSRX(21);
+        flyWheelRight = new TalonSRX(22);
+        
         positionKnob = new AnalogPotentiometer(1, 5);
         playKnob = new AnalogPotentiometer(2, 6);
+        
+    	cubeLaunch = false;
         
         navX = new AHRS(SPI.Port.kMXP);
     }

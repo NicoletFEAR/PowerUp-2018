@@ -19,13 +19,14 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends PIDSubsystem {
 
-	private boolean reversed;
+	private boolean reversed = false;
 
 	// SpeedControllerGroup leftSide = new
 	// SpeedControllerGroup(RobotMap.frontLeft, RobotMap.midLeft,
@@ -67,7 +68,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void initPID() {
-		System.out.println("Starting Up PID!");
+//		System.out.println("Starting Up PID!");
 		// Turning Angle Setup
 		RobotMap.navX.reset();
 		getPIDController().setInputRange(-180.0f, 180.0f);
@@ -104,7 +105,7 @@ public class DriveTrain extends PIDSubsystem {
 		 * get a fabulous prize of a Flipping robot - CLOSED_LOOP_RAMP_RATE
 		 */
 		RobotMap.frontRight.configClosedloopRamp(RobotMap.CLOSED_LOOP_RAMP_RATE, 10);
-		System.out.println("PID has started up!");
+//		System.out.println("PID has started up!");
 	}
 
 	public void takeJoystickInputs(Joystick left, Joystick right) { // tank
@@ -212,6 +213,25 @@ public class DriveTrain extends PIDSubsystem {
 		// Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
+		
+		if (!(Robot.oi.xbox1.getStartButton())) {
+			if (averageVelocity < 2000) { // if not in low, switch to low
+				if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+					Robot.shifter.shiftdown();
+				}
+			} else if (averageVelocity < 2300) {
+				//DO NOTHING
+			} else { // if in low, switch to high
+				if (Robot.shifter.shifty.get() == DoubleSolenoid.Value.kForward) {
+					Robot.shifter.shiftup();
+				}
+			}
+		} else {
+			if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
+				Robot.shifter.shiftdown();
+			}
+		}
+		
 		/*
 		 * if (!(Robot.oi.xbox1.getStartButton())) { if (averageVelocity < 2000)
 		 * { // if not in low, switch to low if (Robot.shifter.shifty.get() !=
@@ -347,7 +367,7 @@ public class DriveTrain extends PIDSubsystem {
 		return (leftRotations >= rotations - RobotMap.driveToPositionError
 				&& leftRotations <= rotations + RobotMap.driveToPositionError)
 				&& (rightRotations >= rotations - RobotMap.driveToPositionError
-						&& rightRotations <= rotations + RobotMap.driveToPositionError);
+				&& rightRotations <= rotations + RobotMap.driveToPositionError);
 	}
 
 	public void driveToPositionEnd() {
@@ -379,6 +399,7 @@ public class DriveTrain extends PIDSubsystem {
 	public void periodic() {
 		SmartDashboard.putNumber("Left Encoder: ", Robot.driveTrain.getLeftEncoderPosition());
 		SmartDashboard.putNumber("Right Encoder: ", Robot.driveTrain.getRightEncoderPosition());
+		SmartDashboard.putNumber("Pnuematic pressure: ",Robot.pressureSensor.getPressure());
 	}
 
 	public void stop() {
@@ -395,7 +416,7 @@ public class DriveTrain extends PIDSubsystem {
 		return reversed;
 	}
 
-	public void switchFront() {
+	/*public void switchFront() {
 		RobotMap.frontLeft.setInverted(!RobotMap.frontLeft.getInverted());
 		RobotMap.midLeft.setInverted(!RobotMap.midLeft.getInverted());
 		RobotMap.backLeft.setInverted(!RobotMap.backLeft.getInverted());
@@ -403,7 +424,7 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.midRight.setInverted(!RobotMap.midRight.getInverted());
 		RobotMap.backRight.setInverted(!RobotMap.backRight.getInverted());
 		reversed = !reversed;
-	}
+	}*/
 
 	@Override
 	protected double returnPIDInput() {
@@ -412,7 +433,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output * .6;
+		turnToAngleRate = output * .9;
 	}
 
 }
