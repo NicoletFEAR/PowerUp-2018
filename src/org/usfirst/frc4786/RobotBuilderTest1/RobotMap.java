@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc4786.RobotBuilderTest1;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
