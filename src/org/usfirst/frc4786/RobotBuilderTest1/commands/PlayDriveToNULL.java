@@ -25,7 +25,77 @@ public class PlayDriveToNULL extends CommandGroup {
         // arm.
     	requires(Robot.driveTrain);
     	
-    	switch (Robot.myPosition)
+    	if (Robot.teamSwitchSide.equals("L"))
+    	{
+    		switch (Robot.myPosition)
+    		{
+    			case A:
+    				addSequential(new DriveToPosition(150, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(36, .5));
+    				addSequential(new CubeLaunch());
+    				break;
+    			case B:
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(135, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new CubeLaunch());
+    				break;
+    			case C:
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(72, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(135, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new CubeLaunch());
+    				break;
+    			case D:
+        			addSequential(new DriveToPosition(100, 1));
+        			break;
+        		case E:
+        			addSequential(new DriveToPosition(100, 1));
+        			break;
+    		}
+    	} else {
+    		switch (Robot.myPosition)
+        	{
+        		case A:
+        			addSequential(new DriveToPosition(100, 1));
+        			break;
+        		case B:
+        			addSequential(new DriveToPosition(100, 1));
+        			break;
+        		case C:
+        			addSequential(new DriveToPosition(36, 1));
+        			addSequential(new TurnToAngle(45));
+        			addSequential(new DriveToPosition(100, 1));
+        			break;
+        		case D:
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(135, .85));
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new CubeLaunch());
+    				break;
+    			case E:
+    				addSequential(new DriveToPosition(150, .85));
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(36, .5));
+    				addSequential(new CubeLaunch());
+    				break;
+        	}
+    	}
+    	
+    	/*switch (Robot.myPosition)
     	{
     		case A:
     			addSequential(new DriveToPosition(260, .85));
@@ -54,6 +124,6 @@ public class PlayDriveToNULL extends CommandGroup {
     		case E:
     			addSequential(new DriveToPosition(260, .85));
     			break;
-    	}
+    	}*/
     }
 }

@@ -73,7 +73,7 @@ public class RobotMap {
 	public static final double FLY_WHEEL_SPEED = .5;
 	
 	//NavX turn PID Constants
-	public static final double TurnP = 0.13;
+	public static final double TurnP = 0.03;
 	public static final double TurnI = 0.00;
 	public static final double TurnD = 0.0;
 	public static final double TurnF = 0.0;

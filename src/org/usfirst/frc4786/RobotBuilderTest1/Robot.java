@@ -217,13 +217,13 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new PlayShootNearSwitch();
 			break;
 		case FOUR:
-			autonomousCommand = new PlayDriveToSideSwitch();
+			autonomousCommand = new PlayDriveToNULL();
 			break;
 		case FIVE:
 			autonomousCommand = new PlayShootGetCube();
 			break;
 		case SIX:
-			autonomousCommand = new PlayDriveToNULL();
+			autonomousCommand = new PlayDriveToSideSwitch();
 			break;
 		default:
 			autonomousCommand = new PlayDoNothing();

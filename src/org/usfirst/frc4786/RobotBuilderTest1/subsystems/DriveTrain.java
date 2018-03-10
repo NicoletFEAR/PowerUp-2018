@@ -305,6 +305,10 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.navX.reset();
 		getPIDController().enable();
 		getPIDController().setSetpoint(currentTargetAngle);
+		RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
 	}
 
 	public void turnToAngleExecute() {
@@ -433,7 +437,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output * .9;
+		turnToAngleRate = output * .7;
 	}
 
 }
