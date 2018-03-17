@@ -16,21 +16,18 @@ public class Cube extends Subsystem {
 			RobotMap.cReverseChannel);
 	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.dForwardChannel,
 			RobotMap.dReverseChannel);
-	private final DoubleSolenoid cubePunch = new DoubleSolenoid(RobotMap.module0, RobotMap.bForwardChannel,
-			RobotMap.bReverseChannel);
 
 	public void initDefaultCommand() {
-		
 	}
 
-	public void cubeFlywheelBackward() {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, RobotMap.FLY_WHEEL_SPEED);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -RobotMap.FLY_WHEEL_SPEED);
+	public void cubeFlywheelBackward(double speed) {
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, speed);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -speed);
 	}
 
-	public void cubeFlywheelForward() {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -RobotMap.FLY_WHEEL_SPEED);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, RobotMap.FLY_WHEEL_SPEED);
+	public void cubeFlywheelForward(double speed) {
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -speed);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void cubeFlywheelStop() {
@@ -46,14 +43,6 @@ public class Cube extends Subsystem {
 	public void lower() {
 		cubeLiftLeft.set(DoubleSolenoid.Value.kForward);
 		cubeLiftRight.set(DoubleSolenoid.Value.kForward);
-	}
-
-	public void extend() { // extends arm to push cube out
-		cubePunch.set(DoubleSolenoid.Value.kForward);
-	}
-
-	public void retract() {
-		cubePunch.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void lift() {
