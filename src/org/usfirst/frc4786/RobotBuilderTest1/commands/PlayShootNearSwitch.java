@@ -24,25 +24,21 @@ public class PlayShootNearSwitch extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 		requires(Robot.driveTrain);
-		// requires(Robot.cubeMech);
+		requires(Robot.cubeMech);
 
 		if (Robot.teamSwitchSide.equals("L")) {
 			switch (Robot.myPosition) {
 			case A:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(6, .85));
-				addSequential(new TurnToAngle(-90));
-				addSequential(new DriveToPosition(100, .7));
-//				addSequential(new CubeLaunch());
+				if (Robot.teamScaleSide.equals("L"))
+				{
+					addSequential(new DriveToPosition(328, .85));
+				} else {
+					addSequential(new DriveToPosition(196, .85));
+				}
 				break;
 			case B:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(24, .85));
-				addSequential(new TurnToAngle(-90));
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
@@ -50,42 +46,32 @@ public class PlayShootNearSwitch extends CommandGroup {
 				addSequential(new DriveToPosition(60, .85));
 				addSequential(new TurnToAngle(90));
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case D:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(-45));
-				addSequential(new DriveToPosition(85, .85));
-				addSequential(new TurnToAngle(45));
-				addSequential(new DriveToPosition(25, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new DriveToPosition(110, .85));
 				break;
 			case E:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(-90));
-				addSequential(new DriveToPosition(108, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				if (Robot.teamScaleSide.equals("L"))
+				{
+					addSequential(new DriveToPosition(196, .85));
+				} else {
+					addSequential(new DriveToPosition(328, .85));
+				}
 				break;
 			}
 		} else {
 			switch (Robot.myPosition) {
 			case A:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(108, .85));
-				addSequential(new TurnToAngle(-90));
-				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				if (Robot.teamScaleSide.equals("L"))
+				{
+					addSequential(new DriveToPosition(328, .85));
+				} else {
+					addSequential(new DriveToPosition(196, .85));
+				}
 				break;
 			case B:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(84, .85));
-				addSequential(new TurnToAngle(-90));
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
@@ -93,19 +79,19 @@ public class PlayShootNearSwitch extends CommandGroup {
 				addSequential(new DriveToPosition(60, .85));
 				addSequential(new TurnToAngle(-90));
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case D:
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case E:
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(-90));
-				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(140, .85));
-//				addSequential(new CubeLaunch());
+				if (Robot.teamScaleSide.equals("L"))
+				{
+					addSequential(new DriveToPosition(196, .85));
+				} else {
+					addSequential(new DriveToPosition(328, .85));
+				}
 				break;
 			}
 		}
