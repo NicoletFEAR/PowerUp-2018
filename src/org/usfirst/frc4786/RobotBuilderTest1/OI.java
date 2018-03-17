@@ -108,7 +108,7 @@ public class OI {
 												// added yet
 		xbox2Back.whenPressed(new RampRelease());
 		xbox2X.whenPressed(new CubeMechLift());
-//		xbox2Y.whenPressed(new CubeLaunch());
+		xbox2Y.whenPressed(new CubeLaunch());
 		xbox2B.whileHeld(new CubeFlywheelForwardButton());
 		xbox2A.whileHeld(new CubeFlywheelBackward());
 

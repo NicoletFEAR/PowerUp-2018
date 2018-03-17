@@ -42,10 +42,10 @@ public class PlayShootNearSwitch extends CommandGroup {
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(-90));
+				addSequential(new TurnToAngle(-45));
 				addSequential(new DriveToPosition(60, .85));
-				addSequential(new TurnToAngle(90));
-				addSequential(new DriveToPosition(110, .85));
+				addSequential(new TurnToAngle(45));
+				addSequential(new DriveToPosition(30, .85));
 				addSequential(new CubeLaunch());
 				break;
 			case D:
@@ -75,10 +75,10 @@ public class PlayShootNearSwitch extends CommandGroup {
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(90));
+				addSequential(new TurnToAngle(45));
 				addSequential(new DriveToPosition(60, .85));
-				addSequential(new TurnToAngle(-90));
-				addSequential(new DriveToPosition(110, .85));
+				addSequential(new TurnToAngle(-45));
+				addSequential(new DriveToPosition(30, .85));
 				addSequential(new CubeLaunch());
 				break;
 			case D:

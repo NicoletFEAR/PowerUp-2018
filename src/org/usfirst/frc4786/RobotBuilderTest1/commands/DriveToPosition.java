@@ -20,7 +20,12 @@ public class DriveToPosition extends Command {
     	
     	//So we can use this variable in the execute() function
     	targetPosition = distance * RobotMap.fudgeFactor;
-    	speed = inputSpeed;
+    	if (targetPosition > 0)
+    	{
+    		speed = inputSpeed;
+    	} else {
+    		speed = -inputSpeed;
+    	}
     }
 
     // Called just before this Command runs the first time
@@ -32,7 +37,7 @@ public class DriveToPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {	
-    	Robot.driveTrain.driveToPositionExecute(targetPosition, speed);
+    	Robot.driveTrain.driveToPositionExecute(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -11,6 +11,7 @@
 package org.usfirst.frc4786.RobotBuilderTest1;
 
 import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.DriveToPosition;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootSideSwitch;
@@ -110,10 +111,11 @@ public class Robot extends TimedRobot {
 		camera.startAutomaticCapture("cam0", 50);
 		camera.startAutomaticCapture();
 
-//		cubeMech.raise();
-		lifty.rampReset();
-		lifty.descend();
-
+		if (RobotMap.godSwitch.get()) {
+			cubeMech.raise();
+			lifty.rampReset();
+			lifty.descend();
+		}
 		System.out.println("Loading version " + vNum);
 		SmartDashboard.putNumber("Version #", vNum);
 
@@ -155,6 +157,10 @@ public class Robot extends TimedRobot {
 
 	}
 
+	@Override
+	public void robotPeriodic(){
+		SmartDashboard.putBoolean("Is Atlas?", RobotMap.godSwitch.get());
+	}
 	/**
 	 * This function is called when the disabled button is hit. You can use it
 	 * to reset subsystems before shutting down.
@@ -200,7 +206,7 @@ public class Robot extends TimedRobot {
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
 
 		teamSwitchSide = DriverStation.getInstance().getGameSpecificMessage().substring(0, 1);
-		teamScaleSide = DriverStation.getInstance().getGameSpecificMessage().substring(1, 1);	
+		teamScaleSide = DriverStation.getInstance().getGameSpecificMessage().substring(1, 1);
 
 		autoChooser.autonomousMode();
 
@@ -242,7 +248,7 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-        lifty.rampReset();
+		lifty.rampReset();
 
 	}
 

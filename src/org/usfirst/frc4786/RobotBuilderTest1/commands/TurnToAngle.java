@@ -19,7 +19,14 @@ public class TurnToAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	Robot.shifter.shiftdown();
-		RobotMap.navX.reset();
+    	if (RobotMap.godSwitch.get())
+    	{
+    		 RobotMap.TurnP = 0.06;
+    	} else {
+    		 RobotMap.TurnP = 0.05;
+    	}
+    	
+    	RobotMap.navX.reset();
     	Robot.driveTrain.turnToAngleInit(targetAngle);
     }
 

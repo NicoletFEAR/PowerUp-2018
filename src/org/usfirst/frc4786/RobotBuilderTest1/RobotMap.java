@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SPI;
 
 /**
@@ -57,10 +58,16 @@ public class RobotMap {
 	
 	public static int compressormodule = 0;
 	
+	//NavX turn PID Constants
+	public static double TurnP = 0.06;
+	public static double TurnI = 0.00;
+	public static double TurnD = 0.0;
+	public static double TurnF = 0.0;
+	
 	//PID Constants
 	public static final double driveToPositionError = .75; // rotations
-	public static double ERROR_CONSTANT_LEFT = 0.0;
-	public static double ERROR_CONSTANT_RIGHT = 0.0;
+	public static final double ERROR_CONSTANT_LEFT = 0.0;
+	public static final double ERROR_CONSTANT_RIGHT = 0.0;
 	public static final int ALLOWABLE_ERROR_CONSTANT_LEFT = 0;
 	public static final int ALLOWABLE_ERROR_CONSTANT_RIGHT = 0;
 	public static final int ALLOWABLE_TURN_ERROR = 2; //In degrees
@@ -70,12 +77,6 @@ public class RobotMap {
 	public static final double CLOSED_LOOP_RAMP_RATE = 0.015625;
 	public static final int IZONE = 0;
 	public static final double FLY_WHEEL_SPEED = .5;
-	
-	//NavX turn PID Constants
-	public static final double TurnP = 0.06;
-	public static final double TurnI = 0.00;
-	public static final double TurnD = 0.0;
-	public static final double TurnF = 0.0;
 	
 	//Left PIDF
 	public static final double LeftP = 0.0001;
@@ -89,7 +90,9 @@ public class RobotMap {
 	public static final double RightF = 0.0;
 	
 	public static AHRS navX;
-	
+
+    public static DigitalInput godSwitch;
+
 	public static AnalogPotentiometer playKnob;
 	public static AnalogPotentiometer positionKnob;
 		
@@ -114,8 +117,10 @@ public class RobotMap {
         positionKnob = new AnalogPotentiometer(1, 5);
         playKnob = new AnalogPotentiometer(2, 6);
         
+        godSwitch = new DigitalInput(0);
+        
     	cubeLaunch = false;
         
         navX = new AHRS(SPI.Port.kMXP);
-    }
+    }    
 }

@@ -50,6 +50,7 @@ public class DriveTrain extends PIDSubsystem {
 	private double driveAngle = 0.0;
 	
 	private boolean turned = false;
+	private boolean reverse = false;
 
 	public DriveTrain() {
 		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
@@ -265,6 +266,7 @@ public class DriveTrain extends PIDSubsystem {
 	public void driveToPositionInit(double distanceToDrive, double driveSpeed) {
 		// Change Talon modes to "position" just in case
 		// they were in another mode before
+		
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
 		RobotMap.midRight.follow(RobotMap.frontLeft);
@@ -337,7 +339,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	// Some special isFinished() command stuff to not stop before the robot has
 	// even moved
-	public void driveToPositionExecute(double targetPosition, double driveSpeed) {
+	public void driveToPositionExecute(double driveSpeed) {
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
 		RobotMap.midRight.follow(RobotMap.frontRight);
@@ -356,7 +358,6 @@ public class DriveTrain extends PIDSubsystem {
 
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
-
 	}
 
 	public boolean driveToPositionIsFinished(double rotations) {

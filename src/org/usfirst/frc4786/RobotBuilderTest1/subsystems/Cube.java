@@ -1,7 +1,8 @@
 package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
+import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
-
+import org.usfirst.frc4786.RobotBuilderTest1.commands.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -18,16 +19,17 @@ public class Cube extends Subsystem {
 			RobotMap.dReverseChannel);
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new CubeFlywheelVariable());
 	}
 
-	public void cubeFlywheelBackward(double speed) {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, speed);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -speed);
+	public void cubeFlywheelBackward() {
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, 1);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -1);
 	}
 
-	public void cubeFlywheelForward(double speed) {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -speed);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, speed);
+	public void cubeFlywheelForward() {
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -1);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 1);
 	}
 
 	public void cubeFlywheelStop() {
