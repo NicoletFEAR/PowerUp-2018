@@ -4,9 +4,9 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PlayDriveToNULL extends CommandGroup {
+public class PlayShootSideSwitch extends CommandGroup {
 
-    public PlayDriveToNULL() {
+    public PlayShootSideSwitch() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -33,7 +33,7 @@ public class PlayDriveToNULL extends CommandGroup {
     				addSequential(new DriveToPosition(150, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(36, .5));
-    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch());
     				break;
     			case B:
     				addSequential(new DriveToPosition(36, .85));
@@ -43,7 +43,7 @@ public class PlayDriveToNULL extends CommandGroup {
     				addSequential(new DriveToPosition(135, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
@@ -53,7 +53,7 @@ public class PlayDriveToNULL extends CommandGroup {
     				addSequential(new DriveToPosition(135, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch());
     				break;
     			case D:
         			addSequential(new DriveToPosition(100, 1));
@@ -84,13 +84,13 @@ public class PlayDriveToNULL extends CommandGroup {
     				addSequential(new DriveToPosition(135, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch());
     				break;
     			case E:
     				addSequential(new DriveToPosition(150, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .5));
-    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch());
     				break;
         	}
     	}

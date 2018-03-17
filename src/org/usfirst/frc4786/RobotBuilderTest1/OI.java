@@ -75,8 +75,6 @@ public class OI {
 	private Button xbox2Y;
 	private Button xbox2B;
 	private Button xbox2A;
-	private Button xbox2LTrig;
-	private Button xbox2RTrig;
 
 	public OI() {
 		// create our buttons
@@ -96,8 +94,6 @@ public class OI {
 		xbox2Y = new JoystickButton(xbox2, 4);
 		xbox2B = new JoystickButton(xbox2, 2);
 		xbox2A = new JoystickButton(xbox2, 1);
-		xbox2LTrig = new JoystickButton(xbox2, 5);
-		xbox2RTrig = new JoystickButton(xbox2, 6);
 
 		// tie commands to buttons
 		// xbox1ButtonX.whenPressed(new Shift());
@@ -113,12 +109,10 @@ public class OI {
 		xbox2Start.whenPressed(new LiftRamp());// these ones haven't quite been
 												// added yet
 		xbox2Back.whenPressed(new RampRelease());
-		xbox2X.whenPressed(new CubeMechLift());
-		xbox2Y.whenPressed(new CubeLaunch());
-		xbox2B.whileHeld(new CubeFlywheelForwardButton());
-		xbox2A.whileHeld(new CubeFlywheelBackward());
-		xbox2LTrig.whenPressed(new CubePistonRetract());
-		xbox2RTrig.whenPressed(new CubePistonExtend());
+//		xbox2X.whenPressed(new CubeMechLift());
+//		xbox2Y.whenPressed(new CubeLaunch());
+//		xbox2B.whileHeld(new CubeFlywheelForwardButton(RobotMap.FLY_WHEEL_SPEED));
+//		xbox2A.whileHeld(new CubeFlywheelBackward(RobotMap.FLY_WHEEL_SPEED));
 
 		// SmartDashboard Buttons
 		//SmartDashboard.putData("SwitchFront", new SwitchFront());

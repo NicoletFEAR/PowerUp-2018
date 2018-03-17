@@ -28,7 +28,7 @@ public class PlayShootGetCube extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new PlayDriveToSideSwitch());
+    	addSequential(new PlayMagic());
     	if (Robot.teamSwitchSide.equals("L")) {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(-90));
@@ -36,10 +36,10 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new TurnToAngle(90));
     		addSequential(new DriveToPosition(36, .85));
     		addSequential(new TurnToAngle(90));
-    		addSequential(new CubeVisionDrive());
-    		addParallel(new CubeFlywheelBackward());
-    		addSequential(new DriveToPosition(24, .85));
-    		addSequential(new CubeFlywheelStop());
+//    		addSequential(new CubeVisionDrive());
+//    		addParallel(new CubeFlywheelBackward());
+//    		addSequential(new DriveToPosition(24, .85));
+//    		addSequential(new CubeFlywheelStop());
     	} else {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(90));
@@ -47,10 +47,10 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new TurnToAngle(-90));
     		addSequential(new DriveToPosition(36, .85));
     		addSequential(new TurnToAngle(-90));
-    		addSequential(new CubeVisionDrive());
-    		addParallel(new CubeFlywheelBackward());
-    		addSequential(new DriveToPosition(24, .5));
-    		addSequential(new CubeFlywheelStop());
+//    		addSequential(new CubeVisionDrive());
+//    		addParallel(new CubeFlywheelBackward());
+//    		addSequential(new DriveToPosition(24, .5));
+//    		addSequential(new CubeFlywheelStop());
     	}
     }
 }

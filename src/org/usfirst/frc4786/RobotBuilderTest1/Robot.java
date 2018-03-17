@@ -12,9 +12,9 @@ package org.usfirst.frc4786.RobotBuilderTest1;
 
 import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveForward;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToNULL;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDriveToSideSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootSideSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayMagic;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
@@ -109,8 +109,8 @@ public class Robot extends TimedRobot {
 		camera.startAutomaticCapture("cam0", 50);
 		camera.startAutomaticCapture();
 
+//		cubeMech.raise();
 		lifty.rampReset();
-		cubeMech.raise();
 		lifty.descend();
 
 		System.out.println("Loading version " + vNum);
@@ -173,7 +173,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		lifty.rampReset();
-
 		lifty.descend();
 		/*
 		 * Once we have a working 2nd Arduino + LED System //send correct
@@ -211,19 +210,19 @@ public class Robot extends TimedRobot {
 			// driveTrain.driveForSeconds(4, .5, -.5);
 			break;
 		case TWO:
-			autonomousCommand = new PlayDriveForward();
+			autonomousCommand = new PlayBaseline();
 			break;
 		case THREE:
 			autonomousCommand = new PlayShootNearSwitch();
 			break;
 		case FOUR:
-			autonomousCommand = new PlayDriveToNULL();
+			autonomousCommand = new PlayShootSideSwitch();
 			break;
 		case FIVE:
 			autonomousCommand = new PlayShootGetCube();
 			break;
 		case SIX:
-			autonomousCommand = new PlayDriveToSideSwitch();
+			autonomousCommand = new PlayMagic();
 			break;
 		default:
 			autonomousCommand = new PlayDoNothing();

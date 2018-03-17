@@ -437,7 +437,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output * .7;
+		turnToAngleRate = output * .4;
 	}
 
 }

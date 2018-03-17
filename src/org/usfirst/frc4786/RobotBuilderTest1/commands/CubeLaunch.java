@@ -12,11 +12,11 @@ public class CubeLaunch extends CommandGroup {
 	public CubeLaunch() { // sequence of commands that launches a cube
     	RobotMap.cubeLaunch = true;
 		addParallel(new CubeFlywheelForward());
+//    	addSequential(new WaitCommand(.5));
+//    	addSequential(new CubePistonExtend());
     	addSequential(new WaitCommand(.5));
-    	addSequential(new CubePistonExtend());
-    	addSequential(new WaitCommand(1));
-    	addSequential(new CubeFlywheelStop());
-    	addSequential(new CubePistonRetract());
+    	addSequential(new CubeFlywheelVariable());
+//    	addSequential(new CubePistonRetract());
     	RobotMap.cubeLaunch = false;
     }
 }
