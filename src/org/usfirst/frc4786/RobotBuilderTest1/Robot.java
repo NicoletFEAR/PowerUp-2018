@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
 
 	public static RobotMap.AutoPlay myPlay = RobotMap.AutoPlay.ONE;
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
+	public static String teamScaleSide;
 	public static String teamSwitchSide;
 	public static Cube cubeMech;
 	public static Lifter lifty;
@@ -199,6 +200,7 @@ public class Robot extends TimedRobot {
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
 
 		teamSwitchSide = DriverStation.getInstance().getGameSpecificMessage().substring(0, 1);
+		teamScaleSide = DriverStation.getInstance().getGameSpecificMessage().substring(1, 1);	
 
 		autoChooser.autonomousMode();
 
