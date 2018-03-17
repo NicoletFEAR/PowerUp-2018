@@ -14,8 +14,6 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeFlywheelBackward;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeFlywheelForwardButton;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeLaunch;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeMechLift;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.CubePistonExtend;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.CubePistonRetract;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeVisionDrive;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.LiftRamp;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.NoDrivey;
@@ -109,10 +107,10 @@ public class OI {
 		xbox2Start.whenPressed(new LiftRamp());// these ones haven't quite been
 												// added yet
 		xbox2Back.whenPressed(new RampRelease());
-//		xbox2X.whenPressed(new CubeMechLift());
+		xbox2X.whenPressed(new CubeMechLift());
 //		xbox2Y.whenPressed(new CubeLaunch());
-//		xbox2B.whileHeld(new CubeFlywheelForwardButton(RobotMap.FLY_WHEEL_SPEED));
-//		xbox2A.whileHeld(new CubeFlywheelBackward(RobotMap.FLY_WHEEL_SPEED));
+		xbox2B.whileHeld(new CubeFlywheelForwardButton());
+		xbox2A.whileHeld(new CubeFlywheelBackward());
 
 		// SmartDashboard Buttons
 		//SmartDashboard.putData("SwitchFront", new SwitchFront());
