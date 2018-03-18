@@ -32,100 +32,76 @@ public class PlayMagic extends CommandGroup {
     		switch (Robot.myPosition)
     		{
     			case A:
-    				addSequential(new DriveToPosition(150, .7));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(36, .5));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new PlayShootSideSwitch());
     				break;
     			case B:
-    				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(135, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new PlayShootNearSwitch());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(72, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(135, .85));
-    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(33, .85));
+    				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeMechDrop());
+    				addSequential(new CubeLaunch());
+    				addSequential(new DriveToPosition(-110, .85));
     				break;
     			case D:
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(96, .85));
+    				addSequential(new DriveToPosition(110, .85));
     				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(135, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new DriveToPosition(74, .85));
+    				addSequential(new CubeLaunch());
     				break;
     			case E:
-    				addSequential(new DriveToPosition(50, .85));
+    				addSequential(new DriveToPosition(230, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(240, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(106, .85));
-    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(230, .85));
+    				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new CubeLaunch());
     				break;
     		}
     	} else {
     		switch (Robot.myPosition)
     		{
     			case A:
-    				addSequential(new DriveToPosition(50, .855));
+    				addSequential(new DriveToPosition(230, .85));
     				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(240, .85));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(106, .85));
-    				addSequential(new TurnToAngle(-90));
+    				addSequential(new DriveToPosition(230, .85));
+    				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new TurnToAngle(90));
+    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new CubeLaunch());
     				break;
     			case B:
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(96, .85));
+    				addSequential(new DriveToPosition(110, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(135, .85));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new DriveToPosition(74, .85));
+    				addSequential(new CubeLaunch());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(72, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(135, .85));
+    				addSequential(new DriveToPosition(33, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeMechDrop());
+    				addSequential(new CubeLaunch());
+    				addSequential(new DriveToPosition(-110, .85));
     				break;
     			case D:
-    				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(36, .85));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(135, .85));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(36, .85));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new PlayShootNearSwitch());
     				break;
     			case E:
-    				addSequential(new DriveToPosition(150, .7));
-    				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(36, .5));
-//    				addSequential(new CubeLaunch());
+    				addSequential(new PlayShootSideSwitch());
     				break;
     		}
     	}
