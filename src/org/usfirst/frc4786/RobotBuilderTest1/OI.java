@@ -13,12 +13,12 @@ package org.usfirst.frc4786.RobotBuilderTest1;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeFlywheelBackward;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeFlywheelForwardButton;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeLaunch;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeMechLift;
+//import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeMechLift;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.CubeVisionDrive;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.LiftRamp;
+//import org.usfirst.frc4786.RobotBuilderTest1.commands.LiftRamp;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.NoDrivey;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.RampPush;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.RampRelease;
+//import org.usfirst.frc4786.RobotBuilderTest1.commands.RampPush;
+//import org.usfirst.frc4786.RobotBuilderTest1.commands.RampRelease;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.VisionNTableValueSet;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -97,17 +97,17 @@ public class OI {
 		// xbox1ButtonX.whenPressed(new Shift());
 		//xbox1LeftStick.whenPressed(new SwitchFront());
 		//xbox1RightStick.whenPressed(new SwitchFront());
-		xbox1Start.whenPressed(new RampPush());
+//		xbox1Start.whenPressed(new RampPush());
 		xbox1B.whileHeld(new NoDrivey());
 
 		// xbox1XButton4.whenPressed(new VisionNTableValueSet());
 		// xbox1ButtonB.whenPressed(new CubeVisionDrive());
 		// xbox1ButtonY.whenPressed(new CubeVisionDrive());
 
-		xbox2Start.whenPressed(new LiftRamp());// these ones haven't quite been
-												// added yet
-		xbox2Back.whenPressed(new RampRelease());
-		xbox2X.whenPressed(new CubeMechLift());
+//		xbox2Start.whenPressed(new LiftRamp());// these ones haven't quite been
+//												 added yet
+//		xbox2Back.whenPressed(new RampRelease());
+//		xbox2X.whenPressed(new CubeMechLift());
 		xbox2Y.whenPressed(new CubeLaunch());
 		xbox2B.whileHeld(new CubeFlywheelForwardButton());
 		xbox2A.whileHeld(new CubeFlywheelBackward());

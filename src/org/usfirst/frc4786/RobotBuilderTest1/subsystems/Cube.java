@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Cube extends Subsystem {
-
-	private final DoubleSolenoid cubeLiftLeft = new DoubleSolenoid(RobotMap.module0, RobotMap.cForwardChannel,
-			RobotMap.cReverseChannel);
-	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.dForwardChannel,
-			RobotMap.dReverseChannel);
+//
+//	private final DoubleSolenoid cubeLiftLeft = new DoubleSolenoid(RobotMap.module0, RobotMap.cForwardChannel,
+//			RobotMap.cReverseChannel);
+//	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.dForwardChannel,
+//			RobotMap.dReverseChannel);
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new CubeFlywheelVariable());

@@ -11,7 +11,6 @@
 package org.usfirst.frc4786.RobotBuilderTest1;
 
 import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.DriveToPosition;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootSideSwitch;
@@ -23,7 +22,7 @@ import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
+//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Shifter;
 
@@ -65,7 +64,7 @@ public class Robot extends TimedRobot {
 	public static String teamScaleSide;
 	public static String teamSwitchSide;
 	public static Cube cubeMech;
-	public static Lifter lifty;
+//	public static Lifter lifty;
 	public static Shifter shifter = new Shifter();
 	public static PressureSensor pressureSensor = new PressureSensor();
 
@@ -97,7 +96,7 @@ public class Robot extends TimedRobot {
 		autoChooser = new AutoChooser();
 		arduinoLCDInterface = new ArduinoInterface(8);
 		cubeMech = new Cube();
-		lifty = new Lifter();
+//		lifty = new Lifter();
 		// arduinoLEDInterface = new ArduinoInterface(7);
 		// arduinoCameraInterface = new ArduinoInterface(6);
 
@@ -112,9 +111,9 @@ public class Robot extends TimedRobot {
 		camera.startAutomaticCapture();
 
 		if (RobotMap.godSwitch.get()) {
-			cubeMech.raise();
-			lifty.rampReset();
-			lifty.descend();
+//			cubeMech.raise();
+//			lifty.rampReset();
+//			lifty.descend();
 		}
 		System.out.println("Loading version " + vNum);
 		SmartDashboard.putNumber("Version #", vNum);
@@ -179,8 +178,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		lifty.rampReset();
-		lifty.descend();
+//		lifty.rampReset();
+//		lifty.descend();
+		
+		
 		/*
 		 * Once we have a working 2nd Arduino + LED System //send correct
 		 * alliance data to arduino alliance =
@@ -248,7 +249,7 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		lifty.rampReset();
+//		lifty.rampReset();
 
 	}
 
