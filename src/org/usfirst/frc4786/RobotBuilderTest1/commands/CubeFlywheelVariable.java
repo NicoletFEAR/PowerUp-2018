@@ -24,8 +24,8 @@ public class CubeFlywheelVariable extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double forward = Robot.oi.getXbox2().getTriggerAxis(Hand.kLeft);
-    	double reverse = Robot.oi.getXbox2().getTriggerAxis(Hand.kRight);
+    	double forward = Robot.oi.getXbox2().getTriggerAxis(Hand.kRight);
+    	double reverse = Robot.oi.getXbox2().getTriggerAxis(Hand.kLeft);
     	double output = forward-reverse;
     	RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, output);
     	RobotMap.flyWheelRight.set(ControlMode.PercentOutput, -output);
