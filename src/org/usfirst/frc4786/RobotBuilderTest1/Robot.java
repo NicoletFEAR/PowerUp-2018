@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void robotInit() {
-		double vNum = .04;
+		double vNum = .01;
 
 		RobotMap.init();
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
