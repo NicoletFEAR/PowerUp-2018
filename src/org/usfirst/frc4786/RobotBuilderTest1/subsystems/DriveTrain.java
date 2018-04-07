@@ -395,7 +395,7 @@ public class DriveTrain extends PIDSubsystem {
 		double radius = (length*length - width*width)/(2*width) + width;
 		double outsideRadius = radius + wheelDistance / 2;
 		double insideRadius = radius - wheelDistance / 2;
-		double angle  = Math.asin(length/radius);
+		double angle  = Math.toDegrees(Math.asin(length/radius));
 		double outsideDistance  = Math.PI*2*outsideRadius*(angle/360);
 		double insideDistance  = Math.PI*2*insideRadius*(angle/360);
 		if (direction.toLowerCase().equals("left")){
@@ -429,6 +429,9 @@ public class DriveTrain extends PIDSubsystem {
 		double leftRotations = leftEncoderValue / 7610;
 		double rightRotations = rightEncoderValue / 7610;
 		double outsideRotations = this.convertToRotations(outsideDistance);
+		
+		SmartDashboard.putNumber("Left Rotations", leftRotations);
+		SmartDashboard.putNumber("Right Rotations", rightRotations);
 		
 		if (direction.equals("left")) {
 			if (rightRotations >= outsideRotations)
