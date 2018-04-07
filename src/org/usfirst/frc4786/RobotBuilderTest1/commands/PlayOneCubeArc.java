@@ -4,9 +4,9 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PlayShootSideSwitch extends CommandGroup {
+public class PlayOneCubeArc extends CommandGroup {
 
-    public PlayShootSideSwitch() {
+    public PlayOneCubeArc() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -36,10 +36,12 @@ public class PlayShootSideSwitch extends CommandGroup {
     				addSequential(new CubeLaunch());
     				break;
     			case B:
-    				addSequential(new PlayBaseline());
+    				addSequential(new DriveToPosition(110, .85));
+    				addSequential(new CubeLaunch());
     				break;
     			case C:
-    				addSequential(new PlayBaseline());
+    				addSequential(new DriveArc("left", 32.25, 54, 1));
+    				addSequential(new DriveArc("right", 32.25, 54, 1));
     				break;
     			case D:
         			addSequential(new PlayBaseline());
@@ -58,10 +60,12 @@ public class PlayShootSideSwitch extends CommandGroup {
     				addSequential(new PlayBaseline());
     				break;
     			case C:
-    				addSequential(new PlayBaseline());
+    				addSequential(new DriveArc("right", 26.25, 54, 1));
+    				addSequential(new DriveArc("left", 26.25, 54, 1));
     				break;
     			case D:
-        			addSequential(new PlayBaseline());
+    				addSequential(new DriveToPosition(110, .85));
+    				addSequential(new CubeLaunch());
         			break;
     			case E:
     				addSequential(new DriveToPosition(150, .85));

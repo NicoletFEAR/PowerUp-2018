@@ -37,6 +37,8 @@ public class RobotMap {
     
     public static double leftMotorScaling = 0.89;
     public static double rightMotorScaling = 0.89;
+    public static double wheelDistance = 21;
+    public static double arcSpeedScaling = .5;
     
     public static int module0 = 0;
 	public static int aForwardChannel = 0;

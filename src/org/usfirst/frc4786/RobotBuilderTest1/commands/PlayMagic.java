@@ -32,10 +32,10 @@ public class PlayMagic extends CommandGroup {
     		switch (Robot.myPosition)
     		{
     			case A:
-    				addSequential(new PlayShootSideSwitch());
+    				addSequential(new PlayOneCubeArc());
     				break;
     			case B:
-    				addSequential(new PlayShootNearSwitch());
+    				addSequential(new PlayOneCubeAngle());
     				break;
     			case C:
     				addSequential(new DriveToPosition(36, .85));
@@ -98,10 +98,10 @@ public class PlayMagic extends CommandGroup {
     				addSequential(new DriveToPosition(-110, .85));
     				break;
     			case D:
-    				addSequential(new PlayShootNearSwitch());
+    				addSequential(new PlayOneCubeAngle());
     				break;
     			case E:
-    				addSequential(new PlayShootSideSwitch());
+    				addSequential(new PlayOneCubeArc());
     				break;
     		}
     	}

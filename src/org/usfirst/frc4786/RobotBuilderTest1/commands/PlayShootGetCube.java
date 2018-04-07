@@ -28,7 +28,7 @@ public class PlayShootGetCube extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new PlayShootSideSwitch());
+    	addSequential(new PlayOneCubeArc());
     	if (Robot.teamSwitchSide.equals("L") && Robot.myPosition.equals("A")) {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(-90));

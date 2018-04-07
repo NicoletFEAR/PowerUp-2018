@@ -14,10 +14,10 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.DriveToPosition;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootSideSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeArc;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayMagic;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
@@ -221,10 +221,10 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new PlayBaseline();
 			break;
 		case THREE:
-			autonomousCommand = new PlayShootNearSwitch();
+			autonomousCommand = new PlayOneCubeAngle();
 			break;
 		case FOUR:
-			autonomousCommand = new PlayShootSideSwitch();
+			autonomousCommand = new PlayOneCubeArc();
 			break;
 		case FIVE:
 			autonomousCommand = new PlayShootGetCube();
