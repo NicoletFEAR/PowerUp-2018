@@ -380,24 +380,18 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
 	}
 	
-	public double getRatio(double height, double length){
-		double radius = (height*height - length*length)/(2*length) + length;
-		double ratio = (radius - length)/(radius + length);
-		return ratio;
-	}
-	
-	public double[] driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
+	public double[] driveArcInit(String direction, double sideDistance, double forwardDistance, double speed, double wheelDistance) {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		double ratio = getRatio(length, width);
 		double leftSpeed;
 		double rightSpeed;
-		double radius = (length*length - width*width)/(2*width) + width;
+		double radius = (forwardDistance*forwardDistance - sideDistance*sideDistance)/(2*sideDistance) + sideDistance;
 		double outsideRadius = radius + wheelDistance / 2;
 		double insideRadius = radius - wheelDistance / 2;
-		double angle  = Math.toDegrees(Math.asin(length/radius));
+		double angle  = Math.toDegrees(Math.asin(forwardDistance/radius));
 		double outsideDistance  = Math.PI*2*outsideRadius*(angle/360);
 		double insideDistance  = Math.PI*2*insideRadius*(angle/360);
+		double ratio = insideDistance / outsideDistance;
 		if (direction.toLowerCase().equals("left")){
 			leftSpeed = speed * ratio;
 			rightSpeed = speed;
