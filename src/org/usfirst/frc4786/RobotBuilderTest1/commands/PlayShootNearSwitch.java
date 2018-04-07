@@ -3,6 +3,7 @@ package org.usfirst.frc4786.RobotBuilderTest1.commands;
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class PlayShootNearSwitch extends CommandGroup {
 
@@ -42,10 +43,11 @@ public class PlayShootNearSwitch extends CommandGroup {
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(-45));
-				addSequential(new DriveToPosition(60, .85));
-				addSequential(new TurnToAngle(45));
-				addSequential(new DriveToPosition(30, .85));
+				addSequential(new TurnToAngle(-60));
+				addSequential(new DriveToPosition(71, .85));
+				addSequential(new TurnToAngle(60));
+				addSequential(new DriveToPosition(40, .75));
+				addSequential(new WaitCommand(1));
 				addSequential(new CubeLaunch());
 				break;
 			case D:
@@ -75,10 +77,11 @@ public class PlayShootNearSwitch extends CommandGroup {
 				break;
 			case C:
 				addSequential(new DriveToPosition(36, .85));
-				addSequential(new TurnToAngle(45));
-				addSequential(new DriveToPosition(60, .85));
-				addSequential(new TurnToAngle(-45));
-				addSequential(new DriveToPosition(30, .85));
+				addSequential(new TurnToAngle(60));
+				addSequential(new DriveToPosition(59, .85));
+				addSequential(new TurnToAngle(-60));
+				addSequential(new DriveToPosition(47, .75));
+				addSequential(new WaitCommand(1));
 				addSequential(new CubeLaunch());
 				break;
 			case D:

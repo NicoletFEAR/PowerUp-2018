@@ -15,8 +15,8 @@ public class Cube extends Subsystem {
 
 	private final DoubleSolenoid cubeLiftLeft = new DoubleSolenoid(RobotMap.module0, RobotMap.cForwardChannel,
 			RobotMap.cReverseChannel);
-	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.dForwardChannel,
-			RobotMap.dReverseChannel);
+	private final DoubleSolenoid cubeLiftRight = new DoubleSolenoid(RobotMap.module0, RobotMap.bForwardChannel,
+			RobotMap.bReverseChannel);
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new CubeFlywheelVariable());
@@ -28,8 +28,8 @@ public class Cube extends Subsystem {
 	}
 
 	public void cubeFlywheelForward() {
-		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -1);
-		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 1);
+		RobotMap.flyWheelLeft.set(ControlMode.PercentOutput, -0.75);
+		RobotMap.flyWheelRight.set(ControlMode.PercentOutput, 0.75);
 	}
 
 	public void cubeFlywheelStop() {

@@ -60,7 +60,7 @@ public class PlayMagic extends CommandGroup {
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(230, .85));
     				addSequential(new TurnToAngle(-90));
-    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new DriveToPosition(54, .85));
     				addSequential(new TurnToAngle(-90));
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new CubeLaunch());
@@ -74,7 +74,7 @@ public class PlayMagic extends CommandGroup {
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(230, .85));
     				addSequential(new TurnToAngle(90));
-    				addSequential(new DriveToPosition(36, .85));
+    				addSequential(new DriveToPosition(54, .85));
     				addSequential(new TurnToAngle(90));
     				addSequential(new DriveToPosition(36, .85));
     				addSequential(new CubeLaunch());
