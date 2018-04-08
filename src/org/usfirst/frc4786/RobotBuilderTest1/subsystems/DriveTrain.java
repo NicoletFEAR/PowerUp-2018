@@ -380,6 +380,70 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
 	}
 
+	
+	
+	public double[] driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
+		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+		double leftSpeed;
+		double rightSpeed;
+		double radius = ((length*length - width*width)/(2*width) + width);
+		double outsideRadius = radius + (wheelDistance / 2);
+		double insideRadius = radius - (wheelDistance / 2);
+		double angle  = Math.toDegrees(Math.asin(length/radius));
+		double outsideDistance  = Math.PI*2*outsideRadius*(angle/360);
+		double insideDistance  = Math.PI*2*insideRadius*(angle/360);
+		double ratio = insideRadius/outsideRadius;
+		SmartDashboard.putNumber("ratio ", ratio);
+		if (direction.toLowerCase().equals("left")){
+			leftSpeed = speed * ratio;
+			rightSpeed = speed;
+		} else {
+			leftSpeed = speed;
+			rightSpeed = speed * ratio;
+		}
+		double[] returnStuff = new double[4];
+		returnStuff[0] = leftSpeed;
+		returnStuff[1] = rightSpeed;
+		returnStuff[2] = outsideDistance;
+		returnStuff[3] = insideDistance;
+		SmartDashboard.putNumber("outside arc distance", outsideDistance);
+		SmartDashboard.putNumber("center arc Radius", radius);
+		SmartDashboard.putNumber("angle:", angle);
+		return returnStuff; 
+	}
+	
+	public void driveArcExecute(double leftSpeed, double rightSpeed) {
+		RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
+		
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
+	}
+	
+	public boolean driveArcIsFinished(double outsideDistance, String direction) {
+		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
+		double rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
+		double leftRotations = leftEncoderValue / 7610;
+		double rightRotations = rightEncoderValue / 7610;
+		double outsideRotations = this.convertToRotations(outsideDistance);
+		
+		if (direction.equals("left")) {
+			if (rightRotations >= outsideRotations)
+				return true;
+			else
+				return false;
+		} else {
+			if (leftRotations >= outsideRotations)
+				return true;
+			else
+				return false;
+		}
+	}
+	
+	
 	public double getLeftEncoderPosition() {
 		return (RobotMap.frontLeft.getSelectedSensorPosition(0));
 	}
@@ -438,7 +502,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output * .4;
+		turnToAngleRate = output * .3;
 	}
 
 }

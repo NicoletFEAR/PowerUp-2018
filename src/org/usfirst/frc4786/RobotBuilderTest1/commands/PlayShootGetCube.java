@@ -11,7 +11,7 @@ public class PlayShootGetCube extends CommandGroup {
 
     public PlayShootGetCube() {
     	requires(Robot.driveTrain);
-    	requires(Robot.cubeMech);
+//    	requires(Robot.cubeMech);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -36,10 +36,10 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new TurnToAngle(90));
     		addSequential(new DriveToPosition(36, .85));
     		addSequential(new TurnToAngle(90));
-    		addSequential(new CubeVisionDrive());
-    		addParallel(new CubeFlywheelBackward());
+//    		addSequential(new CubeVisionDrive());
+//    		addParallel(new CubeFlywheelBackward());
     		addSequential(new DriveToPosition(24, .85));
-    		addSequential(new CubeFlywheelStop());
+//    		addSequential(new CubeFlywheelStop());
     	} else if (Robot.myPosition.equals("E")) {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(90));
@@ -47,10 +47,10 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new TurnToAngle(-90));
     		addSequential(new DriveToPosition(36, .85));
     		addSequential(new TurnToAngle(-90));
-    		addSequential(new CubeVisionDrive());
-    		addParallel(new CubeFlywheelBackward());
+//    		addSequential(new CubeVisionDrive());
+//    		addParallel(new CubeFlywheelBackward());
     		addSequential(new DriveToPosition(24, .5));
-    		addSequential(new CubeFlywheelStop());
+//    		addSequential(new CubeFlywheelStop());
     	}
     }
 }

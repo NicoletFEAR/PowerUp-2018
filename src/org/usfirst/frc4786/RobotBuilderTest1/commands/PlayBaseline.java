@@ -53,9 +53,9 @@ public class PlayBaseline extends CommandGroup {
 			addSequential(new DriveToPosition(36, .7));
 			if (Robot.teamSwitchSide.equals("L"))
 			{
-				addSequential(new TurnToAngle(45));
+				addSequential(new TurnToAngle(50));
 			} else {
-				addSequential(new TurnToAngle(-45));
+				addSequential(new TurnToAngle(-50));
 			}
 			addSequential(new DriveToPosition(100, .7));
 			break;

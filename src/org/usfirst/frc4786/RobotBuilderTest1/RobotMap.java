@@ -59,11 +59,13 @@ public class RobotMap {
 	public static int compressormodule = 0;
 	
 	//NavX turn PID Constants
-	public static double TurnP = 0.06;
+	public static double TurnP = 0.04;
 	public static double TurnI = 0.00;
 	public static double TurnD = 0.0;
 	public static double TurnF = 0.0;
 	
+	public static double wheelDistance = 21;
+	public static double arcSpeedScaling = .5;
 	//PID Constants
 	public static final double driveToPositionError = .75; // rotations
 	public static final double ERROR_CONSTANT_LEFT = 0.0;

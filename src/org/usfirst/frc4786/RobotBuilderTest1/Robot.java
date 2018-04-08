@@ -15,12 +15,14 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootSideSwitch;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayMagic;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeAngle;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeArc;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
+//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
 //import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
@@ -63,7 +65,7 @@ public class Robot extends TimedRobot {
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
 	public static String teamScaleSide;
 	public static String teamSwitchSide;
-	public static Cube cubeMech;
+//	public static Cube cubeMech;
 //	public static Lifter lifty;
 	public static Shifter shifter = new Shifter();
 	public static PressureSensor pressureSensor = new PressureSensor();
@@ -95,7 +97,7 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		autoChooser = new AutoChooser();
 		arduinoLCDInterface = new ArduinoInterface(8);
-		cubeMech = new Cube();
+//		cubeMech = new Cube();
 //		lifty = new Lifter();
 		// arduinoLEDInterface = new ArduinoInterface(7);
 		// arduinoCameraInterface = new ArduinoInterface(6);
@@ -222,10 +224,10 @@ public class Robot extends TimedRobot {
 			autonomousCommand = new PlayBaseline();
 			break;
 		case THREE:
-			autonomousCommand = new PlayShootNearSwitch();
+			autonomousCommand = new PlayOneCubeAngle();
 			break;
 		case FOUR:
-			autonomousCommand = new PlayShootSideSwitch();
+			autonomousCommand = new PlayOneCubeArc();
 			break;
 		case FIVE:
 			autonomousCommand = new PlayShootGetCube();

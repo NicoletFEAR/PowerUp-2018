@@ -5,9 +5,9 @@ import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class PlayShootNearSwitch extends CommandGroup {
+public class PlayOneCubeAngle extends CommandGroup {
 
-	public PlayShootNearSwitch() {
+	public PlayOneCubeAngle() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -26,28 +26,26 @@ public class PlayShootNearSwitch extends CommandGroup {
 		// arm.
 		requires(Robot.driveTrain);
 //		requires(Robot.cubeMech);
-		double speed = .2;
+
 		if (Robot.teamSwitchSide.equals("L")) {
 			switch (Robot.myPosition) {
 			case A:
-				if (Robot.teamScaleSide.equals("L"))
-				{
-					addSequential(new DriveToPosition(328, .85));
-				} else {
-					addSequential(new DriveToPosition(196, .85));
-				}
+				addSequential(new DriveToPosition(150, .85));
+				addSequential(new TurnToAngle(90));
+				addSequential(new DriveToPosition(36, .5));
+//				addSequential(new CubeLaunch());
 				break;
 			case B:
 				addSequential(new DriveToPosition(110, .85));
 //				addSequential(new CubeLaunch());
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, speed));
+				addSequential(new DriveToPosition(36, .2));
 				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(68, speed));
+				addSequential(new DriveToPosition(71, .2));
 				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(45, speed));
-				addSequential(new WaitCommand(.25));
+				addSequential(new DriveToPosition(40, .2));
+				addSequential(new WaitCommand(1));
 //				addSequential(new CubeLaunch());
 				break;
 			case D:
@@ -76,12 +74,12 @@ public class PlayShootNearSwitch extends CommandGroup {
 				addSequential(new DriveToPosition(110, .85));
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, speed));
+				addSequential(new DriveToPosition(36, .2));
 				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(59, speed));
+				addSequential(new DriveToPosition(59, .2));
 				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(47, speed));
-				addSequential(new WaitCommand(.25));
+				addSequential(new DriveToPosition(47, .2));
+				addSequential(new WaitCommand(1));
 //				addSequential(new CubeLaunch());
 				break;
 			case D:
@@ -89,12 +87,10 @@ public class PlayShootNearSwitch extends CommandGroup {
 //				addSequential(new CubeLaunch());
 				break;
 			case E:
-				if (Robot.teamScaleSide.equals("L"))
-				{
-					addSequential(new DriveToPosition(196, .85));
-				} else {
-					addSequential(new DriveToPosition(328, .85));
-				}
+				addSequential(new DriveToPosition(150, .85));
+				addSequential(new TurnToAngle(-90));
+				addSequential(new DriveToPosition(36, .5));
+//				addSequential(new CubeLaunch());
 				break;
 			}
 		}
