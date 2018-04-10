@@ -19,7 +19,7 @@ public class AutoChooser extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-//    	setDefaultCommand(new DisplayAutonomous());
+    	setDefaultCommand(new DisplayAutonomous());
     }
 
     public void autonomousMode() {

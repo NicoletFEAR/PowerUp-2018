@@ -1,44 +1,45 @@
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
-import edu.wpi.first.wpilibj.GenericHID;
 
-public class OpenLoopDrive extends Command {
+import edu.wpi.first.wpilibj.command.Command;
 
-    public OpenLoopDrive() {
+/**
+ *
+ */
+public class TurnToAngle extends Command {
+
+	double targetAngle;
+	
+	//Input an angle to turn to in degrees
+    public TurnToAngle(double angle) {
         requires(Robot.driveTrain);
+        
+        targetAngle = angle;
     }
 
     // Called just before this Command runs the first time
-    @Override
     protected void initialize() {
+    	Robot.driveTrain.turnToAngleInit(targetAngle);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    @Override
     protected void execute() {
-    	// for xbox controller     
-    	double rightStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kRight);   	
-    	double leftStickValue = Robot.oi.getXbox1().getY(GenericHID.Hand.kLeft);
-    	Robot.driveTrain.takeJoystickInputsValues(leftStickValue , rightStickValue);
-     }
+    	Robot.driveTrain.turnToAngleExecute();
+    }
 
     // Make this return true when this Command no longer needs to run execute()
-    @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.driveTrain.turnToAngleIsFinished();
     }
 
     // Called once after isFinished returns true
-    @Override
     protected void end() {
-    	Robot.driveTrain.stop();
+    	Robot.driveTrain.turnToAngleEnd();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    @Override
     protected void interrupted() {
     	end();
     }

@@ -1,7 +1,3 @@
-Skip to content
-This repository
-Search
-
 package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;

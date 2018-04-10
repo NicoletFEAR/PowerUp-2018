@@ -7,32 +7,32 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoLine extends Command {
+public class DoNothing extends Command {
 
-    public AutoLine() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.driveTrain);
+    public DoNothing() {
+        // We just need...a hammock to do nothing
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	// I said DO NOTHING!
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.driveForSeconds(2, .75, .75);
-    	
+    	//Make sure we do nothing
+    	Robot.driveTrain.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	//You can never be too lazy ;)
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	// If we do meet our doom, we want to do it without style
+    	// Just one more nap...
     	Robot.driveTrain.stop();
     }
 
