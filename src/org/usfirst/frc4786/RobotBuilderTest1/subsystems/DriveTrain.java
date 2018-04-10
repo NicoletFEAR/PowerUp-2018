@@ -269,8 +269,10 @@ public class DriveTrain extends PIDSubsystem {
 		
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
-		RobotMap.midRight.follow(RobotMap.frontLeft);
-		RobotMap.backRight.follow(RobotMap.frontLeft);
+//		RobotMap.midRight.follow(RobotMap.frontLeft); RAW wrong way just got away with it as we over road in execute
+//		RobotMap.backRight.follow(RobotMap.frontLeft); RAW
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
 		RobotMap.frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		RobotMap.frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 

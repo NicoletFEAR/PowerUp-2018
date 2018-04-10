@@ -40,10 +40,10 @@ public class PlayOneCubeArc extends CommandGroup {
 //    				addSequential(new CubeLaunch());
     				break;
     			case C:
-//    				addSequential(new DriveArc("left", 32.25, 54, .4786));
-//    				addSequential(new DriveArc("right", 32.256, 54, .4786));
-    				addSequential(new DriveArc("left", 73, .4786, .19));
-    				addSequential(new DriveArc("right", 73, .4786, .19));
+    				addSequential(new DriveArc("left", 32.25, 54, .4786));
+    				addSequential(new DriveArc("right", 32.25, 54, .4786));
+//    				addSequential(new DriveArc("left", 73, .4786, .19));
+//    				addSequential(new DriveArc("right", 73, .4786, .19));
     				break;
     			case D:
         			addSequential(new PlayBaseline());
@@ -62,8 +62,10 @@ public class PlayOneCubeArc extends CommandGroup {
     				addSequential(new PlayBaseline());
     				break;
     			case C:
-    				addSequential(new DriveArc("right", 67, .4786, .2));
-    				addSequential(new DriveArc("left", 67, .4786, .2));
+    				addSequential(new DriveArc("left", 33.5, 54, .4786));
+    				addSequential(new DriveArc("right", 33.5, 54, .4786));
+//    				addSequential(new DriveArc("right", 67, .4786, .2));
+//    				addSequential(new DriveArc("left", 67, .4786, .2));
     				break;
     			case D:
     				addSequential(new DriveToPosition(110, .85));
