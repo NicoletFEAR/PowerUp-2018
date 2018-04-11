@@ -28,8 +28,11 @@ public class PlayShootGetCube extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new PlayShootSideSwitch());
-    	if (Robot.teamSwitchSide.equals("L") && Robot.myPosition.equals("A")) {
+    	switch (Robot.myPosition)
+    	{
+    		case A:
+    	if (Robot.teamSwitchSide.equals("L")) {
+    		addSequential(new PlayOneCubeAngle());
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(-90));
     		addSequential(new DriveToPosition(48, .85));
@@ -40,7 +43,10 @@ public class PlayShootGetCube extends CommandGroup {
 //    		addParallel(new CubeFlywheelBackward());
     		addSequential(new DriveToPosition(24, .85));
 //    		addSequential(new CubeFlywheelStop());
-    	} else if (Robot.teamSwitchSide.equals("L") && Robot.myPosition.equals("C")) {
+    	}
+    		break;
+    	case C: 
+    		if (Robot.teamSwitchSide.equals("L")) {
     		addSequential(new PlayOneCubeArc()); // ends at switch
     		
     		addSequential(new DriveToPosition(-95.5, .85)); // get and shoot cube!
@@ -70,7 +76,7 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new DriveToPosition(76, .85));
 //    		addSequencial(new CubeLaunch());
     		
-    	} else if (Robot.teamSwitchSide.equals("R") && Robot.myPosition.equals("C")) {
+    	} else if (Robot.teamSwitchSide.equals("R")) {
     		addSequential(new PlayOneCubeArc()); // ends at switch
     		
     		addSequential(new DriveToPosition(-95.5, .85)); // get and shoot cube!
@@ -100,7 +106,9 @@ public class PlayShootGetCube extends CommandGroup {
     		addSequential(new DriveToPosition(76, .85));
 //    		addSequencial(new CubeLaunch());
     		
-    	} else if (Robot.myPosition.equals("E")) {
+    	} 
+    	break;
+    	case E:
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(90));
     		addSequential(new DriveToPosition(48, .85));
@@ -111,6 +119,7 @@ public class PlayShootGetCube extends CommandGroup {
 //    		addParallel(new CubeFlywheelBackward());
     		addSequential(new DriveToPosition(24, .5));
 //    		addSequential(new CubeFlywheelStop());
+    		break;
+    	}
     	}
     }
-}

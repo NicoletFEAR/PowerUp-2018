@@ -64,8 +64,8 @@ public class PlayOneCubeArc extends CommandGroup {
     			case C:
     			//	addSequential(new DriveArc("right", 70, 31.25, .4786));
     			//	addSequential(new DriveArc("left", 70, 31.25, .4786));
-    				addSequential(new DriveArc("right", 67, .6, .28));
-    				addSequential(new DriveArc("left", 67, .28, 0.6));
+    				addSequential(new DriveArc("right", 70, .6, .28));
+    				addSequential(new DriveArc("left", 70, .28, 0.6));
     				break;
     			case D:
     				addSequential(new DriveToPosition(110, .85));
