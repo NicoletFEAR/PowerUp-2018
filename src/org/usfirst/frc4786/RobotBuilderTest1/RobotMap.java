@@ -13,6 +13,7 @@ package org.usfirst.frc4786.RobotBuilderTest1;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SPI;
@@ -94,9 +95,14 @@ public class RobotMap {
 	public static AHRS navX;
 
     public static DigitalInput godSwitch;
+    
+    public static DigitalInput cubeLeftSwitch;
+    public static DigitalInput cubeRightSwitch;
 
 	public static AnalogPotentiometer playKnob;
 	public static AnalogPotentiometer positionKnob;
+	
+	public static int cubeCount = 0;
 		
 	public enum AutoPosition {
     	A, B, C, D, E
@@ -120,6 +126,9 @@ public class RobotMap {
         playKnob = new AnalogPotentiometer(2, 6);
         
         godSwitch = new DigitalInput(0);
+        
+        cubeLeftSwitch = new DigitalInput(1);
+        cubeRightSwitch = new DigitalInput(2);
         
     	cubeLaunch = false;
         

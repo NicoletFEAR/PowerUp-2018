@@ -59,7 +59,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
-	public XboxController xbox1; // the drive controller
+	private XboxController xbox1; // the drive controller
 	private Button xbox1LeftStick;
 	private Button xbox1RightStick;
 	public Button xbox1Start;

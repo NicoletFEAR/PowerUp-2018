@@ -215,7 +215,7 @@ public class DriveTrain extends PIDSubsystem {
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
 		
-		if (!(Robot.oi.xbox1.getStartButton())) {
+		if (!(Robot.oi.getXbox1().getStartButton())) {
 			if (averageVelocity < 2000) { // if not in low, switch to low
 				if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
 					Robot.shifter.shiftdown();
