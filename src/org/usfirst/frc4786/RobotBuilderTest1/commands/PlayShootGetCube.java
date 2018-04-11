@@ -40,6 +40,66 @@ public class PlayShootGetCube extends CommandGroup {
 //    		addParallel(new CubeFlywheelBackward());
     		addSequential(new DriveToPosition(24, .85));
 //    		addSequential(new CubeFlywheelStop());
+    	} else if (Robot.teamSwitchSide.equals("L") && Robot.myPosition.equals("C")) {
+    		addSequential(new PlayOneCubeArc()); // ends at switch
+    		
+    		addSequential(new DriveToPosition(-95.5, .85)); // get and shoot cube!
+    		addSequential(new TurnToAngle(45));
+//    		addParallel(new Robot.cubeMech.lower());
+    		addSequential(new DriveToPosition(70, .85));
+//    		addParallel(new CubeFlywheelBackward()); // cube mech!!!
+    		addSequential(new DriveToPosition(9.9, .3));
+//    		addSequential(new CubeFlywheelStop()); // cube mech!!!
+    		addSequential(new DriveToPosition(-79.9, .85));
+//    		addParallel(new Robot.cubeMech.raise());
+    		addSequential(new TurnToAngle(-45));
+    		addSequential(new DriveToPosition(95.5, .85));
+//    		addSequencial(new CubeLaunch());
+    		
+
+    		addSequential(new DriveToPosition(-76, .85)); // third cube!
+    		addSequential(new TurnToAngle(45));
+//    		addParallel(new Robot.cubeMech.lower());
+    		addSequential(new DriveToPosition(60, .85));
+//    		addParallel(new CubeFlywheelBackward()); // cube mech!!!
+    		addSequential(new DriveToPosition(10.71, .3));
+//    		addSequential(new CubeFlywheelStop()); // cube mech!!!
+    		addSequential(new DriveToPosition(-70.71, .85));
+//    		addParallel(new Robot.cubeMech.raise());
+    		addSequential(new TurnToAngle(-45));
+    		addSequential(new DriveToPosition(76, .85));
+//    		addSequencial(new CubeLaunch());
+    		
+    	} else if (Robot.teamSwitchSide.equals("R") && Robot.myPosition.equals("C")) {
+    		addSequential(new PlayOneCubeArc()); // ends at switch
+    		
+    		addSequential(new DriveToPosition(-95.5, .85)); // get and shoot cube!
+    		addSequential(new TurnToAngle(-45));
+//    		addParallel(new Robot.cubeMech.lower());
+    		addSequential(new DriveToPosition(70, .85));
+//    		addParallel(new CubeFlywheelBackward()); // cube mech!!!
+    		addSequential(new DriveToPosition(9.9, .3));
+//    		addSequential(new CubeFlywheelStop()); // cube mech!!!
+    		addSequential(new DriveToPosition(-79.9, .85));
+//    		addParallel(new Robot.cubeMech.raise());
+    		addSequential(new TurnToAngle(45));
+    		addSequential(new DriveToPosition(95.5, .85));
+//    		addSequencial(new CubeLaunch());
+    		
+
+    		addSequential(new DriveToPosition(-76, .85)); // third cube!
+    		addSequential(new TurnToAngle(-45));
+//    		addParallel(new Robot.cubeMech.lower());
+    		addSequential(new DriveToPosition(60, .85));
+//    		addParallel(new CubeFlywheelBackward()); // cube mech!!!
+    		addSequential(new DriveToPosition(10.71, .3));
+//    		addSequential(new CubeFlywheelStop()); // cube mech!!!
+    		addSequential(new DriveToPosition(-70.71, .85));
+//    		addParallel(new Robot.cubeMech.raise());
+    		addSequential(new TurnToAngle(45));
+    		addSequential(new DriveToPosition(76, .85));
+//    		addSequencial(new CubeLaunch());
+    		
     	} else if (Robot.myPosition.equals("E")) {
     		addSequential(new DriveToPosition(-36, .85));
     		addSequential(new TurnToAngle(90));
