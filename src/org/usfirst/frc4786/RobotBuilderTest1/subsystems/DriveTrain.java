@@ -392,7 +392,7 @@ public class DriveTrain extends PIDSubsystem {
 		double radius = ((length*length - width*width)/(2*width) + width);
 		double outsideRadius = radius + (wheelDistance / 2);
 		double insideRadius = radius - (wheelDistance / 2);
-		double angle  = Math.toDegrees(Math.asin(length/radius));
+		double angle = Math.toDegrees(Math.asin(length/radius));
 		double outsideDistance  = Math.PI*2*outsideRadius*(angle/360);
 		double insideDistance  = Math.PI*2*insideRadius*(angle/360);
 		double ratio = insideRadius/outsideRadius;
@@ -404,12 +404,16 @@ public class DriveTrain extends PIDSubsystem {
 			leftSpeed = speed;
 			rightSpeed = speed * ratio;
 		}
-		double[] returnStuff = new double[4];
+		double[] returnStuff = new double[5];
 		returnStuff[0] = leftSpeed;
 		returnStuff[1] = rightSpeed;
 		returnStuff[2] = outsideDistance;
 		returnStuff[3] = insideDistance;
+		returnStuff[4] = ratio;
+		SmartDashboard.putNumber("inside arc Radius", insideRadius);
+		SmartDashboard.putNumber("outside arc radius", outsideRadius);
 		SmartDashboard.putNumber("outside arc distance", outsideDistance);
+		SmartDashboard.putNumber("inside arc distance", insideDistance);
 		SmartDashboard.putNumber("center arc Radius", radius);
 		SmartDashboard.putNumber("angle:", angle);
 		return returnStuff; 

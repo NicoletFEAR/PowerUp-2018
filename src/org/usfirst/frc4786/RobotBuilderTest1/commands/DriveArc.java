@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveArc extends Command {
 
 	public String direction;
-	public double width;
-	public double length;
-	public double speed;
+	public double distance;
+	public double leftSpeed;
+	public double rightSpeed;
 	double[] initReturn = new double[4];
 	public double targetInsideRatio;
 	public double currentInsideRatio;
@@ -23,9 +23,9 @@ public class DriveArc extends Command {
     public DriveArc(String turnDirection, double sideWidth, double driveLength, double driveSpeed) {
     	requires(Robot.driveTrain);
     	direction = turnDirection;
-    	width = sideWidth;
-    	length = driveLength;
-    	speed = driveSpeed;
+    	distance = sideWidth;
+    	leftSpeed = driveLength;
+    	rightSpeed = driveSpeed;
     }
 
 /*	public DriveArc(String arcDirection, double arcOutsideDistance, double arcOutsideSpeed, double arcInsideSpeed){
@@ -39,7 +39,7 @@ public class DriveArc extends Command {
     protected void initialize() {
     	RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-    	initReturn = Robot.driveTrain.driveArcInit(direction, width, length, speed, RobotMap.wheelDistance);
+//    	initReturn = Robot.driveTrain.driveArcInit(direction, width, length, speed, RobotMap.wheelDistance);
 /*    	if (direction.equals("left")){
         	initReturn[0] = outsideSpeed;
         	initReturn[1] = insideSpeed;
@@ -50,20 +50,27 @@ public class DriveArc extends Command {
     	}
     	initReturn[2] = 58;
 */
-    	targetInsideRatio = initReturn[3]/initReturn[2];
+//    	targetInsideRatio = initReturn[4];
+		if (direction.equals("left")) {
+			targetInsideRatio = 0.66;
+		} else {
+			targetInsideRatio = 0.69;
+		}
+    	
+    	RobotMap.midLeft.follow(RobotMap.frontLeft);
+		RobotMap.backLeft.follow(RobotMap.frontLeft);
+		RobotMap.midRight.follow(RobotMap.frontRight);
+		RobotMap.backRight.follow(RobotMap.frontRight);
     		    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	RobotMap.midLeft.follow(RobotMap.frontLeft);
-//		RobotMap.backLeft.follow(RobotMap.frontLeft);
-//		RobotMap.midRight.follow(RobotMap.frontRight);
-//		RobotMap.backRight.follow(RobotMap.frontRight);
+
 // RAW not sure we want to do the follower instructions every execute loop ( CAN and roborio expense)
     	
-		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * initReturn[0]);
-		RobotMap.frontRight.set(ControlMode.PercentOutput, initReturn[1]);
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
 
 // make a 10% adjustment on the inside motor speed based on current distance ratio versus target ratio
 		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
@@ -71,16 +78,16 @@ public class DriveArc extends Command {
 		if (direction.equals("left")) {
 			currentInsideRatio = leftEncoderValue/rightEncoderValue;
 			if (currentInsideRatio > targetInsideRatio) {
-				initReturn[0] = initReturn[0] * 0.9;
+				leftSpeed = leftSpeed * 0.95;
 			} else {
-				initReturn[0] = initReturn[0] * 1.1;
+				leftSpeed = leftSpeed * 1.05;
 			};
 		} else { // turning right
 			currentInsideRatio = rightEncoderValue/leftEncoderValue;
 			if (currentInsideRatio > targetInsideRatio) {
-				initReturn[1] = initReturn[1] * 0.9;
+				rightSpeed = rightSpeed * 0.95;
 			} else {
-				initReturn[1] = initReturn[1] * 1.1;
+				rightSpeed = rightSpeed * 1.05;
 			};
 		}
 	
@@ -96,7 +103,7 @@ public class DriveArc extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveTrain.driveArcIsFinished(initReturn[2], direction);
+        return Robot.driveTrain.driveArcIsFinished(distance, direction);
     }
 
     // Called once after isFinished returns true
