@@ -43,7 +43,7 @@ public class DriveArc extends Command {
 /*    	if (direction.equals("left")){
         	initReturn[0] = outsideSpeed;
         	initReturn[1] = insideSpeed;
-    		
+    		 
     	} else {
     		initReturn[0] = insideSpeed;
         	initReturn[1] = outsideSpeed;

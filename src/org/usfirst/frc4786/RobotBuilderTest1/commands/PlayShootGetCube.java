@@ -51,7 +51,14 @@ public class PlayShootGetCube extends CommandGroup {
     		break;
     	case C: 
     		if (Robot.teamSwitchSide.equals("L")) {
-    		addSequential(new PlayOneCubeArc()); // ends at switch
+    		//addSequential(new PlayOneCubeArc()); // ends at switch
+			addSequential(new DriveArc("left", 73, .26, .6));
+			//lets try slowing down at the end in order to stop straighter and better
+			addSequential(new DriveArc("right", 63, .6, .26));
+			addSequential(new DriveArc("right", 5, .3, .13));
+			addSequential(new DriveArc("right", 5, .15, .065));
+        	addSequential(new WaitCommand(0.25));
+//    		addSequencial(new CubeLaunch());
     		
     		RobotMap.frontLeft.set(ControlMode.PercentOutput, 0);
     		RobotMap.frontRight.set(ControlMode.PercentOutput, 0);
@@ -94,8 +101,15 @@ public class PlayShootGetCube extends CommandGroup {
 //    		addSequencial(new CubeLaunch());
     		
     	} else if (Robot.teamSwitchSide.equals("R")) {
-    		addSequential(new PlayOneCubeArc()); // ends at switch
-
+    		//addSequential(new PlayOneCubeArc()); // ends at switch
+			addSequential(new DriveArc("right", 70, .6, .28));
+			//lets try slowing down at the end in order to stop straighter and better
+			addSequential(new DriveArc("left", 60, .28, 0.6));
+			addSequential(new DriveArc("left", 5, .14, 0.3));
+			addSequential(new DriveArc("left", 5, .07, 0.15));
+        	addSequential(new WaitCommand(0.25));
+//    		addSequencial(new CubeLaunch());
+ 
     		RobotMap.frontLeft.set(ControlMode.PercentOutput, 0);
     		RobotMap.frontRight.set(ControlMode.PercentOutput, 0);
     		RobotMap.backLeft.set(ControlMode.PercentOutput, 0);

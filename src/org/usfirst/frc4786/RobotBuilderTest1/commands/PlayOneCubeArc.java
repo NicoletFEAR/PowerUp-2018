@@ -43,7 +43,11 @@ public class PlayOneCubeArc extends CommandGroup {
     				//addSequential(new DriveArc("left", 32.25, 42, .4786));
     				//addSequential(new DriveArc("right", 32.25, 42, .4786));
     				addSequential(new DriveArc("left", 73, .26, .6));
-    				addSequential(new DriveArc("right", 73, .6, .26));
+    				//lets try slowing down at the end in order to stop straighter and better
+    				addSequential(new DriveArc("right", 63, .6, .26));
+    				addSequential(new DriveArc("right", 5, .3, .13));
+    				addSequential(new DriveArc("right", 5, .15, .065));
+
     				break;
     			case D:
         			addSequential(new PlayBaseline());
@@ -65,12 +69,16 @@ public class PlayOneCubeArc extends CommandGroup {
     			//	addSequential(new DriveArc("right", 70, 31.25, .4786));
     			//	addSequential(new DriveArc("left", 70, 31.25, .4786));
     				addSequential(new DriveArc("right", 70, .6, .28));
-    				addSequential(new DriveArc("left", 70, .28, 0.6));
+    				//lets try slowing down at the end in order to stop straighter and better
+    				addSequential(new DriveArc("left", 60, .28, 0.6));
+    				addSequential(new DriveArc("left", 5, .14, 0.3));
+    				addSequential(new DriveArc("left", 5, .07, 0.15));
     				break;
     			case D:
     				addSequential(new DriveToPosition(110, .85));
-//    				addSequential(new CubeLaunch());
+//    				addSequential(new CubeLaunch()); 
         			break;
+    	 
     			case E:
     				addSequential(new DriveToPosition(150, .85));
     				addSequential(new TurnToAngle(-90));
@@ -78,37 +86,6 @@ public class PlayOneCubeArc extends CommandGroup {
 //    				addSequential(new CubeLaunch());
     				break;
         	}
-    	}
-    	
-    	/*switch (Robot.myPosition)
-    	{
-    		case A:
-    			addSequential(new DriveToPosition(260, .85));
-    			break;
-    		case B:
-    			addSequential(new DriveToPosition(36, .85));
-    			addSequential(new TurnToAngle(-45));
-    			addSequential(new DriveToPosition(80, .7));
-    			addSequential(new TurnToAngle(45));
-    			addSequential(new DriveToPosition(180, .85));
-    			break;
-    		case C:
-    			addSequential(new DriveToPosition(36, .85));
-    			addSequential(new TurnToAngle(45));
-    			addSequential(new DriveToPosition(100, .7));
-    			addSequential(new TurnToAngle(-45));
-    			addSequential(new DriveToPosition(180, .85));
-    			break;
-    		case D:
-    			addSequential(new DriveToPosition(36, .85));
-    			addSequential(new TurnToAngle(45));
-    			addSequential(new DriveToPosition(80, .7));
-    			addSequential(new TurnToAngle(-45));
-    			addSequential(new DriveToPosition(180, .85));
-    			break;
-    		case E:
-    			addSequential(new DriveToPosition(260, .85));
-    			break;
-    	}*/
+    	}    	
     }
 }
