@@ -52,12 +52,13 @@ public class PlayShootGetCube extends CommandGroup {
 	    	case C: 
 	    		if (Robot.teamSwitchSide.equals("L")) {
 		    		//addSequential(new PlayOneCubeArc()); // ends at switch
-					addSequential(new DriveArc("left", 73, .26, .6));
-					//lets try slowing down at the end in order to stop straighter and better
-					addSequential(new DriveArc("right", 63, .6, .26));
-					addSequential(new DriveArc("right", 5, .3, .13));
-					addSequential(new DriveArc("right", 5, .15, .065));
-		        	addSequential(new WaitCommand(0.25));
+    				//addSequential(new DriveArc("left", 32.25, 42, .4786));
+    				//addSequential(new DriveArc("right", 32.25, 42, .4786));
+    				addSequential(new DriveArc("left", 73.7676685323, .397901804448, .6));
+    				//lets try slowing down at the end in order to stop straighter and better
+    				addSequential(new DriveArc("right", 46, .6, .397901804448));
+    				addSequential(new DriveArc("right", 14.7676685323, .3, 0.19895090224));
+    				addSequential(new DriveArc("right", 13, .15, (0.19895090224)/2));
 		//    		addSequencial(new CubeLaunch());
 		    		
 		    		RobotMap.frontLeft.set(ControlMode.PercentOutput, 0);
@@ -102,12 +103,13 @@ public class PlayShootGetCube extends CommandGroup {
 		    		
 		    	} else if (Robot.teamSwitchSide.equals("R")) {
 		    		//addSequential(new PlayOneCubeArc()); // ends at switch
-					addSequential(new DriveArc("right", 70, .6, .28));
-					//lets try slowing down at the end in order to stop straighter and better
-					addSequential(new DriveArc("left", 60, .28, 0.6));
-					addSequential(new DriveArc("left", 5, .14, 0.3));
-					addSequential(new DriveArc("left", 5, .07, 0.15));
-		        	addSequential(new WaitCommand(0.25));
+	    			//	addSequential(new DriveArc("right", 70, 31.25, .4786));
+	    			//	addSequential(new DriveArc("left", 70, 31.25, .4786));
+	    			addSequential(new DriveArc("right", 70, .6, .28));
+	    			//lets try slowing down at the end in order to stop straighter and better
+	    			addSequential(new DriveArc("left", 46, .28, 0.6));
+	    			addSequential(new DriveArc("left", 12, .14, 0.3));
+	    			addSequential(new DriveArc("left", 12, .07, 0.15));
 		//    		addSequencial(new CubeLaunch());
 		 
 		    		RobotMap.frontLeft.set(ControlMode.PercentOutput, 0);

@@ -28,16 +28,6 @@ public class DriveTrain extends PIDSubsystem {
 
 	private boolean reversed = false;
 
-	// SpeedControllerGroup leftSide = new
-	// SpeedControllerGroup(RobotMap.frontLeft, RobotMap.midLeft,
-	// RobotMap.backLeft);
-	// SpeedControllerGroup rightSide = new
-	// SpeedControllerGroup(RobotMap.frontRight, RobotMap.midRight,
-	// RobotMap.backRight);
-	//
-	// public DifferentialDrive robotDrive = new DifferentialDrive(leftSide,
-	// rightSide);
-
 	public double leftSideSwitchSide;
 	public double rightSideSwitchSide;
 
@@ -51,6 +41,18 @@ public class DriveTrain extends PIDSubsystem {
 	
 	private boolean turned = false;
 	private boolean reverse = false;
+	
+// arcDrive variables
+	public double targetInsideRatio;
+	public double currentInsideRatio;	
+	public String direction;
+	public double distance;
+	public double leftSpeed;
+	public double rightSpeed;
+	public double leftEncoderValue;
+	public double rightEncoderValue;
+	public double outsideRotations;
+	
 
 	public DriveTrain() {
 		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
@@ -209,9 +211,6 @@ public class DriveTrain extends PIDSubsystem {
 		SmartDashboard.putNumber("sensor velocity", sensorRight.getQuadratureVelocity());
 
 		// shifting
-		// double averageVelocity =
-		// (Math.abs(sensorRight.getQuadratureVelocity()) +
-		// Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		double averageVelocity = (Math.abs(sensorRight.getQuadratureVelocity()) + Math.abs(sensorLeft.getQuadratureVelocity()))/2;
 		SmartDashboard.putNumber("averageVelocity", averageVelocity);
 		
@@ -233,16 +232,6 @@ public class DriveTrain extends PIDSubsystem {
 			}
 		}
 		
-		/*
-		 * if (!(Robot.oi.xbox1.getStartButton())) { if (averageVelocity < 2000)
-		 * { // if not in low, switch to low if (Robot.shifter.shifty.get() !=
-		 * DoubleSolenoid.Value.kForward) { Robot.shifter.shiftdown(); } } else
-		 * if (averageVelocity < 2300) { //DO NOTHING } else { // if in low,
-		 * switch to high if (Robot.shifter.shifty.get() ==
-		 * DoubleSolenoid.Value.kForward) { Robot.shifter.shiftup(); } } } else
-		 * { if (Robot.shifter.shifty.get() != DoubleSolenoid.Value.kForward) {
-		 * Robot.shifter.shiftdown(); } }
-		 */
 	}
 
 	// Welcome to the Amazing World of PID! (Population: 3, just P, I, and D)
@@ -274,8 +263,6 @@ public class DriveTrain extends PIDSubsystem {
 		
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
-//		RobotMap.midRight.follow(RobotMap.frontLeft); RAW wrong way just got away with it as we over road in execute
-//		RobotMap.backRight.follow(RobotMap.frontLeft); RAW
 		RobotMap.midRight.follow(RobotMap.frontRight);
 		RobotMap.backRight.follow(RobotMap.frontRight);
 		RobotMap.frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
@@ -295,13 +282,6 @@ public class DriveTrain extends PIDSubsystem {
 		// calculated before by convertToRotations()
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * driveSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, driveSpeed);
-		/*
-		 * try { Thread.sleep(10); } catch (InterruptedException e) {
-		 * e.printStackTrace(); } // Make sure we inverse this right side, //
-		 * otherwise, you have a spinning robot on your hands
-		 * RobotMap.frontLeft.set(ControlMode.Position, rot);
-		 * RobotMap.frontRight.set(ControlMode.Position, rot);
-		 */
 
 		SmartDashboard.putNumber("Rotations Calculated", rot);
 		this.driveToPositionIsFinished(rot);
@@ -388,58 +368,55 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	
-	
-/*	public double[] driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
+//	public void driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
+	public void driveArcInit(String turnDirection, double outsideArcDistance, double leftSpeedIn, double rightSpeedIn) {
+    	direction = turnDirection;
+    	distance = outsideArcDistance;
+    	leftSpeed = leftSpeedIn;
+    	rightSpeed = rightSpeedIn;
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		double leftSpeed;
-		double rightSpeed;
-		double radius = ((length*length - width*width)/(2*width) + width);
-		double outsideRadius = radius + (wheelDistance / 2);
-		double insideRadius = radius - (wheelDistance / 2);
-		double angle = Math.toDegrees(Math.asin(length/radius));
-		double outsideDistance  = Math.PI*2*outsideRadius*(angle/360);
-		double insideDistance  = Math.PI*2*insideRadius*(angle/360);
-		double ratio = insideRadius/outsideRadius;
-		SmartDashboard.putNumber("ratio ", ratio);
-		if (direction.toLowerCase().equals("left")){
-			leftSpeed = speed * ratio;
-			rightSpeed = speed;
-		} else {
-			leftSpeed = speed;
-			rightSpeed = speed * ratio;
-		}
-		double[] returnStuff = new double[5];
-		returnStuff[0] = leftSpeed;
-		returnStuff[1] = rightSpeed;
-		returnStuff[2] = outsideDistance;
-		returnStuff[3] = insideDistance;
-		returnStuff[4] = ratio;
-		SmartDashboard.putNumber("inside arc Radius", insideRadius);
-		SmartDashboard.putNumber("outside arc radius", outsideRadius);
-		SmartDashboard.putNumber("outside arc distance", outsideDistance);
-		SmartDashboard.putNumber("inside arc distance", insideDistance);
-		SmartDashboard.putNumber("center arc Radius", radius);
-		SmartDashboard.putNumber("angle:", angle);
-		return returnStuff; 
-	}
-	
-	public void driveArcExecute(double leftSpeed, double rightSpeed) {
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
 		RobotMap.midRight.follow(RobotMap.frontRight);
 		RobotMap.backRight.follow(RobotMap.frontRight);
+		outsideRotations = this.convertToRotations(distance);
 		
+		if (Robot.teamSwitchSide.equals("L")){
+			targetInsideRatio = leftSpeed/rightSpeed;
+		} else {
+			targetInsideRatio = rightSpeed/leftSpeed;
+		}
+	}
+		
+	public void driveArcExecute() {
+		leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
+		rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
+		if (direction.equals("left")) {
+			currentInsideRatio = leftEncoderValue/rightEncoderValue;
+			if (currentInsideRatio > targetInsideRatio) {
+				leftSpeed = leftSpeed * 0.95;
+			} else {
+				leftSpeed = leftSpeed * 1.05;
+			};
+		} else { // turning right
+			currentInsideRatio = rightEncoderValue/leftEncoderValue;
+			if (currentInsideRatio > targetInsideRatio) {
+				rightSpeed = rightSpeed * 0.95;
+			} else {
+				rightSpeed = rightSpeed * 1.05;
+			};
+		
+		}
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
-	} */
+	}
 	
-	public boolean driveArcIsFinished(double outsideDistance, String direction) {
-		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
-		double rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
+	public boolean driveArcIsFinished() {
+	    leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
+	    rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
 		double leftRotations = leftEncoderValue / 7610;
 		double rightRotations = rightEncoderValue / 7610;
-		double outsideRotations = this.convertToRotations(outsideDistance);
 		
 		if (direction.equals("left")) {
 			if (rightRotations >= outsideRotations)
