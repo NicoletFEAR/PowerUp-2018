@@ -384,7 +384,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	
 	
-	public double[] driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
+/*	public double[] driveArcInit(String direction, double width, double length, double speed, double wheelDistance) {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
 		double leftSpeed;
@@ -427,7 +427,7 @@ public class DriveTrain extends PIDSubsystem {
 		
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
-	}
+	} */
 	
 	public boolean driveArcIsFinished(double outsideDistance, String direction) {
 		double leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
