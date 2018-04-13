@@ -94,10 +94,16 @@ public class RobotMap {
 	public static AHRS navX;
 
     public static DigitalInput godSwitch;
+    
+    public static DigitalInput cubeLeftSwitch;
+    public static DigitalInput cubeRightSwitch;
 
 	public static AnalogPotentiometer playKnob;
 	public static AnalogPotentiometer positionKnob;
-		
+	
+	public static int cubeCount = 0;
+	public static double extraInches = 0.0;	
+	
 	public enum AutoPosition {
     	A, B, C, D, E
     }
@@ -120,6 +126,9 @@ public class RobotMap {
         playKnob = new AnalogPotentiometer(2, 6);
         
         godSwitch = new DigitalInput(0);
+        
+        cubeLeftSwitch = new DigitalInput(1);
+        cubeRightSwitch = new DigitalInput(2);
         
     	cubeLaunch = false;
         

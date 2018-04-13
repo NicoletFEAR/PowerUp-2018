@@ -250,6 +250,11 @@ public class DriveTrain extends PIDSubsystem {
 	public double convertToRotations(double distanceInInches) {
 		return (distanceInInches) / (Math.PI * (RobotMap.WHEEL_RADIUS * 2));
 	}
+	
+	public double convertToInches(double rotations)
+	{		
+		return (rotations) * (Math.PI * (RobotMap.WHEEL_RADIUS * 2));
+	}
 
 	public void driveForSeconds(double seconds, double leftInput, double rightInput) {
 		currentTime = System.currentTimeMillis();
