@@ -161,6 +161,28 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotPeriodic(){
 		SmartDashboard.putBoolean("Is Atlas?", RobotMap.godSwitch.get());
+		SmartDashboard.putNumber("Cube Count: ", RobotMap.cubeCount);
+		
+		if (RobotMap.cubeLeftSwitch.get() == false && RobotMap.cubeRightSwitch.get() == false)
+		{
+			RobotMap.cubeCount = 0;
+			SmartDashboard.putBoolean("Cube in Intake?", false);
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 0);
+		}
+		else if ((RobotMap.cubeLeftSwitch.get() == true || RobotMap.cubeRightSwitch.get() == true) && RobotMap.cubeCount < 40)
+		{
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 1);
+			RobotMap.cubeCount++;
+				
+			SmartDashboard.putBoolean("Cube in Intake?", true);		
+		}
+		else if (RobotMap.cubeCount >= 40)
+		{
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 0);
+		}
 	}
 	/**
 	 * This function is called when the disabled button is hit. You can use it
