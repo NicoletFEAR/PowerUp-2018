@@ -383,7 +383,7 @@ public class DriveTrain extends PIDSubsystem {
 		outsideRotations = this.convertToRotations(distance);
 		
 		if (Robot.teamSwitchSide.equals("L")){
-			targetInsideRatio = leftSpeed/rightSpeed;
+			targetInsideRatio = leftSpeed/rightSpeed; // gets ratio of insideArc/OutsideArc ... smaller = steeper!
 		} else {
 			targetInsideRatio = rightSpeed/leftSpeed;
 		}
@@ -392,19 +392,19 @@ public class DriveTrain extends PIDSubsystem {
 	public void driveArcExecute() {
 		leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
 		rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
-		if (direction.equals("left")) {
+		if (direction.equals("left")) { // turning left
 			currentInsideRatio = leftEncoderValue/rightEncoderValue;
-			if (currentInsideRatio > targetInsideRatio) {
-				leftSpeed = leftSpeed * 0.95;
-			} else {
-				leftSpeed = leftSpeed * 1.05;
+			if (currentInsideRatio > targetInsideRatio) {     // if turning too widely:
+				leftSpeed = leftSpeed * 0.95; // slow the inside to turn steeper
+			} else {                                         // if turning too steeply:
+				leftSpeed = leftSpeed * 1.05; // speed up the inside to turn wider
 			};
 		} else { // turning right
 			currentInsideRatio = rightEncoderValue/leftEncoderValue;
-			if (currentInsideRatio > targetInsideRatio) {
-				rightSpeed = rightSpeed * 0.95;
-			} else {
-				rightSpeed = rightSpeed * 1.05;
+			if (currentInsideRatio > targetInsideRatio) {     // if turning too widely:
+				rightSpeed = rightSpeed * 0.95; // slow the inside to turn steeper
+			} else {                                          // if turning too steeply:
+				rightSpeed = rightSpeed * 1.05; // speed up the inside to turn wider
 			};
 		
 		}
@@ -419,12 +419,12 @@ public class DriveTrain extends PIDSubsystem {
 		double rightRotations = rightEncoderValue / 7610;
 		
 		if (direction.equals("left")) {
-			if (rightRotations >= outsideRotations)
+			if (rightRotations >= outsideRotations) // checks if the outside of arc has been completed
 				return true;
 			else
 				return false;
 		} else {
-			if (leftRotations >= outsideRotations)
+			if (leftRotations >= outsideRotations) // checks if the outside of arc has been completed
 				return true;
 			else
 				return false;

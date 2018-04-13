@@ -40,13 +40,14 @@ public class PlayOneCubeArc extends CommandGroup {
 //    				addSequential(new CubeLaunch());
     				break;
     			case C:
+    				//          DriveArc(direction, outsideArcDistance, leftSpeed, rightSpeed)
     				//addSequential(new DriveArc("left", 32.25, 42, .4786));
     				//addSequential(new DriveArc("right", 32.25, 42, .4786));
     				addSequential(new DriveArc("left", 73.7676685323, .397901804448, .6));
     				//lets try slowing down at the end in order to stop straighter and better
     				addSequential(new DriveArc("right", 46, .6, .397901804448));
     				addSequential(new DriveArc("right", 14.7676685323, .3, 0.19895090224));
-    				addSequential(new DriveArc("right", 13, .15, (0.19895090224)/2));
+    				addSequential(new DriveArc("right", 13, .15, (0.19895090224)/2)); // slows down near the end of arc
 
     				break;
     			case D:
