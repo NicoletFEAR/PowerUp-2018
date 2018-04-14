@@ -22,6 +22,7 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootNearSwitch;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 //import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
 //import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
@@ -65,7 +66,7 @@ public class Robot extends TimedRobot {
 	public static RobotMap.AutoPosition myPosition = RobotMap.AutoPosition.A;
 	public static String teamScaleSide;
 	public static String teamSwitchSide;
-//	public static Cube cubeMech;
+	public static Cube cubeMech;
 //	public static Lifter lifty;
 	public static Shifter shifter = new Shifter();
 	public static PressureSensor pressureSensor = new PressureSensor();
@@ -97,7 +98,7 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		autoChooser = new AutoChooser();
 		arduinoLCDInterface = new ArduinoInterface(8);
-//		cubeMech = new Cube();
+		cubeMech = new Cube();
 //		lifty = new Lifter();
 		// arduinoLEDInterface = new ArduinoInterface(7);
 		// arduinoCameraInterface = new ArduinoInterface(6);
@@ -183,6 +184,8 @@ public class Robot extends TimedRobot {
 			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
 			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 0);
 		}
+		
+		SmartDashboard.putNumber("NavX Angle: ", RobotMap.navX.getAngle());
 	}
 	/**
 	 * This function is called when the disabled button is hit. You can use it
@@ -202,6 +205,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
+		RobotMap.navX.reset();
 //		lifty.rampReset();
 //		lifty.descend();
 		
@@ -273,6 +277,7 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
+		RobotMap.navX.reset();
 //		lifty.rampReset();
 
 	}

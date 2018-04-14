@@ -310,7 +310,7 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -turnToAngleRate);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, -turnToAngleRate);
 
-		SmartDashboard.putNumber("NavX Angle", RobotMap.navX.getAngle());
+		SmartDashboard.putNumber("TurnToAngle Angle", RobotMap.navX.getAngle());
 		SmartDashboard.putNumber("NavX Turn Rate", RobotMap.navX.getRate());
 	}
 
@@ -490,7 +490,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		turnToAngleRate = output * .3;
+		turnToAngleRate = output * .4;
 	}
 
 }

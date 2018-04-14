@@ -33,20 +33,20 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new DriveToPosition(150, .85));
 				addSequential(new TurnToAngle(90));
 				addSequential(new DriveToPosition(36, .5));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case B:
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, .2));
+				addSequential(new DriveToPosition(36, .4));
 				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(71, .2));
+				addSequential(new DriveToPosition(71, .4));
 				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(40, .2));
-				addSequential(new WaitCommand(1));
-//				addSequential(new CubeLaunch());
+				addSequential(new DriveToPosition(25, .4));
+				addSequential(new WaitCommand(.2));
+				addSequential(new CubeLaunch());
 				break;
 			case D:
 				addSequential(new DriveToPosition(110, .85));
@@ -74,23 +74,23 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new DriveToPosition(110, .85));
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, .2));
+				addSequential(new DriveToPosition(36, .4));
 				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(59, .2));
-				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(47, .2));
-				addSequential(new WaitCommand(1));
-//				addSequential(new CubeLaunch());
+				addSequential(new DriveToPosition(59, .4));
+				addSequential(new TurnToAngle(-50));
+				addSequential(new DriveToPosition(25, .4));
+				addSequential(new WaitCommand(.2));
+				addSequential(new CubeLaunch());
 				break;
 			case D:
 				addSequential(new DriveToPosition(110, .85));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			case E:
-				addSequential(new DriveToPosition(150, .85));
+				addSequential(new DriveToPosition(150, .4));
 				addSequential(new TurnToAngle(-90));
 				addSequential(new DriveToPosition(36, .5));
-//				addSequential(new CubeLaunch());
+				addSequential(new CubeLaunch());
 				break;
 			}
 		}
