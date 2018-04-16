@@ -23,6 +23,6 @@ public class PlayDoNothing extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new NoDrivey(), 30);
+    	addSequential(new NoDrivey(), 15);
     }
 }

@@ -382,7 +382,7 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.backRight.follow(RobotMap.frontRight);
 		outsideRotations = this.convertToRotations(distance);
 		
-		if (Robot.teamSwitchSide.equals("L")){
+		if (direction.equals("left")){
 			targetInsideRatio = leftSpeed/rightSpeed; // gets ratio of insideArc/OutsideArc ... smaller = steeper!
 		} else {
 			targetInsideRatio = rightSpeed/leftSpeed;
