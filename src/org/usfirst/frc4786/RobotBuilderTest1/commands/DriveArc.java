@@ -19,7 +19,6 @@ public class DriveArc extends Command {
 	double[] initReturn = new double[4];
 	public double targetInsideRatio;
 	public double currentInsideRatio;
-	public boolean isFinishedVar;
 	
     public DriveArc(String turnDirection, double outsideArcDistance, double leftSpeedIn, double rightSpeedIn) {
     	requires(Robot.driveTrain);
@@ -27,7 +26,6 @@ public class DriveArc extends Command {
     	distance = outsideArcDistance;
     	leftSpeed = leftSpeedIn;
     	rightSpeed = rightSpeedIn;
-    	isFinishedVar = false;
     }
 	
     // Called just before this Command runs the first time
@@ -38,16 +36,7 @@ public class DriveArc extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.driveArcExecute();
-  	
-/*
-    	RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
-		RobotMap.midLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
-		RobotMap.backLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
-		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
-		RobotMap.midRight.set(ControlMode.PercentOutput, rightSpeed);
-		RobotMap.backRight.set(ControlMode.PercentOutput, rightSpeed);
-*/
-        }
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

@@ -43,12 +43,12 @@ public class PlayOneCubeArc extends CommandGroup {
     				//          DriveArc(direction, outsideArcDistance, leftSpeed, rightSpeed)
     				//addSequential(new DriveArc("left", 32.25, 42, .4786));
     				//addSequential(new DriveArc("right", 32.25, 42, .4786));
-    				addSequential(new DriveArc("left", 73.7676685323, .397901804448, .6));
+    				addSequential(new DriveArc("left", 73.768, .398, .6));
     				//lets try slowing down at the end in order to stop straighter and better
-    				addSequential(new DriveArc("right", 46, .6, .397901804448));
-    				addSequential(new DriveArc("right", 14.7676685323, .3, 0.19895090224));
-    				addSequential(new DriveArc("right", 13, .15, (0.19895090224)/2)); // slows down near the end of arc
-
+    				addSequential(new DriveArc("right", 46, .6, .395));
+    				addSequential(new DriveArc("right", 14.768, .3, 0.199));
+    				addSequential(new DriveArc("right", 13, .15, (0.199)/2)); // slows down near the end of arc
+//    				addSequential(new CubeLaunch());
     				break;
     			case D:
         			addSequential(new PlayBaseline());
@@ -67,13 +67,12 @@ public class PlayOneCubeArc extends CommandGroup {
     				addSequential(new PlayBaseline());
     				break;
     			case C:
-    			//	addSequential(new DriveArc("right", 70, 31.25, .4786));
-    			//	addSequential(new DriveArc("left", 70, 31.25, .4786));
     				addSequential(new DriveArc("right", 70, .6, .28));
     				//lets try slowing down at the end in order to stop straighter and better
     				addSequential(new DriveArc("left", 46, .28, 0.6));
     				addSequential(new DriveArc("left", 12, .14, 0.3));
     				addSequential(new DriveArc("left", 12, .07, 0.15));
+    				addSequential(new CubeLaunch());
     				break;
     			case D:
     				addSequential(new DriveToPosition(110, .85));

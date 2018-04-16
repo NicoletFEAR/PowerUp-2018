@@ -25,7 +25,6 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class RobotMap {
 
-	public static boolean cubeLaunch;
     public static TalonSRX frontLeft;
     public static TalonSRX frontRight;
     public static TalonSRX midLeft;
@@ -130,7 +129,6 @@ public class RobotMap {
         cubeLeftSwitch = new DigitalInput(1);
         cubeRightSwitch = new DigitalInput(2);
         
-    	cubeLaunch = false;
         
         navX = new AHRS(SPI.Port.kMXP);
     }    

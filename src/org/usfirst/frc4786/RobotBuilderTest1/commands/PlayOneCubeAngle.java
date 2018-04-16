@@ -25,7 +25,7 @@ public class PlayOneCubeAngle extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 		requires(Robot.driveTrain);
-//		requires(Robot.cubeMech);
+		requires(Robot.cubeMech);
 
 		if (Robot.teamSwitchSide.equals("L")) {
 			switch (Robot.myPosition) {
@@ -77,7 +77,7 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new DriveToPosition(36, .4));
 				addSequential(new TurnToAngle(60));
 				addSequential(new DriveToPosition(59, .4));
-				addSequential(new TurnToAngle(-50));
+				addSequential(new TurnToAngle(-60));
 				addSequential(new DriveToPosition(25, .4));
 				addSequential(new WaitCommand(.2));
 				addSequential(new CubeLaunch());
