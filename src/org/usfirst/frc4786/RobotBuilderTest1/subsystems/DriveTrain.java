@@ -358,7 +358,7 @@ public class DriveTrain extends PIDSubsystem {
 
 		return (leftRotations >= rotations - RobotMap.driveToPositionError
 				&& leftRotations <= rotations + RobotMap.driveToPositionError)
-				&& (rightRotations >= rotations - RobotMap.driveToPositionError
+				|| (rightRotations >= rotations - RobotMap.driveToPositionError
 				&& rightRotations <= rotations + RobotMap.driveToPositionError);
 	}
 
