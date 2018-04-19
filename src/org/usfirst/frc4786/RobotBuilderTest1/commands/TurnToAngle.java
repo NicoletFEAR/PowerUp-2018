@@ -19,11 +19,13 @@ public class TurnToAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	Robot.shifter.shiftdown();
+    	// Wisconsin values 0.06 & 0.05
+    	// changing for wood to 0.07 & 0.07
     	if (RobotMap.godSwitch.get())
     	{
-    		 RobotMap.TurnP = 0.06;
+    		 RobotMap.TurnP = 0.07;
     	} else {
-    		 RobotMap.TurnP = 0.05;
+    		 RobotMap.TurnP = 0.06;
     	}
     	
     	RobotMap.navX.reset();
