@@ -52,7 +52,11 @@ public class DriveTrain extends PIDSubsystem {
 	public double leftEncoderValue;
 	public double rightEncoderValue;
 	public double outsideRotations;
-	
+
+// driveToPosition Variables
+	public double currentLeftSpeed;
+	public double currentRightSpeed;
+	public double inputSpeed;
 
 	public DriveTrain() {
 		super(RobotMap.TurnP, RobotMap.TurnI, RobotMap.TurnD, 0.01, RobotMap.TurnF);
@@ -260,6 +264,9 @@ public class DriveTrain extends PIDSubsystem {
 	public void driveToPositionInit(double distanceToDrive, double driveSpeed) {
 		// Change Talon modes to "position" just in case
 		// they were in another mode before
+		inputSpeed = driveSpeed;
+		currentLeftSpeed = driveSpeed;
+		currentRightSpeed = driveSpeed;
 		
 		RobotMap.midLeft.follow(RobotMap.frontLeft);
 		RobotMap.backLeft.follow(RobotMap.frontLeft);
@@ -332,8 +339,17 @@ public class DriveTrain extends PIDSubsystem {
 		RobotMap.midRight.follow(RobotMap.frontRight);
 		RobotMap.backRight.follow(RobotMap.frontRight);
 		driveAngle = 0;
-		double leftSpeed = driveSpeed;
-		double rightSpeed = driveSpeed;
+		
+		leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
+		rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
+		
+		if (Math.abs(leftEncoderValue) > Math.abs(rightEncoderValue) + 100) { // encoder error correction
+			currentLeftSpeed = currentLeftSpeed * 0.95;
+		} else if (Math.abs(leftEncoderValue) < Math.abs(rightEncoderValue) - 100) {
+			currentLeftSpeed = currentLeftSpeed * 1.05;
+		}
+		
+		/* navX error correction
 		if (RobotMap.navX.getAngle() < -driveAngle) {
 			rightSpeed *= .9;
 		} else if (RobotMap.navX.getAngle() > driveAngle) {
@@ -342,9 +358,10 @@ public class DriveTrain extends PIDSubsystem {
 			rightSpeed = driveSpeed;
 			leftSpeed = driveSpeed;
 		}
+		*/
 
-		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * leftSpeed);
-		RobotMap.frontRight.set(ControlMode.PercentOutput, rightSpeed);
+		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * currentLeftSpeed);
+		RobotMap.frontRight.set(ControlMode.PercentOutput, currentRightSpeed);
 	}
 
 	public boolean driveToPositionIsFinished(double rotations) {
