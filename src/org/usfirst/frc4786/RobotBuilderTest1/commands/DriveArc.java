@@ -3,6 +3,8 @@ package org.usfirst.frc4786.RobotBuilderTest1.commands;
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -11,34 +13,34 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveArc extends Command {
 
 	public String direction;
-	public double width;
-	public double length;
-	public double speed;
+	public double distance;
+	public double leftSpeed;
+	public double rightSpeed;
 	double[] initReturn = new double[4];
+	public double targetInsideRatio;
+	public double currentInsideRatio;
 	
-    public DriveArc(String turnDirection, double sideWidth, double driveLength, double driveSpeed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public DriveArc(String turnDirection, double outsideArcDistance, double leftSpeedIn, double rightSpeedIn) {
     	requires(Robot.driveTrain);
     	direction = turnDirection;
-    	width = sideWidth;
-    	length = driveLength;
-    	speed = driveSpeed * RobotMap.arcSpeedScaling;
+    	distance = outsideArcDistance;
+    	leftSpeed = leftSpeedIn;
+    	rightSpeed = rightSpeedIn;
     }
-
+	
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initReturn = Robot.driveTrain.driveArcInit(direction, width, length, speed, RobotMap.wheelDistance);
+    	Robot.driveTrain.driveArcInit(direction, distance, leftSpeed, rightSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.driveArcExecute(initReturn[0], initReturn[1]);
+    	Robot.driveTrain.driveArcExecute();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveTrain.driveArcIsFinished(initReturn[2], direction);
+        return  Robot.driveTrain.driveArcIsFinished();
     }
 
     // Called once after isFinished returns true

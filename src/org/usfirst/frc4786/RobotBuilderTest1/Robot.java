@@ -11,19 +11,21 @@
 package org.usfirst.frc4786.RobotBuilderTest1;
 
 import org.usfirst.frc4786.RobotBuilderTest1.commands.DisplayAutonomous;
-import org.usfirst.frc4786.RobotBuilderTest1.commands.DriveToPosition;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayDoNothing;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayBaseline;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeArc;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayMagic;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeAngle;
+import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeArc;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayShootGetCube;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.PlayOneCubeAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
+//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
-import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
+//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Shifter;
 
@@ -37,7 +39,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.VisionNTableValueSet;
-
+import edu.wpi.first.wpilibj.GenericHID;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -66,7 +68,7 @@ public class Robot extends TimedRobot {
 	public static String teamScaleSide;
 	public static String teamSwitchSide;
 	public static Cube cubeMech;
-	public static Lifter lifty;
+//	public static Lifter lifty;
 	public static Shifter shifter = new Shifter();
 	public static PressureSensor pressureSensor = new PressureSensor();
 
@@ -98,7 +100,7 @@ public class Robot extends TimedRobot {
 		autoChooser = new AutoChooser();
 		arduinoLCDInterface = new ArduinoInterface(8);
 		cubeMech = new Cube();
-		lifty = new Lifter();
+//		lifty = new Lifter();
 		// arduinoLEDInterface = new ArduinoInterface(7);
 		// arduinoCameraInterface = new ArduinoInterface(6);
 
@@ -114,8 +116,8 @@ public class Robot extends TimedRobot {
 
 		if (RobotMap.godSwitch.get()) {
 			cubeMech.raise();
-			lifty.rampReset();
-			lifty.descend();
+//			lifty.rampReset();
+//			lifty.descend();
 		}
 		System.out.println("Loading version " + vNum);
 		SmartDashboard.putNumber("Version #", vNum);
@@ -183,18 +185,8 @@ public class Robot extends TimedRobot {
 			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
 			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 0);
 		}
-/*
-		if (RobotMap.cubeLeftSwitch.get() == true)
-		{
-			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 1);
-			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 1);
-		}
-		else
-		{
-			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-			Robot.oi.getXbox2().setRumble(GenericHID.RumbleType.kRightRumble, 0);
-		}
-*/		
+		
+		SmartDashboard.putNumber("NavX Angle: ", RobotMap.navX.getAngle());
 	}
 	/**
 	 * This function is called when the disabled button is hit. You can use it
@@ -214,8 +206,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		lifty.rampReset();
-		lifty.descend();
+		RobotMap.navX.reset();
+//		lifty.rampReset();
+//		lifty.descend();
+		
+		
 		/*
 		 * Once we have a working 2nd Arduino + LED System //send correct
 		 * alliance data to arduino alliance =
@@ -283,7 +278,8 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 		RobotMap.frontLeft.setSelectedSensorPosition(0, 0, 10);
 		RobotMap.frontRight.setSelectedSensorPosition(0, 0, 10);
-		lifty.rampReset();
+		RobotMap.navX.reset();
+//		lifty.rampReset();
 
 	}
 

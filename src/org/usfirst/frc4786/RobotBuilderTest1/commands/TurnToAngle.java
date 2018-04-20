@@ -1,4 +1,4 @@
-package org.usfirst.frc4786.RobotBuilderTest1.commands;
+ package org.usfirst.frc4786.RobotBuilderTest1.commands;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
@@ -19,11 +19,13 @@ public class TurnToAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	Robot.shifter.shiftdown();
+    	// Wisconsin values 0.06 & 0.05
+    	// changing for wood to 0.07 & 0.07
     	if (RobotMap.godSwitch.get())
     	{
-    		 RobotMap.TurnP = 0.06;
+    		 RobotMap.TurnP = 0.08;
     	} else {
-    		 RobotMap.TurnP = 0.05;
+    		 RobotMap.TurnP = 0.07;
     	}
     	
     	RobotMap.navX.reset();

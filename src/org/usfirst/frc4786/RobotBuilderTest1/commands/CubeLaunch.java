@@ -10,14 +10,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class CubeLaunch extends CommandGroup {
 	public CubeLaunch() { // sequence of commands that launches a cube
-    	RobotMap.cubeLaunch = true;
-		addParallel(new CubeFlywheelForward());
-//    	addSequential(new WaitCommand(.5));
-//    	addSequential(new CubePistonExtend());
-    	addSequential(new WaitCommand(1));
-//    	addSequential(new CubeFlywheelVariable());
-//    	addSequential(new CubePistonRetract());
-    	addSequential(new CubeFlywheelStop());
-    	RobotMap.cubeLaunch = false;
+		addSequential(new StartCubeFlywheelOut(0.75));
+    	addSequential(new WaitCommand(0.5));
+    	addSequential(new StopCubeFlywheel());
     }
 }

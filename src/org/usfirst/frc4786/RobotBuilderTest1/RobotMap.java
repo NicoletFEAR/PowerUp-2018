@@ -26,7 +26,6 @@ import edu.wpi.first.wpilibj.SPI;
  */
 public class RobotMap {
 
-	public static boolean cubeLaunch;
     public static TalonSRX frontLeft;
     public static TalonSRX frontRight;
     public static TalonSRX midLeft;
@@ -38,7 +37,7 @@ public class RobotMap {
     
     public static double leftMotorScaling = 0.89;
     public static double rightMotorScaling = 0.89;
-    public static double wheelDistance = 21;
+    public static double wheelDistance = 27;
     public static double arcSpeedScaling = .5;
     
     public static int module0 = 0;
@@ -62,7 +61,7 @@ public class RobotMap {
 	public static int compressormodule = 0;
 	
 	//NavX turn PID Constants
-	public static double TurnP = 0.06;
+	public static double TurnP = 0.02;
 	public static double TurnI = 0.00;
 	public static double TurnD = 0.0;
 	public static double TurnF = 0.0;
@@ -103,7 +102,9 @@ public class RobotMap {
 	public static AnalogPotentiometer positionKnob;
 	
 	public static int cubeCount = 0;
-		
+	
+	public static double extraInches = 0.0;	
+	
 	public enum AutoPosition {
     	A, B, C, D, E
     }
@@ -130,7 +131,6 @@ public class RobotMap {
         cubeLeftSwitch = new DigitalInput(1);
         cubeRightSwitch = new DigitalInput(2);
         
-    	cubeLaunch = false;
         
         navX = new AHRS(SPI.Port.kMXP);
     }    
