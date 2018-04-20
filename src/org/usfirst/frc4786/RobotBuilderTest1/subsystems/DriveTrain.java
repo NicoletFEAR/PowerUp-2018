@@ -343,13 +343,12 @@ public class DriveTrain extends PIDSubsystem {
 		leftEncoderValue = RobotMap.frontLeft.getSelectedSensorPosition(0);
 		rightEncoderValue = RobotMap.frontRight.getSelectedSensorPosition(0);
 		
-		if (Math.abs(leftEncoderValue) > Math.abs(rightEncoderValue) + 100) { // encoder error correction
+		/*if (Math.abs(leftEncoderValue) > Math.abs(rightEncoderValue) + 100) { // encoder error correction
 			currentLeftSpeed = currentLeftSpeed * 0.95;
 		} else if (Math.abs(leftEncoderValue) < Math.abs(rightEncoderValue) - 100) {
 			currentLeftSpeed = currentLeftSpeed * 1.05;
-		}
+		}*/
 		
-		/* navX error correction
 		if (RobotMap.navX.getAngle() < -driveAngle) {
 			rightSpeed *= .9;
 		} else if (RobotMap.navX.getAngle() > driveAngle) {
@@ -358,7 +357,6 @@ public class DriveTrain extends PIDSubsystem {
 			rightSpeed = driveSpeed;
 			leftSpeed = driveSpeed;
 		}
-		*/
 
 		RobotMap.frontLeft.set(ControlMode.PercentOutput, -1 * currentLeftSpeed);
 		RobotMap.frontRight.set(ControlMode.PercentOutput, currentRightSpeed);

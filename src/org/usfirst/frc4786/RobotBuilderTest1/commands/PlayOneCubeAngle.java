@@ -40,11 +40,11 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new CubeLaunch());
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, .4));
+				addSequential(new DriveToPosition(36, .3));
 				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(71, .4));
-				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(25, .4));
+				addSequential(new DriveToPosition(71, .3));
+				addSequential(new TurnToAngle(55));
+				addSequential(new DriveToPosition(25, .3));
 				addSequential(new WaitCommand(.2));
 				addSequential(new CubeLaunch());
 				break;
@@ -74,11 +74,11 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new DriveToPosition(110, .85));
 				break;
 			case C:
-				addSequential(new DriveToPosition(36, .4));
+				addSequential(new DriveToPosition(36, .3));
 				addSequential(new TurnToAngle(60));
-				addSequential(new DriveToPosition(59, .4));
-				addSequential(new TurnToAngle(-60));
-				addSequential(new DriveToPosition(25, .4));
+				addSequential(new DriveToPosition(65, .3));
+				addSequential(new TurnToAngle(-50));
+				addSequential(new DriveToPosition(20, .3));
 				addSequential(new WaitCommand(.2));
 				addSequential(new CubeLaunch());
 				break;
