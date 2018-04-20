@@ -15,59 +15,45 @@ public class PlayShootGetCube extends CommandGroup {
 
     public PlayShootGetCube() {
     	requires(Robot.driveTrain);
-//    	requires(Robot.cubeMech);
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    	switch (Robot.myPosition)
+    	requires(Robot.cubeMech);
+    	
+     	switch (Robot.myPosition)
     	{
     		case A:
     			if (Robot.teamSwitchSide.equals("L")) {
-		    		addSequential(new DriveToPosition(150, .85));
-					addSequential(new TurnToAngle(90));
-					addSequential(new DriveToPosition(36, .5));
+		    		addSequential(new DriveToPosition(150, .85));     // Drive to next to switch 150 inches
+					addSequential(new TurnToAngle(90));               // turn 90 degrees toward switch
+					addSequential(new DriveToPosition(36, .5));       // Drive forward to touch switch 36 inches
 					
-					addSequential(new CubeLaunch());
+					addSequential(new CubeLaunch());                  //cube launch 1
 					
-					addSequential(new TurnToAngle(90));
-					addSequential(new DriveToPosition(-64, .5));
-					addSequential(new TurnToAngle(-37));
-//					addSequential(new Robot.cubeMech.lower());
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to get cube!
-					addSequential(new DriveToPosition(20, .4));
-		    		addSequential(new StopCubeFlywheel()); // stop running the intake wheels
-					addSequential(new DriveToPosition(-10, .4));
-//					addSequential(new Robot.cubeMech.raise());
-					addSequential(new DriveToPosition(10, .4));
-					addSequential(new DriveArc("left", 19, .01, .4));
-					addSequential(new CubeLaunch());
+					addSequential(new TurnToAngle(90));               // turn 90 degrees clockwise to face drivers
+					addSequential(new DriveToPosition(-64, .5));      // drive backwards 64 inches
+					addSequential(new TurnToAngle(-37));              // turn anti-clockwise toward first home row cube
+					addSequential(new CubeMechDrop());                // Lower cube mech
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to get cube!
+					addSequential(new DriveToPosition(20, .4));       // drive forward slowly with mech running inward
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
+					addSequential(new DriveToPosition(-10, .4));      // back up 10 inches
+					addSequential(new CubeMechRaise());               // raise the cube mech
+					addSequential(new DriveToPosition(10, .4));       // drive forward 10 inches
+					addSequential(new DriveArc("right", 19, .4, .1)); // drive in a right arc to end flush with switch
+
+					addSequential(new CubeLaunch());                  // cube launch 2
 					
 					addSequential(new WaitCommand(.2));
 					
-					addSequential(new DriveToPosition(-20, .4));
-//					addSequential(new Robot.cubeMech.lower());
-					addSequential(new TurnToAngle(-37));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to get cube!
-					addSequential(new DriveToPosition(23, .4));
-		    		addSequential(new StopCubeFlywheel()); // stop running the intake wheels
-					addSequential(new DriveToPosition(-23, .4));
-					addSequential(new TurnToAngle(37));
-//					addSequential(new Robot.cubeMech.raise());
-					addSequential(new DriveToPosition(20, .4));
-					addSequential(new CubeLaunch());
+					addSequential(new DriveToPosition(-20, .4));      // back up from switch 20 inches
+					addSequential(new CubeMechDrop());                // Lower cube mech
+					addSequential(new TurnToAngle(-37));              // turn anti-clockwise toward second home row cube 37 degrees
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to get cube!
+					addSequential(new DriveToPosition(23, .4));       // drive forward slowly with mech running inward
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
+					addSequential(new DriveToPosition(-23, .4));      // back up 23 inches from switch
+					addSequential(new TurnToAngle(37));               // turn clockwise toward switch 37 degrees 
+					addSequential(new CubeMechRaise());               // raise the cube mech
+					addSequential(new DriveToPosition(23, .4));       // drive forward to touch switch
+					addSequential(new CubeLaunch());                  // cube launch 3
      			}
     			else
     			{
@@ -96,40 +82,42 @@ public class PlayShootGetCube extends CommandGroup {
 		    		RobotMap.midLeft.set(ControlMode.PercentOutput, 0);
 		    		RobotMap.midRight.set(ControlMode.PercentOutput, 0);
 */		    		
-		    		addSequential(new DriveToPosition(-77, 0.3)); // back up from switch to get cube #2
+		    		addSequential(new DriveToPosition(-77, 0.3));     // back up from switch to get cube #2
 		    		addSequential(new TurnToAngle(45));
-		//    		addParallel(new Robot.cubeMech.lower());
+					addSequential(new CubeMechDrop());                // Lower cube mech
 		    		addSequential(new DriveToPosition(35, 0.4));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running intake wheels in
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running intake wheels in
 		    		addSequential(new DriveToPosition(9.9, .3));
-		    		addSequential(new StopCubeFlywheel()); // stop running the intake wheels
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
 		    		addSequential(new WaitCommand(0.2));
 		
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to hold in that cube!
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to hold in that cube!
 		    		addSequential(new DriveToPosition(-35, .3));
 		    		addSequential(new StopCubeFlywheel());
 		    		addSequential(new TurnToAngle(-45));
-		//    		addParallel(new Robot.cubeMech.raise());	// lift the cube mech	    		
+					addSequential(new CubeMechRaise());               // raise the cube mech
 		    		addSequential(new DriveToPosition(77, .3));
-		    		addSequential(new CubeLaunch()); // launch cube #2
+
+		    		addSequential(new CubeLaunch());                 // launch cube #2
 		    		
 		
-		    		addSequential(new DriveToPosition(-52, .3)); // back up to get third cube!
+		    		addSequential(new DriveToPosition(-52, .3));     // back up to get third cube!
 		    		addSequential(new TurnToAngle(40));
-		//    		addSequential(new Robot.cubeMech.lower());		    		
+					addSequential(new CubeMechDrop());               // Lower cube mech
 		    		addSequential(new DriveToPosition(26, .3));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running intake wheels in
+		    		addSequential(new StartCubeFlywheelIn(1));       // start running intake wheels in
 		    		addSequential(new DriveToPosition(17.71, .3));
-		    		addSequential(new StartCubeFlywheelIn(.3)); // stop the intake mech!!!
+		    		addSequential(new StartCubeFlywheelIn(.3));      // stop the intake mech!!!
 		    		addSequential(new WaitCommand(0.2));
 		    		
-		    	    addSequential(new StartCubeFlywheelIn(1)); // start running the intake to hold in that cube!
-		    		addSequential(new DriveToPosition(-33, .3)); // back up from pile
+		    	    addSequential(new StartCubeFlywheelIn(1));       // start running the intake to hold in that cube!
+		    		addSequential(new DriveToPosition(-33, .3));     // back up from pile
 		    		addSequential(new StopCubeFlywheel());
 		    		addSequential(new TurnToAngle(-40));
-		//    		addParallel(new Robot.cubeMech.raise());		    		
+					addSequential(new CubeMechRaise());              // raise the cube mech
 		    		addSequential(new DriveToPosition(52, .3));
-		    		addSequential(new CubeLaunch()); // shoots cube #3
+
+		    		addSequential(new CubeLaunch());                 // shoots cube #3
 		    		
 		    	} else if (Robot.teamSwitchSide.equals("R")) {
 		    		/*
@@ -153,78 +141,78 @@ public class PlayShootGetCube extends CommandGroup {
 		    		RobotMap.midLeft.set(ControlMode.PercentOutput, 0);
 		    		RobotMap.midRight.set(ControlMode.PercentOutput, 0);
 */		    		
-		    		addSequential(new DriveToPosition(-77, 0.3)); // back up from switch to get cube #2
+		    		addSequential(new DriveToPosition(-77, 0.3));     // back up from switch to get cube #2
 		    		addSequential(new TurnToAngle(-45));
-		//    		addParallel(new Robot.cubeMech.lower());
+					addSequential(new CubeMechDrop());                // Lower cube mech
 		    		addSequential(new DriveToPosition(35, 0.4));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running intake wheels in
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running intake wheels in
 		    		addSequential(new DriveToPosition(9.9, .3));
-		    		addSequential(new StopCubeFlywheel()); // stop running the intake wheels
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
 		    		addSequential(new WaitCommand(0.2));
 		
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to hold in that cube!
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to hold in that cube!
 		    		addSequential(new DriveToPosition(-35, .3));
 		    		addSequential(new StopCubeFlywheel());
 		    		addSequential(new TurnToAngle(45));
-		//    		addParallel(new Robot.cubeMech.raise());	// lift the cube mech	    		
+					addSequential(new CubeMechRaise());               // raise the cube mech
 		    		addSequential(new DriveToPosition(77, .3));
-		    		addSequential(new CubeLaunch()); // launch cube #2
+		    		addSequential(new CubeLaunch());                  // launch cube #2
 		    		
 		
-		    		addSequential(new DriveToPosition(-52, .3)); // back up to get third cube!
+		    		addSequential(new DriveToPosition(-52, .3));      // back up to get third cube!
 		    		addSequential(new TurnToAngle(-40));
-		//    		addSequential(new Robot.cubeMech.lower());		    		
+					addSequential(new CubeMechDrop());                // Lower cube mech
 		    		addSequential(new DriveToPosition(26, .3));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running intake wheels in
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running intake wheels in
 		    		addSequential(new DriveToPosition(17.71, .3));
-		    		addSequential(new StartCubeFlywheelIn(.3)); // stop the intake mech!!!
+		    		addSequential(new StartCubeFlywheelIn(.3));       // stop the intake mech!!!
 		    		addSequential(new WaitCommand(0.2));
 		    		
-		    	    addSequential(new StartCubeFlywheelIn(1)); // start running the intake to hold in that cube!
-		    		addSequential(new DriveToPosition(-33, .3)); // back up from pile
+		    	    addSequential(new StartCubeFlywheelIn(1));        // start running the intake to hold in that cube!
+		    		addSequential(new DriveToPosition(-33, .3));      // back up from pile
 		    		addSequential(new StopCubeFlywheel());
 		    		addSequential(new TurnToAngle(40));
-		//    		addParallel(new Robot.cubeMech.raise());		    		
+					addSequential(new CubeMechRaise());               // raise the cube mech
 		    		addSequential(new DriveToPosition(52, .3));
-		    		addSequential(new CubeLaunch()); // shoots cube #3
+		    		addSequential(new CubeLaunch());                  // shoots cube #3
 	    			
 		    	} 
 		    	break;
 	    	case E:
     			if (Robot.teamSwitchSide.equals("R")) {
-		    		addSequential(new DriveToPosition(150, .85));
-					addSequential(new TurnToAngle(-90));
-					addSequential(new DriveToPosition(36, .5));
+		    		addSequential(new DriveToPosition(150, .85));     // Drive to next to switch 150 inches
+					addSequential(new TurnToAngle(-90));              // turn 90 degrees toward switch
+					addSequential(new DriveToPosition(36, .5));       // Drive forward to touch switch 36 inches
 					
-					addSequential(new CubeLaunch());
+					addSequential(new CubeLaunch());                  //cube launch 1
 					
-					addSequential(new TurnToAngle(-90));
-					addSequential(new DriveToPosition(-64, .5));
-//					addSequential(new GrabNShoot("right", 0.5));
-					addSequential(new TurnToAngle(37));
-//					addSequential(new Robot.cubeMech.lower());
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to get cube!
-					addSequential(new DriveToPosition(20, .4));
-					addSequential(new CubeFlywheelStop());
-					addSequential(new DriveToPosition(-10, .4));
-//					addSequential(new Robot.cubeMech.raise());
-					addSequential(new DriveToPosition(10, .4));
-					addSequential(new DriveArc("left", 19, .01, .4));
-					addSequential(new CubeLaunch());
+					addSequential(new TurnToAngle(-90));              // turn 90 degrees anti-clockwise to face drivers
+					addSequential(new DriveToPosition(-64, .5));      // drive backwards 64 inches
+					addSequential(new TurnToAngle(37));               // turn clockwise toward first home row cube
+					addSequential(new CubeMechDrop());                // Lower cube mech
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to get cube!
+					addSequential(new DriveToPosition(20, .4));       // drive forward slowly with mech running inward
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
+					addSequential(new DriveToPosition(-10, .4));      // back up 10 inches
+					addSequential(new CubeMechRaise());               // raise the cube mech
+					addSequential(new DriveToPosition(10, .4));       // drive forward 10 inches
+					addSequential(new DriveArc("left", 19, .1, .4));  // drive in a right arc to end flush with switch
+
+					addSequential(new CubeLaunch());                  // cube launch 2
 					
 					addSequential(new WaitCommand(.2));
 					
-					addSequential(new DriveToPosition(-20, .4));
-//					addSequential(new Robot.cubeMech.lower());
-					addSequential(new TurnToAngle(37));
-		    		addSequential(new StartCubeFlywheelIn(1)); // start running the intake to get cube!
-					addSequential(new DriveToPosition(23, .4));
-					addSequential(new CubeFlywheelStop());
-					addSequential(new DriveToPosition(-23, .4));
-					addSequential(new TurnToAngle(-37));
-//					addSequential(new Robot.cubeMech.raise());
-					addSequential(new DriveToPosition(20, .4));
-					addSequential(new CubeLaunch());
+					addSequential(new DriveToPosition(-20, .4));      // back up from switch 20 inches
+					addSequential(new CubeMechDrop());                // Lower cube mech
+					addSequential(new TurnToAngle(37));               // turn clockwise toward second home row cube 37 degrees
+		    		addSequential(new StartCubeFlywheelIn(1));        // start running the intake to get cube!
+					addSequential(new DriveToPosition(23, .4));       // drive forward slowly with mech running inward
+		    		addSequential(new StopCubeFlywheel());            // stop running the intake wheels
+					addSequential(new DriveToPosition(-23, .4));      // back up 23 inches from switch
+					addSequential(new TurnToAngle(-37));              // turn anti-clockwise toward switch 37 degrees 
+					addSequential(new CubeMechRaise());               // raise the cube mech
+					addSequential(new DriveToPosition(23, .4));       // drive forward to touch switch
+					addSequential(new CubeLaunch());                  // cube launch 3
     			}
     			else
     			{

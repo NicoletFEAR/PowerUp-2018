@@ -1,4 +1,4 @@
-package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
+ package org.usfirst.frc4786.RobotBuilderTest1.subsystems;
 
 import org.usfirst.frc4786.RobotBuilderTest1.Robot;
 import org.usfirst.frc4786.RobotBuilderTest1.RobotMap;
@@ -57,7 +57,7 @@ public class Cube extends Subsystem {
 		cubeLiftRight.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void lift() {
+	public void toggle() {
 		if (cubeLiftLeft.get() == DoubleSolenoid.Value.kForward) {
 			raise();
 		} else {

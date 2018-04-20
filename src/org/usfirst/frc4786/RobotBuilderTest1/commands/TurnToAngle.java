@@ -23,9 +23,9 @@ public class TurnToAngle extends Command {
     	// changing for wood to 0.07 & 0.07
     	if (RobotMap.godSwitch.get())
     	{
-    		 RobotMap.TurnP = 0.08;
+    		 RobotMap.TurnP = 0.06;
     	} else {
-    		 RobotMap.TurnP = 0.07;
+    		 RobotMap.TurnP = 0.05;
     	}
     	
     	RobotMap.navX.reset();

@@ -23,9 +23,8 @@ import org.usfirst.frc4786.RobotBuilderTest1.commands.TurnToAngle;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.ArduinoInterface;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.AutoChooser;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
-//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Cube;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.DriveTrain;
-//import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
+import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Lifter;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.PressureSensor;
 import org.usfirst.frc4786.RobotBuilderTest1.subsystems.Shifter;
 
@@ -39,7 +38,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc4786.RobotBuilderTest1.commands.VisionNTableValueSet;
-import edu.wpi.first.wpilibj.GenericHID;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -68,7 +66,7 @@ public class Robot extends TimedRobot {
 	public static String teamScaleSide;
 	public static String teamSwitchSide;
 	public static Cube cubeMech;
-//	public static Lifter lifty;
+	public static Lifter lifty;
 	public static Shifter shifter = new Shifter();
 	public static PressureSensor pressureSensor = new PressureSensor();
 
@@ -114,11 +112,14 @@ public class Robot extends TimedRobot {
 		camera.startAutomaticCapture("cam0", 50);
 		camera.startAutomaticCapture();
 
-		if (RobotMap.godSwitch.get()) {
-			cubeMech.raise();
+
+		cubeMech.raise();
+		
+//		if (RobotMap.godSwitch.get()) {
 //			lifty.rampReset();
 //			lifty.descend();
-		}
+//		}
+		
 		System.out.println("Loading version " + vNum);
 		SmartDashboard.putNumber("Version #", vNum);
 

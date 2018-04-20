@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class CubeMechDrop extends InstantCommand {
+public class CubeMechRaise extends InstantCommand {
 
-    public CubeMechDrop() {
+    public CubeMechRaise() {
         super();
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.cubeMech);
     }
 
-    // Called just before this Command runs the first time
+    // Called once when the command executes
     protected void initialize() {
-    	Robot.cubeMech.lower();
+    	Robot.cubeMech.raise();
     }
 
 }
