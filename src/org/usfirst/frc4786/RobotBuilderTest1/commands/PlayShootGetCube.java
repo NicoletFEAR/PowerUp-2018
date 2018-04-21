@@ -21,11 +21,7 @@ public class PlayShootGetCube extends CommandGroup {
     	{
     		case A:
     			if (Robot.teamSwitchSide.equals("L")) {
-		    		addSequential(new DriveToPosition(150, .85));     // Drive to next to switch 150 inches
-					addSequential(new TurnToAngle(90));               // turn 90 degrees toward switch
-					addSequential(new DriveToPosition(36, .5));       // Drive forward to touch switch 36 inches
-					
-					addSequential(new CubeLaunch());                  //cube launch 1
+		    		addSequential(new PlayOneCubeArc());
 					
 					addSequential(new TurnToAngle(90));               // turn 90 degrees clockwise to face drivers
 					addSequential(new DriveToPosition(-64, .5));      // drive backwards 64 inches
@@ -180,11 +176,7 @@ public class PlayShootGetCube extends CommandGroup {
 		    	break;
 	    	case E:
     			if (Robot.teamSwitchSide.equals("R")) {
-		    		addSequential(new DriveToPosition(150, .85));     // Drive to next to switch 150 inches
-					addSequential(new TurnToAngle(-90));              // turn 90 degrees toward switch
-					addSequential(new DriveToPosition(36, .5));       // Drive forward to touch switch 36 inches
-					
-					addSequential(new CubeLaunch());                  //cube launch 1
+		    		addSequential(new PlayOneCubeArc());
 					
 					addSequential(new TurnToAngle(-90));              // turn 90 degrees anti-clockwise to face drivers
 					addSequential(new DriveToPosition(-64, .5));      // drive backwards 64 inches

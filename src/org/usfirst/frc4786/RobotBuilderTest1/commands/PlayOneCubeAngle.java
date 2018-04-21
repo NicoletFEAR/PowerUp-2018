@@ -52,23 +52,13 @@ public class PlayOneCubeAngle extends CommandGroup {
 				addSequential(new DriveToPosition(110, .85));
 				break;
 			case E:
-				if (Robot.teamScaleSide.equals("L"))
-				{
-					addSequential(new DriveToPosition(196, .85));
-				} else {
-					addSequential(new DriveToPosition(328, .85));
-				}
+				addSequential(new PlayBaseline());
 				break;
 			}
 		} else {
 			switch (Robot.myPosition) {
 			case A:
-				if (Robot.teamScaleSide.equals("L"))
-				{
-					addSequential(new DriveToPosition(328, .85));
-				} else {
-					addSequential(new DriveToPosition(196, .85));
-				}
+				addSequential (new PlayBaseline());
 				break;
 			case B:
 				addSequential(new DriveToPosition(110, .85));

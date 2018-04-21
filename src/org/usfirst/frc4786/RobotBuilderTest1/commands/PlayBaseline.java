@@ -35,20 +35,7 @@ public class PlayBaseline extends CommandGroup {
 			addSequential(new DriveToPosition(100, 1));
 			break;
 		case B:
-			if (Robot.teamSwitchSide.equals("L")) {
-				addSequential(new DriveToPosition(100, .7));
-		    	addSequential(new WaitCommand(1));
-//		    	addParallel(new CubeFlywheelForward());
-//		    	addSequential(new WaitCommand(1));
-//		    	addSequential(new CubePistonExtend());
-//		    	addSequential(new WaitCommand(.5));
-//		    	addSequential(new CubeFlywheelStop());
-//		    	addSequential(new CubePistonRetract());
-				break;
-			} else {
-				addSequential(new DriveToPosition(100, 1));
-				break;
-			}
+			addSequential(new DriveToPosition(100, 1));
 		case C:
 			addSequential(new DriveToPosition(36, .7));
 			if (Robot.teamSwitchSide.equals("L"))
@@ -60,20 +47,7 @@ public class PlayBaseline extends CommandGroup {
 			addSequential(new DriveToPosition(100, .7));
 			break;
 		case D:
-			if (Robot.teamSwitchSide.equals("R")) {
-				addSequential(new DriveToPosition(100, .7));
-		    	addSequential(new WaitCommand(1));
-//		    	addParallel(new CubeFlywheelForward());
-//		    	addSequential(new WaitCommand(1));
-//		    	addSequential(new CubePistonExtend());
-//		    	addSequential(new WaitCommand(.5));
-//		    	addSequential(new CubeFlywheelStop());
-//		    	addSequential(new CubePistonRetract());
-				break;
-			} else {
-				addSequential(new DriveToPosition(100, 1));
-				break;
-			}
+			addSequential(new DriveToPosition(100, 1));
 		case E:
 			addSequential(new DriveToPosition(100, 1));
 			break;
