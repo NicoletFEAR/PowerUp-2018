@@ -43,8 +43,8 @@ public class RobotMap {
         frontRight = new WPI_TalonSRX(14);
         midLeft = new WPI_TalonSRX(15);
         midRight = new WPI_TalonSRX(16);
-        backLeft = new WPI_TalonSRX(17);
-        backRight = new WPI_TalonSRX(18);
+//        backLeft = new WPI_TalonSRX(17);
+//        backRight = new WPI_TalonSRX(18);
 
     }
 }

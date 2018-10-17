@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 public class DriveTrain extends Subsystem {
 
-    MecanumDrive robotDrive = new MecanumDrive(RobotMap.frontLeft, RobotMap.frontRight, RobotMap.backLeft, RobotMap.backRight);      
+    MecanumDrive robotDrive = new MecanumDrive(RobotMap.frontLeft, RobotMap.frontRight, RobotMap.midLeft, RobotMap.midRight);      
  
 	private AHRS navX;
     
