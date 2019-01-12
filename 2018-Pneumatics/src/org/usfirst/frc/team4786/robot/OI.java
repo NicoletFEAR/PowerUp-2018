@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import org.usfirst.frc.team4786.robot.commands.Grab;
 import org.usfirst.frc.team4786.robot.commands.Lift;
 import org.usfirst.frc.team4786.robot.commands.Shift;
+import org.usfirst.frc.team4786.robot.commands.ShiftBig;
 import org.usfirst.frc.team4786.robot.xbox.Buttons;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -20,6 +21,8 @@ import edu.wpi.first.wpilibj.buttons.*;
 public class OI {
     private XboxController xbox2;
 	public Button xboxLeftStick;
+	public Button xboxA;
+	public Button xboxB;
 	//xbox controller
 	public static final int A = 1;
 	public static final int B = 2;
@@ -40,7 +43,10 @@ public OI(){
 	rightBumper = new JoystickButton(xbox2, Buttons.RightBump);
 	leftBumper = new JoystickButton(xbox2, Buttons.LeftBump);
 	xboxLeftStick = new JoystickButton(xbox2, 9);
-	xboxLeftStick.whenPressed(new Shift());
+	xboxA = new JoystickButton(xbox2, 1);
+	xboxB = new JoystickButton(xbox2, 2);
+	xboxB.whenPressed(new ShiftBig());
+	xboxA.whenPressed(new Shift());
 	rightBumper.whenPressed(new Lift());
 	leftBumper.whenPressed(new Grab());	
 	

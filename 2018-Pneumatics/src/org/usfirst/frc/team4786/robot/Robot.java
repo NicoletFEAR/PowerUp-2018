@@ -4,6 +4,7 @@ import org.usfirst.frc.team4786.robot.subsystems.AirCompressor;
 import org.usfirst.frc.team4786.robot.subsystems.Arduino;
 import org.usfirst.frc.team4786.robot.subsystems.GameMech;
 import org.usfirst.frc.team4786.robot.subsystems.Shifter;
+import org.usfirst.frc.team4786.robot.subsystems.ShifterBig;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,6 +35,7 @@ public class Robot extends IterativeRobot {
 	public static AirCompressor aircompressor;
 
 	public static Shifter shifter = new Shifter();
+	public static ShifterBig shifterBig = new ShifterBig();
 	
 	public static GameMech gameMech = new GameMech();
 	
